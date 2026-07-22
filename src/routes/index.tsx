@@ -7,6 +7,7 @@ import {
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import heroImg from "@/assets/hero-fleet.jpg";
+import iaAltImg from "@/assets/ia-fleet-manager-alt.jpg";
 import fleetImg from "@/assets/ai-fleet-manager.jpg";
 import driverImg from "@/assets/driver-copilot.jpg";
 import tireImg from "@/assets/tire-monitor.jpg";
@@ -139,7 +140,7 @@ function Features() {
       title: "IA Fleet Manager",
       desc: "O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos por dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.",
       bullets: ["Priorização automática de ações", "Detecção preditiva de falhas", "Diagnósticos em linguagem natural"],
-      image: fleetImg,
+      image: iaAltImg,
     },
     {
       icon: TrendingDown,
@@ -207,7 +208,7 @@ function FeatureCard({ icon: Icon, tag, title, desc, bullets, image, big }: any)
 function ProductTiers() {
   const tiers = [
     {
-      name: "SS Essencial",
+      name: "SS Star",
       desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
       features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
       color: "border-border",
@@ -217,12 +218,12 @@ function ProductTiers() {
       name: "SS Performance",
       badge: "MAIS ESCOLHIDO",
       desc: "Toda base + copiloto do motorista, gamificação e monitoramento de pneus.",
-      features: ["Tudo do Essencial", "Copiloto do Motorista", "Clube de Fidelidade", "Monitoramento de Pneus", "Painel de rentabilidade"],
+      features: ["Tudo do Star", "Copiloto do Motorista", "Clube de Fidelidade", "Monitoramento de Pneus", "Painel de rentabilidade"],
       color: "border-brand-sky ring-2 ring-brand-sky/40",
       cta: "Para operações que competem por eficiência",
     },
     {
-      name: "SS Enterprise IA",
+      name: "SS Evolution",
       desc: "IA Fleet Manager completo, integrações ERP/TMS e Selo Verde ESG.",
       features: ["Tudo do Performance", "IA Fleet Manager", "Integração ERP/TMS", "Selo Verde SS", "SLA dedicado + CSM"],
       color: "border-border bg-gradient-hero text-white",

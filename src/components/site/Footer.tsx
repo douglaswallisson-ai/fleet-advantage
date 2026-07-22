@@ -17,9 +17,9 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white">Produtos</h4>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li>SS Essencial</li>
+              <li>SS Star</li>
               <li>SS Performance</li>
-              <li>SS Enterprise IA</li>
+              <li>SS Evolution</li>
               <li>Monitoramento de Pneus</li>
               <li>Copiloto do Motorista</li>
             </ul>
