@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import {
   Brain, TrendingDown, Gauge, Users, Bot, Leaf, ArrowRight, Check,
-  Sparkles, Shield, Truck, BarChart3, Radio, Award
+  Sparkles, Shield, Truck, BarChart3, Radio, Award, Camera, Wind
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -13,6 +13,8 @@ import driverImg from "@/assets/driver-copilot.jpg";
 import tireImg from "@/assets/tire-monitor.jpg";
 import driversClubImg from "@/assets/drivers-club.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
+import cameraImg from "@/assets/ai-camera-monitor.jpg";
+import euro6Img from "@/assets/euro6-regen.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -56,7 +58,7 @@ function Hero() {
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide backdrop-blur">
             <Sparkles className="h-3.5 w-3.5 text-brand-green" />
-            NOVO POSICIONAMENTO SS
+            DA TELEMETRIA À DECISÃO
           </span>
           <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
             Não entregamos dados.<br />
@@ -156,13 +158,27 @@ function Features() {
       bullets: ["Alerta preditivo de falhas", "+40% de vida útil média", "Rodízio inteligente sugerido"],
       image: tireImg,
     },
+    {
+      icon: Camera,
+      title: "Câmeras com IA a bordo",
+      desc: "Visão computacional dentro e fora da cabine. Detecta fadiga, desatenção e distração em tempo real — e guarda a prova em vídeo para cada evento crítico.",
+      bullets: ["Prova de acidente em vídeo (DVR)", "Alerta de fadiga e microssono", "Detecção de desatenção no trânsito"],
+      image: cameraImg,
+    },
+    {
+      icon: Wind,
+      title: "Regeneração EURO 6",
+      desc: "Acompanhe DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite derating, multas ambientais e paradas não programadas.",
+      bullets: ["Status de regeneração em tempo real", "Alerta preventivo de derating", "Histórico completo por veículo"],
+      image: euro6Img,
+    },
   ];
 
   return (
     <section id="solucoes" className="mx-auto max-w-7xl px-6 py-24">
       <div className="mb-16 max-w-2xl">
-        <span className="text-xs font-bold tracking-widest text-brand-sky">O QUE MOVE A SS</span>
-        <h2 className="mt-3 text-4xl font-bold md:text-5xl">Inteligência aplicada onde dói o bolso.</h2>
+        <span className="text-xs font-bold tracking-widest text-brand-sky">A PLATAFORMA SS</span>
+        <h2 className="mt-3 text-4xl font-bold md:text-5xl">Tecnologia que decide junto — e paga a própria conta.</h2>
       </div>
       <div className="grid gap-8 lg:grid-cols-2">
         <FeatureCard {...features[0]} big />
@@ -170,6 +186,10 @@ function Features() {
           <FeatureCard {...features[1]} />
           <FeatureCard {...features[2]} />
         </div>
+      </div>
+      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+        <FeatureCard {...features[3]} />
+        <FeatureCard {...features[4]} />
       </div>
     </section>
   );
@@ -208,7 +228,7 @@ function FeatureCard({ icon: Icon, tag, title, desc, bullets, image, big }: any)
 function ProductTiers() {
   const tiers = [
     {
-      name: "SS Star",
+      name: "SS Start",
       desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
       features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
       color: "border-border",
