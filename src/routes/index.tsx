@@ -228,7 +228,7 @@ function FeatureCard({ icon: Icon, tag, title, desc, bullets, image, big }: any)
 function ProductTiers() {
   const tiers = [
     {
-      name: "SS Star",
+      name: "SS Start",
       desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
       features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
       color: "border-border",
