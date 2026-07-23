@@ -21,6 +21,21 @@ npm i
 npm run dev
 ```
 
+## Configuração do site
+
+Dados institucionais (e-mail, telefone, WhatsApp, CNPJ, endereço) ficam em um único
+arquivo: `src/lib/site-config.ts`. Campos vazios simplesmente não são renderizados.
+
+### Variáveis de ambiente
+
+| Variável | Onde | Para quê |
+| --- | --- | --- |
+| `VITE_SITE_URL` | build | Base absoluta de `canonical`, `og:url`, `sitemap.xml` e JSON-LD. Padrão: `https://www.sstelematica.com.br` |
+| `LEADS_WEBHOOK_URL` | servidor | Destino dos leads dos formulários. Recebe um POST JSON por envio — compatível com Zapier, Make, n8n, Slack ou endpoint próprio de CRM. |
+
+Sem `LEADS_WEBHOOK_URL` os leads continuam sendo registrados no log do servidor
+(procure por `[lead]`), mas ninguém é notificado — configure antes de divulgar o site.
+
 ## Built with
 
 - TanStack Start

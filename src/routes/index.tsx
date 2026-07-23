@@ -1,11 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Brain, TrendingDown, Gauge, Users, Bot, Leaf, ArrowRight, Check,
-  Sparkles, Shield, Truck, BarChart3, Radio, Award, Camera, Wind
+  Sparkles, Shield, BarChart3, Radio, Award, Camera, Wind,
+  type LucideIcon
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { SSOrb } from "@/components/site/SSOrb";
+import { Backdrop } from "@/components/site/Backdrop";
+import { MEDIA, pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
 import iaAltImg from "@/assets/ia-fleet-manager-alt.jpg";
 import fleetImg from "@/assets/ai-fleet-manager.jpg";
@@ -18,30 +21,37 @@ import euro6Img from "@/assets/euro6-regen.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () => ({
-    meta: [
-      { title: "SS Telemática — Da telemetria à tomada de decisão" },
-      { name: "description", content: "IA que transforma dados de frota em decisões: redução de custos, monitoramento de pneus, copiloto do motorista e clube de fidelidade. O novo padrão em gestão de frotas." },
-      { property: "og:title", content: "SS Telemática — Decisão, não apenas dado." },
-      { property: "og:description", content: "IA Fleet Manager, copiloto do motorista, monitoramento inteligente de pneus e clube de fidelidade. A telemática que decide junto com você." },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/",
+      title: "SS Telemática — Da telemetria à tomada de decisão",
+      description:
+        "IA que transforma dados de frota em decisões: redução de custos, monitoramento de pneus, copiloto do motorista e clube de fidelidade. O novo padrão em gestão de frotas.",
+      ogTitle: "SS Telemática — Decisão, não apenas dado.",
+      ogDescription:
+        "IA Fleet Manager, copiloto do motorista, monitoramento inteligente de pneus e clube de fidelidade. A telemática que decide junto com você.",
+    }),
 });
 
+/**
+ * Ordem das seções: dor → capacidades → produtos → prova → empacotamento → ação.
+ * Os planos vêm DEPOIS de Copiloto, Clube e Selo Verde porque os citam como
+ * benefícios — o leitor precisa saber o que são antes de comparar tiers.
+ */
 function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Nav />
-      <Hero />
-      <Positioning />
-      <Features />
-      <ProductTiers />
-      <DriverCopilot />
-      <DriversClub />
-      <GreenSeal />
-      <CTA />
+      <main>
+        <Hero />
+        <Positioning />
+        <Features />
+        <DriverCopilot />
+        <DriversClub />
+        <GreenSeal />
+        <ProductTiers />
+        <CTA />
+      </main>
       <Footer />
     </div>
   );
@@ -51,7 +61,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
       <div className="absolute inset-0 opacity-40">
-        <img src={heroImg} alt="" className="h-full w-full object-cover" width={1920} height={1080} />
+        <Backdrop image={heroImg} video={MEDIA.heroVideo} />
         <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)]/70 via-[oklch(0.18_0.06_260)]/50 to-[oklch(0.18_0.06_260)]" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-20 pb-28 lg:grid-cols-[1.2fr_0.8fr] lg:pt-28 lg:pb-36">
@@ -70,17 +80,26 @@ function Hero() {
             realmente importa: <strong className="text-white">a próxima decisão certa.</strong>
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#produtos" className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5">
+            <a href="#solucoes" className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5">
               Conhecer plataforma <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#contato" className="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10">
+            <Link to="/contato" className="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10">
               Falar com especialista
-            </a>
+            </Link>
           </div>
+
+          {/* Marca animada — no desktop ela flutua sobre o painel à direita. */}
+          <div className="mt-12 flex items-center gap-5 lg:hidden">
+            <SSOrb size={88} halo className="text-brand-green" />
+            <p className="text-sm text-white/60">
+              A inteligência da SS rodando 24/7 na sua operação.
+            </p>
+          </div>
+
           <div className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
             {[
-              { k: "−28%", v: "custo médio de frota" },
-              { k: "+40%", v: "vida útil dos pneus" },
+              { k: "−28%", v: "meta de custo por km" },
+              { k: "+40%", v: "meta de vida útil dos pneus" },
               { k: "24/7", v: "monitoramento com IA" },
             ].map((s) => (
               <div key={s.k}>
@@ -89,11 +108,21 @@ function Hero() {
               </div>
             ))}
           </div>
+          <p className="mt-4 max-w-lg text-[11px] leading-relaxed text-white/45">
+            Metas de referência da plataforma em 12 meses. Resultados variam conforme
+            perfil da frota, rota e nível de adoção.
+          </p>
         </div>
+
         <div className="relative hidden lg:block">
           <div className="absolute inset-0 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/15 bg-white/5 p-2 shadow-elegant backdrop-blur">
             <img src={fleetImg} alt="Painel de IA Fleet Manager" className="rounded-2xl" width={1400} height={1000} />
+            <SSOrb
+              size={168}
+              halo
+              className="absolute -right-14 -top-14 text-brand-green drop-shadow-[0_10px_30px_oklch(0.18_0.06_260/0.6)]"
+            />
             <div className="absolute -bottom-6 -left-6 rounded-2xl bg-brand-green px-5 py-4 shadow-elegant">
               <div className="flex items-center gap-2 text-[oklch(0.15_0.03_260)]">
                 <Brain className="h-5 w-5" />
@@ -134,172 +163,151 @@ function Positioning() {
   );
 }
 
+type Feature = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  bullets: string[];
+  /** Foto do card. Sem foto, o card usa `metric` como painel. */
+  image?: string;
+  metric?: { value: string; label: string };
+};
+
+/**
+ * Um card de destaque em largura total + grade uniforme 2×2. Antes era um card
+ * alto ao lado de dois baixos e mais uma linha solta, o que deixava alturas
+ * desencontradas e a seção com cara de bagunça.
+ */
 function Features() {
-  const features = [
-    {
-      icon: Brain,
-      tag: "DESTAQUE",
-      title: "IA Fleet Manager",
-      desc: "O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos por dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.",
-      bullets: ["Priorização automática de ações", "Detecção preditiva de falhas", "Diagnósticos em linguagem natural"],
-      image: iaAltImg,
-    },
+  const cards: Feature[] = [
     {
       icon: TrendingDown,
       title: "Redução de Custo de Frota",
-      desc: "Combustível, manutenção, pneus e sinistros — em um único painel de rentabilidade por veículo. Meta clara: −28% no custo por km em 12 meses.",
+      desc: "Combustível, manutenção, pneus e sinistros — em um único painel de rentabilidade por veículo.",
       bullets: ["Custo por km em tempo real", "Simulador de economia", "Benchmark do seu segmento"],
-      image: null,
+      metric: { value: "−28%", label: "META DE CUSTO POR KM EM 12 MESES" },
     },
     {
       icon: Gauge,
-      title: "Monitoramento Inteligente de Pneus",
+      title: "Monitoramento de Pneus",
       desc: "Sensores TPMS + IA preditiva. Pressão, temperatura e desgaste rastreados 24/7 — antes de virarem parada não programada.",
-      bullets: ["Alerta preditivo de falhas", "+40% de vida útil média", "Rodízio inteligente sugerido"],
+      bullets: ["Alerta preditivo de falhas", "Meta de +40% de vida útil", "Rodízio inteligente sugerido"],
       image: tireImg,
     },
     {
       icon: Camera,
       title: "Câmeras com IA a bordo",
-      desc: "Visão computacional dentro e fora da cabine. Detecta fadiga, desatenção e distração em tempo real — e guarda a prova em vídeo para cada evento crítico.",
-      bullets: ["Prova de acidente em vídeo (DVR)", "Alerta de fadiga e microssono", "Detecção de desatenção no trânsito"],
+      desc: "Visão computacional dentro e fora da cabine. Detecta fadiga e distração em tempo real — e guarda a prova em vídeo de cada evento crítico.",
+      bullets: ["Prova de acidente em vídeo (DVR)", "Alerta de fadiga e microssono", "Detecção de desatenção"],
       image: cameraImg,
     },
     {
       icon: Wind,
       title: "Regeneração EURO 6",
-      desc: "Acompanhe DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite derating, multas ambientais e paradas não programadas.",
-      bullets: ["Status de regeneração em tempo real", "Alerta preventivo de derating", "Histórico completo por veículo"],
+      desc: "DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite derating, multas ambientais e paradas não programadas.",
+      bullets: ["Regeneração em tempo real", "Alerta preventivo de derating", "Histórico completo por veículo"],
       image: euro6Img,
     },
   ];
 
   return (
-    <section id="solucoes" className="mx-auto max-w-7xl px-6 py-24">
-      <div className="mb-16 max-w-2xl">
+    <section id="solucoes" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
+      <div className="mb-14 max-w-2xl">
         <span className="text-xs font-bold tracking-widest text-brand-sky">A PLATAFORMA SS</span>
         <h2 className="mt-3 text-4xl font-bold md:text-5xl">Tecnologia que decide junto — e paga a própria conta.</h2>
       </div>
-      <div className="grid gap-8 lg:grid-cols-2">
-        <FeatureCard {...features[0]} big />
-        <div className="grid gap-8">
-          <FeatureCard {...features[1]} />
-          <FeatureCard {...features[2]} />
-        </div>
-      </div>
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        <FeatureCard {...features[3]} />
-        <FeatureCard {...features[4]} />
-      </div>
-    </section>
-  );
-}
 
-function FeatureCard({ icon: Icon, tag, title, desc, bullets, image, big }: any) {
-  return (
-    <article className={`group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-card transition-all hover:shadow-elegant ${big ? "lg:row-span-2" : ""}`}>
-      {tag && (
-        <span className="absolute right-6 top-6 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
-          {tag}
-        </span>
-      )}
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-hero text-white">
-        <Icon className="h-6 w-6" />
-      </div>
-      <h3 className="mt-6 text-2xl font-bold">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">{desc}</p>
-      <ul className="mt-6 space-y-2">
-        {bullets.map((b: string) => (
-          <li key={b} className="flex items-start gap-2 text-sm">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-      {image && big && (
-        <div className="mt-8 overflow-hidden rounded-2xl">
-          <img src={image} alt={title} loading="lazy" className="w-full transition-transform duration-500 group-hover:scale-105" width={1400} height={1000} />
-        </div>
-      )}
-    </article>
-  );
-}
-
-function ProductTiers() {
-  const tiers = [
-    {
-      name: "SS Start",
-      desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
-      features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
-      color: "border-border",
-      cta: "Ideal para até 50 veículos",
-    },
-    {
-      name: "SS Performance",
-      badge: "MAIS ESCOLHIDO",
-      desc: "Toda base + copiloto do motorista, gamificação e monitoramento de pneus.",
-      features: ["Tudo do Star", "Copiloto do Motorista", "Clube de Fidelidade", "Monitoramento de Pneus", "Painel de rentabilidade"],
-      color: "border-brand-sky ring-2 ring-brand-sky/40",
-      cta: "Para operações que competem por eficiência",
-    },
-    {
-      name: "SS Evolution",
-      desc: "IA Fleet Manager completo, integrações ERP/TMS e Selo Verde ESG.",
-      features: ["Tudo do Performance", "IA Fleet Manager", "Integração ERP/TMS", "Selo Verde SS", "SLA dedicado + CSM"],
-      color: "border-border bg-gradient-hero text-white",
-      cta: "Frotas 500+ com metas ESG",
-    },
-  ];
-  return (
-    <section id="produtos" className="bg-secondary/40 py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <span className="text-xs font-bold tracking-widest text-brand-sky">3 TIERS · UMA PLATAFORMA</span>
-            <h2 className="mt-3 text-4xl font-bold md:text-5xl">Escolha o nível de decisão da sua frota.</h2>
+      <article className="group grid overflow-hidden rounded-3xl bg-gradient-hero text-white shadow-elegant lg:grid-cols-[1fr_1fr]">
+        <div className="flex flex-col justify-center p-8 md:p-12">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
+            <Sparkles className="h-3 w-3" /> DESTAQUE
+          </span>
+          <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 backdrop-blur">
+            <Brain className="h-6 w-6 text-brand-green" />
           </div>
-          <p className="max-w-md text-sm text-muted-foreground">
-            Do rastreio essencial à IA que gerencia sua operação por você. Migre entre planos quando quiser.
+          <h3 className="mt-6 text-3xl font-bold md:text-4xl">IA Fleet Manager</h3>
+          <p className="mt-4 text-base leading-relaxed text-white/75">
+            O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos
+            por dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.
           </p>
+          <ul className="mt-7 space-y-2.5">
+            {["Priorização automática de ações", "Detecção preditiva de falhas", "Diagnósticos em linguagem natural"].map((b) => (
+              <li key={b} className="flex items-start gap-2 text-sm text-white/90">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {tiers.map((t) => {
-            const isDark = t.color.includes("gradient-hero");
-            return (
-              <article key={t.name} className={`relative flex flex-col rounded-3xl border p-8 shadow-card ${t.color}`}>
-                {t.badge && (
-                  <span className="absolute -top-3 left-8 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
-                    {t.badge}
-                  </span>
-                )}
-                <h3 className="text-2xl font-bold">{t.name}</h3>
-                <p className={`mt-2 text-sm ${isDark ? "text-white/70" : "text-muted-foreground"}`}>{t.desc}</p>
-                <ul className={`mt-6 space-y-2.5 text-sm ${isDark ? "text-white/90" : ""}`}>
-                  {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${isDark ? "text-brand-green" : "text-brand-green"}`} />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className={`mt-8 flex-1 border-t pt-4 text-xs ${isDark ? "border-white/10 text-white/60" : "border-border text-muted-foreground"}`}>
-                  {t.cta}
-                </div>
-                <a href="#contato" className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${isDark ? "bg-brand-green text-[oklch(0.15_0.03_260)]" : "bg-primary text-primary-foreground"}`}>
-                  Simular meu plano
-                </a>
-              </article>
-            );
-          })}
+        <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
+          <img
+            src={iaAltImg}
+            alt="Painel do IA Fleet Manager"
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            width={1400}
+            height={1000}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.06_260)] via-transparent to-transparent opacity-70 lg:opacity-90" />
         </div>
+      </article>
+
+      <div className="mt-8 grid gap-8 md:grid-cols-2">
+        {cards.map((card) => (
+          <FeatureCard key={card.title} {...card} />
+        ))}
       </div>
     </section>
+  );
+}
+
+/** Card uniforme: mídia no topo (foto ou painel de número) + conteúdo abaixo. */
+function FeatureCard({ icon: Icon, title, desc, bullets, image, metric }: Feature) {
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant">
+      <div className="relative aspect-[16/9] overflow-hidden">
+        {image ? (
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            width={1400}
+            height={1000}
+          />
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-hero text-center">
+            <div className="text-6xl font-bold text-brand-green md:text-7xl">{metric?.value}</div>
+            <div className="mt-3 max-w-[16rem] text-[10px] font-semibold tracking-widest text-white/60">
+              {metric?.label}
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col p-8">
+        <div className="flex items-center gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-hero text-white">
+            <Icon className="h-5 w-5" />
+          </span>
+          <h3 className="text-xl font-bold md:text-2xl">{title}</h3>
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+        <ul className="mt-6 space-y-2">
+          {bullets.map((b) => (
+            <li key={b} className="flex items-start gap-2 text-sm">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 }
 
 function DriverCopilot() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <section id="copiloto" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
       <div className="grid items-center gap-16 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
           <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
@@ -336,9 +344,9 @@ function DriverCopilot() {
 
 function DriversClub() {
   return (
-    <section className="relative overflow-hidden bg-gradient-hero py-24 text-white">
+    <section id="clube" className="relative scroll-mt-24 overflow-hidden bg-gradient-hero py-24 text-white">
       <div className="absolute inset-0 opacity-20">
-        <img src={driversClubImg} alt="" className="h-full w-full object-cover" width={1400} height={900} />
+        <Backdrop image={driversClubImg} video={MEDIA.clubeVideo} />
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1fr]">
@@ -355,18 +363,24 @@ function DriversClub() {
             descontos em rede parceira e prêmios em dinheiro.
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            { k: "+32%", v: "de engajamento em 90 dias" },
-            { k: "−45%", v: "de turnover de motoristas" },
-            { k: "1200+", v: "parceiros na rede de benefícios" },
-            { k: "5★", v: "avaliação média no app" },
-          ].map((s) => (
-            <div key={s.k} className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
-              <div className="text-3xl font-bold text-brand-green">{s.k}</div>
-              <div className="mt-2 text-sm text-white/70">{s.v}</div>
-            </div>
-          ))}
+        <div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { k: "+32%", v: "de engajamento em 90 dias" },
+              { k: "−45%", v: "de turnover de motoristas" },
+              { k: "1200+", v: "parceiros na rede de benefícios" },
+              { k: "5★", v: "avaliação média no app" },
+            ].map((s) => (
+              <div key={s.k} className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
+                <div className="text-3xl font-bold text-brand-green">{s.k}</div>
+                <div className="mt-2 text-sm text-white/70">{s.v}</div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-[11px] leading-relaxed text-white/45">
+            Indicadores de referência do Clube SS. Resultados variam conforme o perfil
+            da operação e o nível de adesão dos motoristas.
+          </p>
         </div>
       </div>
     </section>
@@ -375,7 +389,7 @@ function DriversClub() {
 
 function GreenSeal() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <section id="selo-verde" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-green/15 px-3 py-1 text-xs font-bold tracking-widest text-[oklch(0.35_0.12_138)]">
@@ -397,7 +411,7 @@ function GreenSeal() {
               "Relatório ESG pronto",
             ].map((i) => (
               <li key={i} className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm">
-                <Shield className="h-4 w-4 text-brand-green" /> {i}
+                <Shield className="h-4 w-4 shrink-0 text-brand-green" /> {i}
               </li>
             ))}
           </ul>
@@ -410,9 +424,85 @@ function GreenSeal() {
             </div>
             <div>
               <div className="text-xs text-muted-foreground">Frota certificada</div>
-              <div className="text-lg font-bold">SS GREEN · 2026</div>
+              <div className="text-lg font-bold">SS GREEN · {new Date().getFullYear()}</div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductTiers() {
+  const tiers = [
+    {
+      name: "SS Start",
+      desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
+      features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
+      color: "border-border",
+      cta: "Ideal para até 50 veículos",
+    },
+    {
+      name: "SS Performance",
+      badge: "MAIS ESCOLHIDO",
+      desc: "Toda a base + copiloto do motorista, gamificação e monitoramento de pneus.",
+      features: ["Tudo do SS Start", "Copiloto do Motorista", "Clube de Fidelidade", "Monitoramento de Pneus", "Painel de rentabilidade"],
+      color: "border-brand-sky ring-2 ring-brand-sky/40",
+      cta: "Para operações que competem por eficiência",
+    },
+    {
+      name: "SS Evolution",
+      desc: "IA Fleet Manager completo, integrações ERP/TMS e Selo Verde ESG.",
+      features: ["Tudo do SS Performance", "IA Fleet Manager", "Integração ERP/TMS", "Selo Verde SS", "SLA dedicado + CSM"],
+      color: "border-border bg-gradient-hero text-white",
+      cta: "Frotas 500+ com metas ESG",
+    },
+  ];
+  return (
+    <section id="produtos" className="scroll-mt-24 bg-secondary/40 py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <span className="text-xs font-bold tracking-widest text-brand-sky">3 TIERS · UMA PLATAFORMA</span>
+            <h2 className="mt-3 text-4xl font-bold md:text-5xl">Escolha o nível de decisão da sua frota.</h2>
+          </div>
+          <p className="max-w-md text-sm text-muted-foreground">
+            Do rastreio essencial à IA que gerencia sua operação por você. Migre entre planos quando quiser.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {tiers.map((t) => {
+            const isDark = t.color.includes("gradient-hero");
+            return (
+              <article key={t.name} className={`relative flex flex-col rounded-3xl border p-8 shadow-card ${t.color}`}>
+                {t.badge && (
+                  <span className="absolute -top-3 left-8 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
+                    {t.badge}
+                  </span>
+                )}
+                <h3 className="text-2xl font-bold">{t.name}</h3>
+                <p className={`mt-2 text-sm ${isDark ? "text-white/70" : "text-muted-foreground"}`}>{t.desc}</p>
+                <ul className={`mt-6 space-y-2.5 text-sm ${isDark ? "text-white/90" : ""}`}>
+                  {t.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className={`mt-8 flex-1 border-t pt-4 text-xs ${isDark ? "border-white/10 text-white/60" : "border-border text-muted-foreground"}`}>
+                  {t.cta}
+                </div>
+                <Link
+                  to="/contato"
+                  search={{ plano: t.name }}
+                  className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${isDark ? "bg-brand-green text-[oklch(0.15_0.03_260)]" : "bg-primary text-primary-foreground"}`}
+                >
+                  Simular meu plano
+                </Link>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -423,15 +513,15 @@ function CTA() {
   return (
     <section className="bg-secondary/40 py-24">
       <div className="mx-auto max-w-4xl px-6 text-center">
-        <Truck className="mx-auto h-10 w-10 text-brand-sky" />
-        <h2 className="mt-6 text-4xl font-bold md:text-5xl">Pronto para decidir com a SS?</h2>
+        <SSOrb size={112} halo className="mx-auto text-brand-sky" />
+        <h2 className="mt-8 text-4xl font-bold md:text-5xl">Pronto para decidir com a SS?</h2>
         <p className="mt-4 text-lg text-muted-foreground">
           Agende uma demonstração de 20 minutos. Traga sua frota — nossa IA mostra em tempo real onde estão as próximas decisões de maior impacto.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="#contato" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card hover:-translate-y-0.5 transition-transform">
+          <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5">
             Agendar demo <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
           <Link to="/indicacao" className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:bg-secondary">
             Ganhar indicando →
           </Link>

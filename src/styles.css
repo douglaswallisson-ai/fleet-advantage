@@ -107,3 +107,40 @@
   background-clip: text;
   color: transparent;
 }
+
+/* --- Marca SS animada (ver src/components/site/SSOrb.tsx) --- */
+@keyframes ss-orb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ss-orb-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+.ss-orb-ring {
+  transform-origin: 100px 100px;
+  animation: ss-orb-spin 11s linear infinite;
+}
+.ss-orb-halo {
+  transform-origin: 100px 100px;
+  animation: ss-orb-spin-reverse 34s linear infinite;
+}
+
+/* --- Imagens de fundo com movimento lento, tipo vídeo (efeito Ken Burns) --- */
+@keyframes ken-burns {
+  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-2%, -2.5%, 0); }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ss-orb-ring,
+  .ss-orb-halo,
+  .animate-ken-burns {
+    animation: none;
+  }
+}

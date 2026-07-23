@@ -2,28 +2,31 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Compass, Rocket, HeartHandshake, Target } from "lucide-react";
+import { SSOrb } from "@/components/site/SSOrb";
+import { pageHead } from "@/lib/site-config";
 import teamImg from "@/assets/team-about.jpg";
 
 export const Route = createFileRoute("/quem-somos")({
   component: QuemSomos,
-  head: () => ({
-    meta: [
-      { title: "Quem Somos — SS Telemática" },
-      { name: "description", content: "Somos a SS Telemática: a nova geração de gestão de frotas no Brasil, movida por inteligência artificial e feita para quem decide." },
-      { property: "og:title", content: "Quem Somos — SS Telemática" },
-      { property: "og:description", content: "Da telemetria à tomada de decisão. Conheça a história, o time e o propósito da SS." },
-      { property: "og:url", content: "/quem-somos" },
-    ],
-    links: [{ rel: "canonical", href: "/quem-somos" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/quem-somos",
+      title: "Quem Somos — SS Telemática",
+      description:
+        "Somos a SS Telemática: a nova geração de gestão de frotas no Brasil, movida por inteligência artificial e feita para quem decide.",
+      ogDescription:
+        "Da telemetria à tomada de decisão. Conheça a história, o time e o propósito da SS.",
+    }),
 });
 
 function QuemSomos() {
   return (
     <div className="min-h-screen bg-background">
       <Nav />
+      <main>
       <section className="bg-gradient-hero py-24 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
+          <SSOrb size={104} halo className="mx-auto mb-8 text-brand-green" />
           <span className="text-xs font-bold tracking-widest text-brand-green">QUEM SOMOS</span>
           <h1 className="mt-4 text-5xl font-bold md:text-6xl">
             Nascemos da telemetria.<br />
@@ -64,7 +67,7 @@ function QuemSomos() {
               { icon: Compass, t: "Propósito", d: "Transformar cada quilômetro em decisão inteligente." },
               { icon: Rocket, t: "Visão", d: "Ser o Fleet Manager virtual do Brasil até 2028." },
               { icon: HeartHandshake, t: "Valores", d: "Cliente no centro. Motorista respeitado. Dado responsável." },
-              { icon: Target, t: "Meta 2026", d: "1 milhão de veículos com IA embarcada." },
+              { icon: Target, t: "Meta 2028", d: "1 milhão de veículos com IA embarcada." },
             ].map(({ icon: Icon, t, d }) => (
               <div key={t} className="rounded-2xl border border-border bg-card p-6 shadow-card">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-hero text-white">
@@ -96,7 +99,7 @@ function QuemSomos() {
           ))}
         </div>
       </section>
-
+      </main>
       <Footer />
     </div>
   );
