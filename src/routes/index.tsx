@@ -58,7 +58,7 @@ function Hero() {
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide backdrop-blur">
             <Sparkles className="h-3.5 w-3.5 text-brand-green" />
-            NOVO POSICIONAMENTO SS
+            DA TELEMETRIA À DECISÃO
           </span>
           <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
             Não entregamos dados.<br />
