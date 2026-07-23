@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import {
   Brain, TrendingDown, Gauge, Users, Bot, Leaf, ArrowRight, Check,
-  Sparkles, Shield, Truck, BarChart3, Radio, Award
+  Sparkles, Shield, Truck, BarChart3, Radio, Award, Camera, Wind
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
