@@ -13,6 +13,8 @@ import driverImg from "@/assets/driver-copilot.jpg";
 import tireImg from "@/assets/tire-monitor.jpg";
 import driversClubImg from "@/assets/drivers-club.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
+import cameraImg from "@/assets/ai-camera-monitor.jpg";
+import euro6Img from "@/assets/euro6-regen.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
