@@ -5,22 +5,29 @@ import {
   ArrowRight,
   BadgeCheck,
   BarChart3,
+  Bus,
+  Cloud,
+  Droplet,
   FileCheck2,
+  Gauge,
   Handshake,
   Info,
   Leaf,
   Loader2,
+  MapPin,
   Recycle,
   Search,
   Target,
   TrendingUp,
   Trophy,
+  Truck,
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
 import { SeloCarbono } from "@/components/site/SeloCarbono";
 import { EcoRing } from "@/components/site/EcoRing";
+import { EsgVenn } from "@/components/site/EsgVenn";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
 import { IMAGENS, IMAGENS_PROVISORIAS, pageHead } from "@/lib/site-config";
 import sustainImg from "@/assets/sustainability.jpg";
@@ -47,6 +54,7 @@ function SeloVerde() {
         <Hero />
         <OQueE />
         <Proposito />
+        <EsgPilares />
         <Beneficios />
         <ComoConquistar />
         <CTAFinal />
@@ -364,6 +372,74 @@ function Proposito() {
           Se a sua frota já opera na SS, você tem acesso ao selo e aos indicadores que comprovam o
           seu impacto positivo.
         </p>
+      </div>
+    </section>
+  );
+}
+
+function EsgPilares() {
+  const impactos = [
+    { icon: Truck, t: "Carretas" },
+    { icon: Bus, t: "Ônibus" },
+    { icon: Cloud, t: "Emissões" },
+    { icon: MapPin, t: "Rotas" },
+    { icon: Droplet, t: "Combustível" },
+    { icon: Gauge, t: "Condução" },
+  ];
+
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-20">
+      <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div>
+          <span className="text-xs font-bold tracking-widest text-brand-sky">ESG NA PRÁTICA</span>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            Eficiência não escolhe um lado — <span className="text-gradient">ganha nos três</span>.
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            Cada litro economizado por uma condução melhor reduz custo, protege o motorista e corta
+            emissão. Na gestão de frotas, os pilares econômico, social e ambiental não competem:
+            avançam juntos.
+          </p>
+
+          <dl className="mt-8 space-y-4">
+            {[
+              {
+                t: "Econômico",
+                d: "Custo por km, consumo e manutenção sob controle, com rentabilidade por veículo.",
+              },
+              {
+                t: "Social",
+                d: "Motorista acompanhado, não vigiado — com copiloto, coaching e recompensa por boa prática.",
+              },
+              {
+                t: "Ambiental",
+                d: "Pegada de carbono medida por dado real de telemetria, com meta de redução por IA.",
+              },
+            ].map((p) => (
+              <div key={p.t} className="border-l-2 border-brand-green/50 pl-4">
+                <dt className="text-sm font-bold">{p.t}</dt>
+                <dd className="mt-1 text-sm text-muted-foreground">{p.d}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-8 sm:grid-cols-6">
+            {impactos.map(({ icon: Icon, t }) => (
+              <div key={t} className="flex flex-col items-center gap-2 text-center">
+                <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card">
+                  <Icon className="h-6 w-6 text-primary" strokeWidth={1.6} />
+                  <Leaf
+                    className="absolute -bottom-1 -right-1 h-4 w-4 text-brand-green"
+                    strokeWidth={2}
+                  />
+                </span>
+                <span className="text-[11px] font-medium text-muted-foreground">{t}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <EsgVenn />
       </div>
     </section>
   );
