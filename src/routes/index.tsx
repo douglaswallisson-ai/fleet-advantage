@@ -20,7 +20,6 @@ import {
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { SSOrb } from "@/components/site/SSOrb";
-import { SeloSS } from "@/components/site/SeloSS";
 import { Backdrop } from "@/components/site/Backdrop";
 import { MEDIA, pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
@@ -509,10 +508,15 @@ function GreenSeal() {
             width={1600}
             height={900}
           />
-          <SeloSS
-            size={140}
-            className="absolute -bottom-8 left-8 drop-shadow-[0_12px_32px_oklch(0.16_0.05_260/0.55)]"
-          />
+          <div className="absolute -bottom-8 left-8 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-elegant">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-green">
+              <Leaf className="h-7 w-7 text-white" />
+            </div>
+            <div>
+              <div className="text-xs text-muted-foreground">Frota certificada</div>
+              <div className="text-lg font-bold">SS GREEN · {new Date().getFullYear()}</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

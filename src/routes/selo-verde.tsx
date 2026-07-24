@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { SeloSS } from "@/components/site/SeloSS";
 import { Backdrop } from "@/components/site/Backdrop";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
 import { pageHead } from "@/lib/site-config";
@@ -79,10 +78,40 @@ function Hero() {
         </div>
 
         <div className="flex justify-center lg:justify-end">
-          <SeloSS size={300} className="drop-shadow-[0_18px_50px_oklch(0.16_0.05_260/0.7)]" />
+          <CartaoCertificado />
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * Cartão de certificação — mesma linguagem do selo que já aparecia na home:
+ * cartão branco, disco verde com a folha e a linha "SS GREEN · ano".
+ */
+function CartaoCertificado() {
+  return (
+    <div className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-elegant">
+      <div className="flex items-center gap-4">
+        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-green">
+          <Leaf className="h-10 w-10 text-white" />
+        </div>
+        <div>
+          <div className="text-xs font-semibold tracking-widest text-muted-foreground">
+            FROTA CERTIFICADA
+          </div>
+          <div className="mt-1 text-2xl font-bold text-[oklch(0.15_0.03_260)]">
+            SS GREEN · {new Date().getFullYear()}
+          </div>
+        </div>
+      </div>
+      <div className="mt-6 border-t border-border pt-5">
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Certificação digital verificável, emitida a partir dos dados de telemetria da própria
+          operação.
+        </p>
+      </div>
+    </div>
   );
 }
 

@@ -46,11 +46,11 @@
   --radius: 0.75rem;
 
   /* SS brand palette translated to oklch */
-  --brand-navy: oklch(0.32 0.13 260);   /* #20448C */
-  --brand-blue: oklch(0.42 0.16 260);   /* #2651A6 */
-  --brand-sky:  oklch(0.68 0.14 235);   /* #32A9D9 */
-  --brand-green: oklch(0.72 0.18 138);  /* #7FBF50 */
-  --brand-ink:  oklch(0.15 0.01 260);   /* #0D0D0D */
+  --brand-navy: oklch(0.32 0.13 260); /* #20448C */
+  --brand-blue: oklch(0.42 0.16 260); /* #2651A6 */
+  --brand-sky: oklch(0.68 0.14 235); /* #32A9D9 */
+  --brand-green: oklch(0.72 0.18 138); /* #7FBF50 */
+  --brand-ink: oklch(0.15 0.01 260); /* #0D0D0D */
 
   --background: oklch(1 0 0);
   --foreground: var(--brand-ink);
@@ -72,7 +72,12 @@
   --input: oklch(0.92 0.01 250);
   --ring: var(--brand-sky);
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.18 0.06 260) 0%, var(--brand-navy) 40%, var(--brand-blue) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.18 0.06 260) 0%,
+    var(--brand-navy) 40%,
+    var(--brand-blue) 100%
+  );
   --gradient-accent: linear-gradient(90deg, var(--brand-sky), var(--brand-green));
   --gradient-green: linear-gradient(135deg, var(--brand-green), oklch(0.62 0.18 155));
   --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--brand-navy) 40%, transparent);
@@ -81,26 +86,45 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
 }
 
-@utility bg-gradient-hero { background: var(--gradient-hero); }
-@utility bg-gradient-accent { background: var(--gradient-accent); }
-@utility bg-gradient-green { background: var(--gradient-green); }
-@utility shadow-elegant { box-shadow: var(--shadow-elegant); }
-@utility shadow-glow { box-shadow: var(--shadow-glow); }
-@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+@utility bg-gradient-accent {
+  background: var(--gradient-accent);
+}
+@utility bg-gradient-green {
+  background: var(--gradient-green);
+}
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
 @utility text-gradient {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
@@ -110,10 +134,14 @@
 
 /* --- Marca SS animada (ver src/components/site/SSOrb.tsx) --- */
 @keyframes ss-orb-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes ss-orb-spin-reverse {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 .ss-orb-ring {
@@ -124,15 +152,15 @@
   transform-origin: 100px 100px;
   animation: ss-orb-spin-reverse 34s linear infinite;
 }
-.selo-ss-ring {
-  transform-origin: 120px 120px;
-  animation: ss-orb-spin 26s linear infinite;
-}
 
 /* --- Imagens de fundo com movimento lento, tipo vídeo (efeito Ken Burns) --- */
 @keyframes ken-burns {
-  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
-  100% { transform: scale(1.18) translate3d(-2%, -2.5%, 0); }
+  0% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.18) translate3d(-2%, -2.5%, 0);
+  }
 }
 
 .animate-ken-burns {
@@ -141,10 +169,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
   .ss-orb-ring,
   .ss-orb-halo,
-  .selo-ss-ring,
   .animate-ken-burns {
     animation: none;
   }
