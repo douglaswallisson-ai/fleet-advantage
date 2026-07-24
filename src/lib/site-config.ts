@@ -33,6 +33,22 @@ export const MEDIA = {
   indicacaoVideo: "",
 };
 
+/**
+ * Textos do chat flutuante (src/components/site/ChatWidget.tsx).
+ *
+ * O botão do WhatsApp só aparece depois que `CONTACT.whatsapp` for preenchido;
+ * sem ele, o widget funciona apenas como recado assíncrono.
+ *
+ * Para um chat ao vivo de verdade (Chatwoot, Crisp, Tawk.to, Zendesk…), o
+ * caminho é substituir o conteúdo do painel pelo script do provedor — a bolinha
+ * e o posicionamento já estão prontos e seguem a identidade da SS.
+ */
+export const CHAT = {
+  greeting: "Olá! Somos o time da SS. Como podemos ajudar com a sua frota?",
+  availability: "Respondemos em horário comercial",
+  whatsappMessage: "Olá! Vim pelo site da SS Telemática e gostaria de falar com um atendente.",
+};
+
 export const CONTACT = {
   email: "comercial@sstelematica.com.br",
   // TODO(SS): preencher com os dados reais — enquanto vazios, não são exibidos.

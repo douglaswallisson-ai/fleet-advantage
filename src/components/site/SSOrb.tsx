@@ -62,10 +62,26 @@ export function SSOrb({ size = 96, halo = false, still = false, className }: SSO
     >
       <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full overflow-visible">
         <defs>
-          <linearGradient id="ss-orb-ring-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.68 0.14 235)" />
-            <stop offset="55%" stopColor="oklch(0.42 0.16 260)" />
-            <stop offset="100%" stopColor="oklch(0.28 0.13 262)" />
+          {/*
+            `userSpaceOnUse` faz os arcos compartilharem UM gradiente que cobre o
+            anel inteiro. No padrão (objectBoundingBox) cada arco recebia a faixa
+            completa dentro da própria caixa, e o trecho curto saía todo escuro.
+
+            Os tons também não descem abaixo de ~0.55 de luminosidade: mais
+            escuro que isso, o azul se confunde com o navy do fundo e some — daí
+            a impressão de que só o verde girava.
+          */}
+          <linearGradient
+            id="ss-orb-ring-grad"
+            gradientUnits="userSpaceOnUse"
+            x1="18"
+            y1="18"
+            x2="182"
+            y2="182"
+          >
+            <stop offset="0%" stopColor="oklch(0.74 0.13 228)" />
+            <stop offset="50%" stopColor="oklch(0.58 0.17 255)" />
+            <stop offset="100%" stopColor="oklch(0.7 0.14 240)" />
           </linearGradient>
         </defs>
 

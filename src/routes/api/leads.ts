@@ -42,7 +42,31 @@ const indicacaoSchema = z.object({
   ...baseFields,
 });
 
-const leadSchema = z.discriminatedUnion("tipo", [contatoSchema, indicacaoSchema]);
+/**
+ * Mensagem enviada pelo chat flutuante. Formulário curto de propósito: o
+ * visitante já está em modo conversa, pedir empresa e porte de frota afugenta.
+ * Um campo só de contato aceita e-mail OU telefone.
+ */
+const chatSchema = z.object({
+  tipo: z.literal("chat"),
+  nome: z.string().trim().min(2, "Informe seu nome.").max(120),
+  contato: z
+    .string()
+    .trim()
+    .min(6, "Informe um e-mail ou telefone.")
+    .max(160)
+    .refine((v) => v.includes("@") || v.replace(/\D/g, "").length >= 8, {
+      message: "Informe um e-mail válido ou um telefone com DDD.",
+    }),
+  mensagem: z.string().trim().min(2, "Escreva sua mensagem.").max(2000),
+  pagina: z.string().trim().max(200).optional().default(""),
+  consentimento: z.literal(true, {
+    errorMap: () => ({ message: "É preciso aceitar o uso dos dados." }),
+  }),
+  website: z.string().max(0).optional(),
+});
+
+const leadSchema = z.discriminatedUnion("tipo", [contatoSchema, indicacaoSchema, chatSchema]);
 
 export type LeadPayload = z.infer<typeof leadSchema>;
 
