@@ -124,6 +124,10 @@
   transform-origin: 100px 100px;
   animation: ss-orb-spin-reverse 34s linear infinite;
 }
+.selo-ss-ring {
+  transform-origin: 120px 120px;
+  animation: ss-orb-spin 26s linear infinite;
+}
 
 /* --- Imagens de fundo com movimento lento, tipo vídeo (efeito Ken Burns) --- */
 @keyframes ken-burns {
@@ -140,6 +144,7 @@
   html { scroll-behavior: auto; }
   .ss-orb-ring,
   .ss-orb-halo,
+  .selo-ss-ring,
   .animate-ken-burns {
     animation: none;
   }

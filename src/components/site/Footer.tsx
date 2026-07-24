@@ -8,7 +8,7 @@ const PRODUTOS = [
   { label: "Câmeras com IA", href: "/#solucoes" },
   { label: "Copiloto do Motorista", href: "/#copiloto" },
   { label: "Clube de Fidelidade", href: "/#clube" },
-  { label: "Selo Verde SS", href: "/#selo-verde" },
+  { label: "Selo Verde SS", href: "/selo-verde" },
 ];
 
 export function Footer() {

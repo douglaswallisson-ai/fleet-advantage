@@ -32,9 +32,14 @@ arquivo: `src/lib/site-config.ts`. Campos vazios simplesmente não são renderiz
 | --- | --- | --- |
 | `VITE_SITE_URL` | build | Base absoluta de `canonical`, `og:url`, `sitemap.xml` e JSON-LD. Padrão: `https://www.sstelematica.com.br` |
 | `LEADS_WEBHOOK_URL` | servidor | Destino dos leads dos formulários. Recebe um POST JSON por envio — compatível com Zapier, Make, n8n, Slack ou endpoint próprio de CRM. |
+| `SELO_REGISTRY_URL` | servidor | Base oficial de frotas com Selo Verde ativo, consultada por `/selo-verde`. Ver contrato em `src/routes/api/selo.ts`. |
 
 Sem `LEADS_WEBHOOK_URL` os leads continuam sendo registrados no log do servidor
 (procure por `[lead]`), mas ninguém é notificado — configure antes de divulgar o site.
+
+Sem `SELO_REGISTRY_URL` a consulta do selo responde "indisponível" em vez de
+afirmar que a empresa não é certificada — o que seria falso para um cliente que
+tem o selo. Conecte a base antes de divulgar a página.
 
 ## Built with
 

@@ -11,7 +11,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Soluções", href: "/#solucoes" },
   { label: "Copiloto", href: "/#copiloto" },
   { label: "Clube SS", href: "/#clube" },
-  { label: "Selo Verde", href: "/#selo-verde" },
+  { label: "Selo Verde", to: "/selo-verde" },
   { label: "Planos", href: "/#produtos" },
   { label: "Quem Somos", to: "/quem-somos" },
   { label: "Indicação", to: "/indicacao" },

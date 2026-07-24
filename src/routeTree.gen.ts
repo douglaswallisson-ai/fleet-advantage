@@ -14,8 +14,10 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndicacaoRouteImport } from './routes/indicacao'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as SeloVerdeRouteImport } from './routes/selo-verde'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ApiLeadsRouteImport } from './routes/api/leads'
+import { Route as ApiSeloRouteImport } from './routes/api/selo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +44,11 @@ const QuemSomosRoute = QuemSomosRouteImport.update({
   path: '/quem-somos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeloVerdeRoute = SeloVerdeRouteImport.update({
+  id: '/selo-verde',
+  path: '/selo-verde',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -52,6 +59,11 @@ const ApiLeadsRoute = ApiLeadsRouteImport.update({
   path: '/api/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSeloRoute = ApiSeloRouteImport.update({
+  id: '/api/selo',
+  path: '/api/selo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +71,10 @@ export interface FileRoutesByFullPath {
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/selo-verde': typeof SeloVerdeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/leads': typeof ApiLeadsRoute
+  '/api/selo': typeof ApiSeloRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +82,10 @@ export interface FileRoutesByTo {
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/selo-verde': typeof SeloVerdeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/leads': typeof ApiLeadsRoute
+  '/api/selo': typeof ApiSeloRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +94,10 @@ export interface FileRoutesById {
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
+  '/selo-verde': typeof SeloVerdeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/leads': typeof ApiLeadsRoute
+  '/api/selo': typeof ApiSeloRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +107,10 @@ export interface FileRouteTypes {
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
+    | '/selo-verde'
     | '/sitemap.xml'
     | '/api/leads'
+    | '/api/selo'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +118,10 @@ export interface FileRouteTypes {
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
+    | '/selo-verde'
     | '/sitemap.xml'
     | '/api/leads'
+    | '/api/selo'
   id:
     | '__root__'
     | '/'
@@ -107,8 +129,10 @@ export interface FileRouteTypes {
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
+    | '/selo-verde'
     | '/sitemap.xml'
     | '/api/leads'
+    | '/api/selo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +141,10 @@ export interface RootRouteChildren {
   IndicacaoRoute: typeof IndicacaoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   QuemSomosRoute: typeof QuemSomosRoute
+  SeloVerdeRoute: typeof SeloVerdeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiLeadsRoute: typeof ApiLeadsRoute
+  ApiSeloRoute: typeof ApiSeloRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuemSomosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/selo-verde': {
+      id: '/selo-verde'
+      path: '/selo-verde'
+      fullPath: '/selo-verde'
+      preLoaderRoute: typeof SeloVerdeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -172,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/selo': {
+      id: '/api/selo'
+      path: '/api/selo'
+      fullPath: '/api/selo'
+      preLoaderRoute: typeof ApiSeloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndicacaoRoute: IndicacaoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   QuemSomosRoute: QuemSomosRoute,
+  SeloVerdeRoute: SeloVerdeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiLeadsRoute: ApiLeadsRoute,
+  ApiSeloRoute: ApiSeloRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
