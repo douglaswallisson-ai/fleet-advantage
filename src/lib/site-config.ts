@@ -50,17 +50,35 @@ export const CHAT = {
 };
 
 /**
- * Galeria "a SS na estrada": veículos de clientes com a marca aplicada.
+ * Imagens de protótipo, servidas por URL externa.
  *
- * IMPORTANTE — as imagens abaixo são PROVISÓRIAS: reaproveitam fotos que já
- * existem no projeto só para a seção não ficar vazia. Substitua por fotos reais
- * de carretas, ônibus urbanos e fretamento com os adesivos da SS.
+ * NENHUMA delas é definitiva. Enquanto `IMAGENS_PROVISORIAS` for true, o site
+ * mostra uma tarja sobre cada uma para que ninguém publique por engano.
  *
- * Como trocar: coloque os arquivos em `src/assets/` e importe-os em
- * `src/components/site/GaleriaFrota.tsx`, trocando o `src` de cada item.
- * Peça autorização de uso de imagem ao cliente dono do veículo.
+ * Procedência:
+ *  - `frota*`: Pexels, licença livre para uso comercial, sem atribuição
+ *    obrigatória. Servem como ilustração de segmento — não são veículos de
+ *    clientes da SS nem têm os adesivos da marca.
+ *  - `folha`: hospedada em site de terceiro e provavelmente licenciada para
+ *    uso exclusivo dele. Entrou a pedido, só para o protótipo — TROCAR antes
+ *    de qualquer publicação. Ver nota no README.
+ *
+ * Para o site definitivo: fotografar veículos reais de clientes já adesivados
+ * (com autorização de uso de imagem por escrito), colocar os arquivos em
+ * `src/assets/` e importá-los em `GaleriaFrota.tsx`.
  */
-export const GALERIA_PENDENTE = true;
+export const IMAGENS_PROVISORIAS = true;
+
+export const IMAGENS = {
+  frotaCarreta:
+    "https://images.pexels.com/photos/8994766/pexels-photo-8994766.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  frotaOnibus:
+    "https://images.pexels.com/photos/13012408/pexels-photo-13012408.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  frotaFretamento:
+    "https://images.pexels.com/photos/18029613/pexels-photo-18029613.jpeg?auto=compress&cs=tinysrgb&w=1400",
+  folha:
+    "https://forbes.com.br/wp-content/uploads/2022/02/Agro_Estados-Unidos-terao-US-1-bilhao-para-promover-agricultura-mais-sustentavel.jpg",
+};
 
 export const CONTACT = {
   email: "comercial@sstelematica.com.br",

@@ -22,7 +22,7 @@ import { Backdrop } from "@/components/site/Backdrop";
 import { SeloCarbono } from "@/components/site/SeloCarbono";
 import { EcoRing } from "@/components/site/EcoRing";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
-import { pageHead } from "@/lib/site-config";
+import { IMAGENS, IMAGENS_PROVISORIAS, pageHead } from "@/lib/site-config";
 import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/selo-verde")({
@@ -59,10 +59,16 @@ function SeloVerde() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
+      {/* Fundo provisório — ver IMAGENS em site-config.ts */}
       <div className="absolute inset-0 opacity-35">
-        <Backdrop image={sustainImg} />
+        <Backdrop image={IMAGENS.folha} />
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.16_0.05_260)] via-[oklch(0.16_0.05_260)]/85 to-transparent" />
       </div>
+      {IMAGENS_PROVISORIAS && (
+        <span className="absolute right-4 top-4 z-10 rounded-full bg-[oklch(0.15_0.03_260)]/80 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur">
+          IMAGEM PROVISÓRIA
+        </span>
+      )}
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
         <div>

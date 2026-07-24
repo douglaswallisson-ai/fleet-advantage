@@ -41,6 +41,21 @@ Sem `SELO_REGISTRY_URL` a consulta do selo responde "indisponível" em vez de
 afirmar que a empresa não é certificada — o que seria falso para um cliente que
 tem o selo. Conecte a base antes de divulgar a página.
 
+### Imagens de protótipo — trocar antes de publicar
+
+`IMAGENS` em `src/lib/site-config.ts` aponta para arquivos externos usados só
+enquanto o site é protótipo. Com `IMAGENS_PROVISORIAS = true`, cada uma aparece
+com uma tarja no site para que nenhuma vá ao ar por engano.
+
+| Imagem | Procedência | Pendência |
+| --- | --- | --- |
+| `frotaCarreta`, `frotaOnibus`, `frotaFretamento` | Pexels — licença livre para uso comercial | São ilustração de segmento: não são veículos de clientes da SS nem têm os adesivos da marca. |
+| `folha` | Hospedada em site de terceiro, **provavelmente licenciada para uso exclusivo dele** | Uso não autorizado. Trocar por foto própria ou de banco com licença comercial **antes de qualquer publicação**. |
+
+Ao substituir: fotografe veículos reais já adesivados, obtenha autorização de
+uso de imagem por escrito do cliente dono do veículo, coloque os arquivos em
+`src/assets/`, importe-os em `GaleriaFrota.tsx` e apague `IMAGENS_PROVISORIAS`.
+
 ## Built with
 
 - TanStack Start

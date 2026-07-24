@@ -1,15 +1,16 @@
 import { Bus, Truck, Users } from "lucide-react";
-import { GALERIA_PENDENTE } from "@/lib/site-config";
-import heroImg from "@/assets/hero-fleet.jpg";
-import clubeImg from "@/assets/drivers-club.jpg";
-import copilotoImg from "@/assets/driver-copilot.jpg";
+import { IMAGENS, IMAGENS_PROVISORIAS } from "@/lib/site-config";
 
 /**
- * "A SS na estrada" — veículos de clientes com a marca aplicada.
+ * "A SS na estrada" — os segmentos atendidos pela plataforma.
  *
- * As fotos abaixo são PROVISÓRIAS (ver GALERIA_PENDENTE em site-config.ts):
- * reaproveitam imagens já existentes no projeto para a seção não ficar vazia.
- * Troque o `src` de cada item pelas fotos reais dos veículos adesivados.
+ * As fotos são PROVISÓRIAS (ver IMAGENS_PROVISORIAS em site-config.ts): são
+ * ilustrações de segmento vindas de banco de imagens livre, NÃO são veículos de
+ * clientes da SS nem trazem os adesivos da marca. Trocar pelas fotos reais
+ * antes de publicar.
+ *
+ * `objectPosition` existe porque as fotos têm enquadramentos diferentes; ele
+ * mantém o veículo visível dentro do recorte 4:3 do card.
  */
 
 const VEICULOS = [
@@ -17,22 +18,25 @@ const VEICULOS = [
     icon: Truck,
     categoria: "Carretas e rodoviários",
     desc: "Longa distância monitorada ponta a ponta, do pátio ao destino.",
-    src: heroImg,
-    alt: "Carreta de cliente da SS Telemática em operação rodoviária",
+    src: IMAGENS.frotaCarreta,
+    objectPosition: "50% 55%",
+    alt: "Carreta em operação rodoviária",
   },
   {
     icon: Bus,
     categoria: "Ônibus urbanos",
     desc: "Linha urbana com controle de jornada, rota e comportamento de condução.",
-    src: clubeImg,
-    alt: "Ônibus urbano de cliente da SS Telemática",
+    src: IMAGENS.frotaOnibus,
+    objectPosition: "28% 72%",
+    alt: "Ônibus urbano em via de cidade",
   },
   {
     icon: Users,
     categoria: "Fretamento",
     desc: "Transporte de colaboradores com rastreio e segurança do passageiro.",
-    src: copilotoImg,
-    alt: "Veículo de fretamento de cliente da SS Telemática",
+    src: IMAGENS.frotaFretamento,
+    objectPosition: "50% 50%",
+    alt: "Ônibus de fretamento estacionado",
   },
 ];
 
@@ -52,22 +56,23 @@ export function GaleriaFrota() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {VEICULOS.map(({ icon: Icon, categoria, desc, src, alt }) => (
+          {VEICULOS.map(({ icon: Icon, categoria, desc, src, alt, objectPosition }) => (
             <article
               key={categoria}
               className="group overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
                 <img
                   src={src}
                   alt={alt}
                   loading="lazy"
+                  style={{ objectPosition }}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   width={1400}
                   height={1050}
                 />
-                {GALERIA_PENDENTE && (
-                  <span className="absolute left-3 top-3 rounded-full bg-[oklch(0.15_0.03_260)]/75 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur">
+                {IMAGENS_PROVISORIAS && (
+                  <span className="absolute left-3 top-3 rounded-full bg-[oklch(0.15_0.03_260)]/80 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur">
                     FOTO PROVISÓRIA
                   </span>
                 )}
