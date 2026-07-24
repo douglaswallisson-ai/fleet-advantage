@@ -513,7 +513,7 @@ function CTA() {
   return (
     <section className="bg-secondary/40 py-24">
       <div className="mx-auto max-w-4xl px-6 text-center">
-        <SSOrb size={112} halo className="mx-auto text-brand-sky" />
+        <SSOrb size={112} halo className="mx-auto text-brand-green" />
         <h2 className="mt-8 text-4xl font-bold md:text-5xl">Pronto para decidir com a SS?</h2>
         <p className="mt-4 text-lg text-muted-foreground">
           Agende uma demonstração de 20 minutos. Traga sua frota — nossa IA mostra em tempo real onde estão as próximas decisões de maior impacto.

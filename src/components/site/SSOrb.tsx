@@ -102,6 +102,24 @@ export function SSOrb({ size = 96, halo = false, still = false, className }: SSO
         )}
 
         <g className={still ? undefined : "ss-orb-ring"}>
+          {/*
+            Contorno escuro sob cada arco. Sem ele, o azul se dissolve quando o
+            anel cai sobre foto clara ou fundo claro — era o caso do hero da
+            home, onde o orb passa por cima do painel: só o verde, de matiz bem
+            distinta, continuava aparecendo. O contorno garante que os dois
+            leiam igual em qualquer fundo, como na página Quem Somos.
+          */}
+          {[...BLUE_SEGMENTS, ...GREEN_SEGMENTS].map(([from, to]) => (
+            <path
+              key={`edge-${from}`}
+              d={arc(RING_R, from, to)}
+              fill="none"
+              stroke="oklch(0.22 0.07 262)"
+              strokeWidth={17}
+              strokeLinecap="round"
+              opacity={0.55}
+            />
+          ))}
           {BLUE_SEGMENTS.map(([from, to]) => (
             <path
               key={from}
