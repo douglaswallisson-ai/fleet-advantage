@@ -20,10 +20,10 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
 import { SeloCarbono } from "@/components/site/SeloCarbono";
+import { EcoRing } from "@/components/site/EcoRing";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
 import { pageHead } from "@/lib/site-config";
 import sustainImg from "@/assets/sustainability.jpg";
-import teamImg from "@/assets/team-about.jpg";
 
 export const Route = createFileRoute("/selo-verde")({
   component: SeloVerde,
@@ -291,14 +291,7 @@ function OQueE() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        <img
-          src={teamImg}
-          alt="Time analisando indicadores de sustentabilidade da frota"
-          loading="lazy"
-          className="rounded-3xl shadow-elegant"
-          width={1600}
-          height={900}
-        />
+        <EcoRing />
         <div>
           <h2 className="text-3xl font-bold md:text-4xl">Conheça o Selo Verde SS</h2>
           <p className="mt-5 text-muted-foreground">
