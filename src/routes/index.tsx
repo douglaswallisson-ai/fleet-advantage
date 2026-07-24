@@ -1,8 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Brain, TrendingDown, Gauge, Users, Bot, Leaf, ArrowRight, Check,
-  Sparkles, Shield, BarChart3, Radio, Award, Camera, Wind,
-  type LucideIcon
+  Brain,
+  TrendingDown,
+  Gauge,
+  Users,
+  Bot,
+  Leaf,
+  ArrowRight,
+  Check,
+  Sparkles,
+  Shield,
+  BarChart3,
+  Radio,
+  Award,
+  Camera,
+  Wind,
+  type LucideIcon,
 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -71,26 +84,37 @@ function Hero() {
             DA TELEMETRIA À DECISÃO
           </span>
           <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
-            Não entregamos dados.<br />
+            Não entregamos dados.
+            <br />
             <span className="text-gradient">Entregamos decisão.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/75 md:text-xl">
-            A SS Telemática é a primeira plataforma brasileira de gestão de frotas
-            movida por IA — que interpreta cada quilômetro rodado e devolve o que
-            realmente importa: <strong className="text-white">a próxima decisão certa.</strong>
+            A SS Telemática é a primeira plataforma brasileira de gestão de frotas movida por IA —
+            que interpreta cada quilômetro rodado e devolve o que realmente importa:{" "}
+            <strong className="text-white">a próxima decisão certa.</strong>
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#solucoes" className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5">
+            <a
+              href="#solucoes"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5"
+            >
               Conhecer plataforma <ArrowRight className="h-4 w-4" />
             </a>
-            <Link to="/contato" className="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10">
+            <Link
+              to="/contato"
+              className="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10"
+            >
               Falar com especialista
             </Link>
           </div>
 
-          {/* Marca animada — no desktop ela flutua sobre o painel à direita. */}
-          <div className="mt-12 flex items-center gap-5 lg:hidden">
-            <SSOrb size={88} halo className="text-brand-green" />
+          {/*
+            A marca fica na coluna de texto, sobre o gradiente limpo do hero —
+            e não por cima da foto do painel, onde o azul do anel se dissolvia
+            no fundo claro e cheio de detalhe.
+          */}
+          <div className="mt-12 flex items-center gap-5">
+            <SSOrb size={96} halo className="text-brand-green" />
             <p className="text-sm text-white/60">
               A inteligência da SS rodando 24/7 na sua operação.
             </p>
@@ -109,26 +133,29 @@ function Hero() {
             ))}
           </div>
           <p className="mt-4 max-w-lg text-[11px] leading-relaxed text-white/45">
-            Metas de referência da plataforma em 12 meses. Resultados variam conforme
-            perfil da frota, rota e nível de adoção.
+            Metas de referência da plataforma em 12 meses. Resultados variam conforme perfil da
+            frota, rota e nível de adoção.
           </p>
         </div>
 
         <div className="relative hidden lg:block">
           <div className="absolute inset-0 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/15 bg-white/5 p-2 shadow-elegant backdrop-blur">
-            <img src={fleetImg} alt="Painel de IA Fleet Manager" className="rounded-2xl" width={1400} height={1000} />
-            <SSOrb
-              size={168}
-              halo
-              className="absolute -right-14 -top-14 text-brand-green drop-shadow-[0_10px_30px_oklch(0.18_0.06_260/0.6)]"
+            <img
+              src={fleetImg}
+              alt="Painel de IA Fleet Manager"
+              className="rounded-2xl"
+              width={1400}
+              height={1000}
             />
             <div className="absolute -bottom-6 -left-6 rounded-2xl bg-brand-green px-5 py-4 shadow-elegant">
               <div className="flex items-center gap-2 text-[oklch(0.15_0.03_260)]">
                 <Brain className="h-5 w-5" />
                 <span className="text-xs font-bold tracking-wide">IA FLEET MANAGER</span>
               </div>
-              <p className="mt-1 text-xs text-[oklch(0.15_0.03_260)]/80">Recomendando 3 ações agora</p>
+              <p className="mt-1 text-xs text-[oklch(0.15_0.03_260)]/80">
+                Recomendando 3 ações agora
+              </p>
             </div>
           </div>
         </div>
@@ -143,7 +170,11 @@ function Positioning() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-10 md:grid-cols-3">
           {[
-            { icon: BarChart3, from: "Relatórios que ninguém lê", to: "Decisões priorizadas por IA" },
+            {
+              icon: BarChart3,
+              from: "Relatórios que ninguém lê",
+              to: "Decisões priorizadas por IA",
+            },
             { icon: Radio, from: "Alertas em massa", to: "Ações contextualizadas" },
             { icon: Award, from: "Ranking punitivo", to: "Motoristas engajados" },
           ].map(({ icon: Icon, from, to }) => (
@@ -191,21 +222,33 @@ function Features() {
       icon: Gauge,
       title: "Monitoramento de Pneus",
       desc: "Sensores TPMS + IA preditiva. Pressão, temperatura e desgaste rastreados 24/7 — antes de virarem parada não programada.",
-      bullets: ["Alerta preditivo de falhas", "Meta de +40% de vida útil", "Rodízio inteligente sugerido"],
+      bullets: [
+        "Alerta preditivo de falhas",
+        "Meta de +40% de vida útil",
+        "Rodízio inteligente sugerido",
+      ],
       image: tireImg,
     },
     {
       icon: Camera,
       title: "Câmeras com IA a bordo",
       desc: "Visão computacional dentro e fora da cabine. Detecta fadiga e distração em tempo real — e guarda a prova em vídeo de cada evento crítico.",
-      bullets: ["Prova de acidente em vídeo (DVR)", "Alerta de fadiga e microssono", "Detecção de desatenção"],
+      bullets: [
+        "Prova de acidente em vídeo (DVR)",
+        "Alerta de fadiga e microssono",
+        "Detecção de desatenção",
+      ],
       image: cameraImg,
     },
     {
       icon: Wind,
       title: "Regeneração EURO 6",
       desc: "DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite derating, multas ambientais e paradas não programadas.",
-      bullets: ["Regeneração em tempo real", "Alerta preventivo de derating", "Histórico completo por veículo"],
+      bullets: [
+        "Regeneração em tempo real",
+        "Alerta preventivo de derating",
+        "Histórico completo por veículo",
+      ],
       image: euro6Img,
     },
   ];
@@ -214,7 +257,9 @@ function Features() {
     <section id="solucoes" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
       <div className="mb-14 max-w-2xl">
         <span className="text-xs font-bold tracking-widest text-brand-sky">A PLATAFORMA SS</span>
-        <h2 className="mt-3 text-4xl font-bold md:text-5xl">Tecnologia que decide junto — e paga a própria conta.</h2>
+        <h2 className="mt-3 text-4xl font-bold md:text-5xl">
+          Tecnologia que decide junto — e paga a própria conta.
+        </h2>
       </div>
 
       <article className="group grid overflow-hidden rounded-3xl bg-gradient-hero text-white shadow-elegant lg:grid-cols-[1fr_1fr]">
@@ -227,11 +272,15 @@ function Features() {
           </div>
           <h3 className="mt-6 text-3xl font-bold md:text-4xl">IA Fleet Manager</h3>
           <p className="mt-4 text-base leading-relaxed text-white/75">
-            O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos
-            por dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.
+            O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos por
+            dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.
           </p>
           <ul className="mt-7 space-y-2.5">
-            {["Priorização automática de ações", "Detecção preditiva de falhas", "Diagnósticos em linguagem natural"].map((b) => (
+            {[
+              "Priorização automática de ações",
+              "Detecção preditiva de falhas",
+              "Diagnósticos em linguagem natural",
+            ].map((b) => (
               <li key={b} className="flex items-start gap-2 text-sm text-white/90">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
                 <span>{b}</span>
@@ -311,17 +360,27 @@ function DriverCopilot() {
       <div className="grid items-center gap-16 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
           <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
-          <img src={driverImg} alt="Motorista com copiloto SS" loading="lazy" className="relative rounded-3xl shadow-elegant" width={1200} height={900} />
+          <img
+            src={driverImg}
+            alt="Motorista com copiloto SS"
+            loading="lazy"
+            className="relative rounded-3xl shadow-elegant"
+            width={1200}
+            height={900}
+          />
         </div>
         <div className="order-1 lg:order-2">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold tracking-widest text-primary">
             <Bot className="h-3.5 w-3.5" /> COPILOTO DO MOTORISTA
           </span>
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">Uma IA no banco do lado. Sem julgamento.</h2>
+          <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+            Uma IA no banco do lado. Sem julgamento.
+          </h2>
           <p className="mt-4 text-base text-muted-foreground md:text-lg">
-            O Copiloto SS conversa com o motorista em tempo real — sugere rota, avisa
-            sobre condução defensiva, lembra do descanso e responde perguntas por voz.
-            É a virada de página: da fiscalização para o <strong className="text-foreground">acompanhamento colaborativo</strong>.
+            O Copiloto SS conversa com o motorista em tempo real — sugere rota, avisa sobre condução
+            defensiva, lembra do descanso e responde perguntas por voz. É a virada de página: da
+            fiscalização para o{" "}
+            <strong className="text-foreground">acompanhamento colaborativo</strong>.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
@@ -344,7 +403,10 @@ function DriverCopilot() {
 
 function DriversClub() {
   return (
-    <section id="clube" className="relative scroll-mt-24 overflow-hidden bg-gradient-hero py-24 text-white">
+    <section
+      id="clube"
+      className="relative scroll-mt-24 overflow-hidden bg-gradient-hero py-24 text-white"
+    >
       <div className="absolute inset-0 opacity-20">
         <Backdrop image={driversClubImg} video={MEDIA.clubeVideo} />
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
@@ -355,12 +417,13 @@ function DriversClub() {
             <Users className="h-3.5 w-3.5 text-brand-green" /> CLUBE DE FIDELIDADE SS
           </span>
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            O primeiro clube de fidelidade <span className="text-brand-green">para caminhoneiros</span> do Brasil.
+            O primeiro clube de fidelidade{" "}
+            <span className="text-brand-green">para caminhoneiros</span> do Brasil.
           </h2>
           <p className="mt-5 text-lg text-white/75">
-            Motorista feliz dirige melhor, cuida mais do veículo e fica na empresa.
-            O Clube SS transforma boa direção em recompensa real — combustível, saúde,
-            descontos em rede parceira e prêmios em dinheiro.
+            Motorista feliz dirige melhor, cuida mais do veículo e fica na empresa. O Clube SS
+            transforma boa direção em recompensa real — combustível, saúde, descontos em rede
+            parceira e prêmios em dinheiro.
           </p>
         </div>
         <div>
@@ -371,15 +434,18 @@ function DriversClub() {
               { k: "1200+", v: "parceiros na rede de benefícios" },
               { k: "5★", v: "avaliação média no app" },
             ].map((s) => (
-              <div key={s.k} className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
+              <div
+                key={s.k}
+                className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur"
+              >
                 <div className="text-3xl font-bold text-brand-green">{s.k}</div>
                 <div className="mt-2 text-sm text-white/70">{s.v}</div>
               </div>
             ))}
           </div>
           <p className="mt-5 text-[11px] leading-relaxed text-white/45">
-            Indicadores de referência do Clube SS. Resultados variam conforme o perfil
-            da operação e o nível de adesão dos motoristas.
+            Indicadores de referência do Clube SS. Resultados variam conforme o perfil da operação e
+            o nível de adesão dos motoristas.
           </p>
         </div>
       </div>
@@ -410,14 +476,24 @@ function GreenSeal() {
               "Metas de redução com IA",
               "Relatório ESG pronto",
             ].map((i) => (
-              <li key={i} className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm">
+              <li
+                key={i}
+                className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm"
+              >
                 <Shield className="h-4 w-4 shrink-0 text-brand-green" /> {i}
               </li>
             ))}
           </ul>
         </div>
         <div className="relative">
-          <img src={sustainImg} alt="Sustentabilidade SS" loading="lazy" className="rounded-3xl shadow-elegant" width={1600} height={900} />
+          <img
+            src={sustainImg}
+            alt="Sustentabilidade SS"
+            loading="lazy"
+            className="rounded-3xl shadow-elegant"
+            width={1600}
+            height={900}
+          />
           <div className="absolute -bottom-8 left-8 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-elegant">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-green">
               <Leaf className="h-7 w-7 text-white" />
@@ -438,7 +514,12 @@ function ProductTiers() {
     {
       name: "SS Start",
       desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
-      features: ["Rastreamento em tempo real", "Cerca eletrônica", "Relatórios operacionais", "App do motorista"],
+      features: [
+        "Rastreamento em tempo real",
+        "Cerca eletrônica",
+        "Relatórios operacionais",
+        "App do motorista",
+      ],
       color: "border-border",
       cta: "Ideal para até 50 veículos",
     },
@@ -446,14 +527,26 @@ function ProductTiers() {
       name: "SS Performance",
       badge: "MAIS ESCOLHIDO",
       desc: "Toda a base + copiloto do motorista, gamificação e monitoramento de pneus.",
-      features: ["Tudo do SS Start", "Copiloto do Motorista", "Clube de Fidelidade", "Monitoramento de Pneus", "Painel de rentabilidade"],
+      features: [
+        "Tudo do SS Start",
+        "Copiloto do Motorista",
+        "Clube de Fidelidade",
+        "Monitoramento de Pneus",
+        "Painel de rentabilidade",
+      ],
       color: "border-brand-sky ring-2 ring-brand-sky/40",
       cta: "Para operações que competem por eficiência",
     },
     {
       name: "SS Evolution",
       desc: "IA Fleet Manager completo, integrações ERP/TMS e Selo Verde ESG.",
-      features: ["Tudo do SS Performance", "IA Fleet Manager", "Integração ERP/TMS", "Selo Verde SS", "SLA dedicado + CSM"],
+      features: [
+        "Tudo do SS Performance",
+        "IA Fleet Manager",
+        "Integração ERP/TMS",
+        "Selo Verde SS",
+        "SLA dedicado + CSM",
+      ],
       color: "border-border bg-gradient-hero text-white",
       cta: "Frotas 500+ com metas ESG",
     },
@@ -463,25 +556,35 @@ function ProductTiers() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="text-xs font-bold tracking-widest text-brand-sky">3 TIERS · UMA PLATAFORMA</span>
-            <h2 className="mt-3 text-4xl font-bold md:text-5xl">Escolha o nível de decisão da sua frota.</h2>
+            <span className="text-xs font-bold tracking-widest text-brand-sky">
+              3 TIERS · UMA PLATAFORMA
+            </span>
+            <h2 className="mt-3 text-4xl font-bold md:text-5xl">
+              Escolha o nível de decisão da sua frota.
+            </h2>
           </div>
           <p className="max-w-md text-sm text-muted-foreground">
-            Do rastreio essencial à IA que gerencia sua operação por você. Migre entre planos quando quiser.
+            Do rastreio essencial à IA que gerencia sua operação por você. Migre entre planos quando
+            quiser.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {tiers.map((t) => {
             const isDark = t.color.includes("gradient-hero");
             return (
-              <article key={t.name} className={`relative flex flex-col rounded-3xl border p-8 shadow-card ${t.color}`}>
+              <article
+                key={t.name}
+                className={`relative flex flex-col rounded-3xl border p-8 shadow-card ${t.color}`}
+              >
                 {t.badge && (
                   <span className="absolute -top-3 left-8 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
                     {t.badge}
                   </span>
                 )}
                 <h3 className="text-2xl font-bold">{t.name}</h3>
-                <p className={`mt-2 text-sm ${isDark ? "text-white/70" : "text-muted-foreground"}`}>{t.desc}</p>
+                <p className={`mt-2 text-sm ${isDark ? "text-white/70" : "text-muted-foreground"}`}>
+                  {t.desc}
+                </p>
                 <ul className={`mt-6 space-y-2.5 text-sm ${isDark ? "text-white/90" : ""}`}>
                   {t.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
@@ -490,7 +593,9 @@ function ProductTiers() {
                     </li>
                   ))}
                 </ul>
-                <div className={`mt-8 flex-1 border-t pt-4 text-xs ${isDark ? "border-white/10 text-white/60" : "border-border text-muted-foreground"}`}>
+                <div
+                  className={`mt-8 flex-1 border-t pt-4 text-xs ${isDark ? "border-white/10 text-white/60" : "border-border text-muted-foreground"}`}
+                >
                   {t.cta}
                 </div>
                 <Link
@@ -516,13 +621,20 @@ function CTA() {
         <SSOrb size={112} halo className="mx-auto text-brand-green" />
         <h2 className="mt-8 text-4xl font-bold md:text-5xl">Pronto para decidir com a SS?</h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Agende uma demonstração de 20 minutos. Traga sua frota — nossa IA mostra em tempo real onde estão as próximas decisões de maior impacto.
+          Agende uma demonstração de 20 minutos. Traga sua frota — nossa IA mostra em tempo real
+          onde estão as próximas decisões de maior impacto.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/contato" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5">
+          <Link
+            to="/contato"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5"
+          >
             Agendar demo <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link to="/indicacao" className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:bg-secondary">
+          <Link
+            to="/indicacao"
+            className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:bg-secondary"
+          >
             Ganhar indicando →
           </Link>
         </div>

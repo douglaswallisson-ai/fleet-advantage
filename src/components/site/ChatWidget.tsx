@@ -257,19 +257,28 @@ export function ChatWidget() {
           </div>
         )}
 
+        {/*
+          Sem círculo de fundo: a própria marca é o botão. Um disco atrás
+          competia com o anel e embaralhava a leitura do ícone.
+        */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? "Fechar atendimento" : "Abrir atendimento"}
-          className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-hero shadow-elegant transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sky"
+          className="relative flex h-16 w-16 items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-sky"
         >
           {open ? (
-            <X className="h-6 w-6 text-white" />
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-hero shadow-elegant">
+              <X className="h-6 w-6 text-white" />
+            </span>
           ) : (
             <>
-              <SSOrb size={58} className="text-brand-green" />
-              <span className="absolute right-1 top-1 h-3 w-3 rounded-full bg-brand-green ring-2 ring-[oklch(0.18_0.06_260)]" />
+              <SSOrb
+                size={64}
+                className="text-brand-green drop-shadow-[0_6px_16px_oklch(0.18_0.06_260/0.45)]"
+              />
+              <span className="absolute right-0 top-0 h-3.5 w-3.5 rounded-full bg-brand-green ring-2 ring-background" />
             </>
           )}
         </button>
