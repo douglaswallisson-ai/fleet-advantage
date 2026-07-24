@@ -49,6 +49,19 @@ export const CHAT = {
   whatsappMessage: "Olá! Vim pelo site da SS Telemática e gostaria de falar com um atendente.",
 };
 
+/**
+ * Galeria "a SS na estrada": veículos de clientes com a marca aplicada.
+ *
+ * IMPORTANTE — as imagens abaixo são PROVISÓRIAS: reaproveitam fotos que já
+ * existem no projeto só para a seção não ficar vazia. Substitua por fotos reais
+ * de carretas, ônibus urbanos e fretamento com os adesivos da SS.
+ *
+ * Como trocar: coloque os arquivos em `src/assets/` e importe-os em
+ * `src/components/site/GaleriaFrota.tsx`, trocando o `src` de cada item.
+ * Peça autorização de uso de imagem ao cliente dono do veículo.
+ */
+export const GALERIA_PENDENTE = true;
+
 export const CONTACT = {
   email: "comercial@sstelematica.com.br",
   // TODO(SS): preencher com os dados reais — enquanto vazios, não são exibidos.

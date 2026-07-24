@@ -19,6 +19,7 @@ import {
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
+import { SeloCarbono } from "@/components/site/SeloCarbono";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
 import { pageHead } from "@/lib/site-config";
 import sustainImg from "@/assets/sustainability.jpg";
@@ -334,6 +335,7 @@ function Proposito() {
           O Selo Verde SS existe para reconhecer — e dar visibilidade — a quem já escolheu o caminho
           mais eficiente.
         </h2>
+        <SeloCarbono size={200} className="mx-auto mt-10" />
         <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
           {[
             {
