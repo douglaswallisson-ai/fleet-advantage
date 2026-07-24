@@ -25,9 +25,22 @@ const hexPath = (r: number) =>
     })
     .join(" ") + " Z";
 
+/**
+ * O texto acompanha as ARESTAS do hexágono, não um círculo. Um arco circular
+ * sobre um hexágono não encosta nas bordas: as pontas do texto escorregam para
+ * as laterais e desalinham. Estas polylines seguem as duas arestas superiores
+ * (sobe até o vértice de topo e desce) e as duas inferiores, mantendo o texto
+ * paralelo à borda em todo o trajeto.
+ */
 const TEXT_R = 88;
-const TOP_ARC = `M ${C - TEXT_R} ${C} A ${TEXT_R} ${TEXT_R} 0 0 1 ${C + TEXT_R} ${C}`;
-const BOTTOM_ARC = `M ${C - TEXT_R} ${C} A ${TEXT_R} ${TEXT_R} 0 0 0 ${C + TEXT_R} ${C}`;
+const vtx = (deg: number) => {
+  const a = (deg * Math.PI) / 180;
+  return `${(C + TEXT_R * Math.cos(a)).toFixed(1)} ${(C + TEXT_R * Math.sin(a)).toFixed(1)}`;
+};
+// Esquerda→topo→direita (texto de cima, lido da esquerda para a direita).
+const TOP_ARC = `M ${vtx(210)} L ${vtx(-90)} L ${vtx(-30)}`;
+// Esquerda→base→direita (texto de baixo, também da esquerda para a direita).
+const BOTTOM_ARC = `M ${vtx(150)} L ${vtx(90)} L ${vtx(30)}`;
 
 export function SeloCarbono({
   size = 220,
@@ -74,9 +87,9 @@ export function SeloCarbono({
 
       <text
         fill="oklch(1 0 0 / 0.9)"
-        fontSize={10}
+        fontSize={9}
         fontWeight={600}
-        letterSpacing={3.6}
+        letterSpacing={2.2}
         fontFamily="var(--font-sans)"
       >
         <textPath href="#selo-co2-top" startOffset="50%" textAnchor="middle">
@@ -85,12 +98,12 @@ export function SeloCarbono({
       </text>
       <text
         fill="oklch(1 0 0 / 0.9)"
-        fontSize={10}
+        fontSize={9}
         fontWeight={600}
-        letterSpacing={3.6}
+        letterSpacing={2.2}
         fontFamily="var(--font-sans)"
       >
-        <textPath href="#selo-co2-bottom" startOffset="50%" textAnchor="middle" dy={8}>
+        <textPath href="#selo-co2-bottom" startOffset="50%" textAnchor="middle">
           {textoInferior}
         </textPath>
       </text>
