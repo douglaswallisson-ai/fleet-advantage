@@ -148,28 +148,6 @@ function QuemSomos() {
             </div>
           </div>
         </section>
-
-        <section className="mx-auto max-w-6xl px-6 py-24">
-          <h2 className="text-4xl font-bold">Linha do tempo</h2>
-          <div className="mt-12 space-y-8 border-l-2 border-brand-sky/30 pl-8">
-            {[
-              {
-                y: "2001",
-                t: "Fundação da SS Telemática, primeiros clientes em transporte de cargas.",
-              },
-              { y: "2010", t: "Consolidação nacional com rastreamento e roteirização em nuvem." },
-              { y: "2019", t: "Lançamento do app do motorista e monitoramento de comportamento." },
-              { y: "2024", t: "Nasce o Copiloto SS e o Clube de Fidelidade." },
-              { y: "2026", t: "IA Fleet Manager e novo posicionamento: da telemetria à decisão." },
-            ].map((m) => (
-              <div key={m.y} className="relative">
-                <div className="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-brand-green ring-4 ring-background" />
-                <div className="text-sm font-bold text-brand-sky">{m.y}</div>
-                <p className="mt-1 text-base">{m.t}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
