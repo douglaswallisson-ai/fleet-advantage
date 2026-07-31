@@ -1,24 +1,51 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import logo from "@/assets/ss-logo.png.asset.json";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-type NavItem = { label: string; to?: string; href?: string };
+type Leaf = { label: string; to?: string; href?: string; desc?: string };
+type NavEntry = { label: string; to?: string; href?: string; items?: Leaf[] };
 
-const NAV_ITEMS: NavItem[] = [
+/**
+ * Navegação agrupada: poucos tópicos no topo, cada um com um painel que desce
+ * ao passar o mouse (ou ao focar pelo teclado). O menu mobile (Sheet) mostra os
+ * grupos já expandidos, sem dropdown.
+ */
+const NAV: NavEntry[] = [
   { label: "Início", to: "/" },
-  { label: "Soluções", href: "/#solucoes" },
-  { label: "Copiloto", href: "/#copiloto" },
-  { label: "Clube SS", href: "/#clube" },
-  { label: "Selo Verde", to: "/selo-verde" },
-  { label: "Planos", href: "/#produtos" },
-  { label: "Quem Somos", to: "/quem-somos" },
-  { label: "Indicação", to: "/indicacao" },
+  {
+    label: "Plataforma",
+    items: [
+      { label: "Soluções", href: "/#solucoes", desc: "IA Fleet Manager, pneus, câmeras e EURO 6" },
+      { label: "Copiloto do Motorista", href: "/#copiloto", desc: "A Selma acompanha o motorista" },
+      { label: "Clube SS", href: "/#clube", desc: "Fidelidade para caminhoneiros" },
+      { label: "Selo Verde", to: "/selo-verde", desc: "Certificação de redução de CO₂" },
+      { label: "Planos", href: "/#produtos", desc: "Start, Performance e Evolution" },
+    ],
+  },
+  {
+    label: "A Empresa",
+    items: [
+      { label: "Quem Somos", to: "/quem-somos", desc: "História, propósito e valores" },
+      { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
+    ],
+  },
 ];
 
 export function Nav() {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const openNow = (label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenGroup(label);
+  };
+  // Pequeno atraso ao sair: dá tempo de o mouse cruzar até o painel.
+  const closeSoon = () => {
+    closeTimer.current = setTimeout(() => setOpenGroup(null), 120);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-xl">
@@ -27,20 +54,54 @@ export function Nav() {
           <img src={logo.url} alt="SS Telemática" className="h-9 w-auto" width={180} height={40} />
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground lg:flex">
-          {NAV_ITEMS.map((item) =>
-            item.to ? (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="transition-colors hover:text-primary [&.active]:text-primary"
+        <nav className="hidden items-center gap-2 text-sm font-medium text-muted-foreground lg:flex">
+          {NAV.map((entry) =>
+            entry.items ? (
+              <div
+                key={entry.label}
+                className="relative"
+                onMouseEnter={() => openNow(entry.label)}
+                onMouseLeave={closeSoon}
+                onFocusCapture={() => openNow(entry.label)}
+                onBlurCapture={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenGroup(null);
+                }}
               >
-                {item.label}
-              </Link>
+                <button
+                  type="button"
+                  aria-expanded={openGroup === entry.label}
+                  aria-haspopup="true"
+                  className="inline-flex items-center gap-1 rounded-full px-3 py-2 transition-colors hover:text-primary"
+                >
+                  {entry.label}
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${openGroup === entry.label ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {openGroup === entry.label && (
+                  // pt-2 forma uma "ponte" invisível: o mouse não cai num vão.
+                  <div className="absolute left-0 top-full z-50 pt-2">
+                    <div className="w-[300px] rounded-2xl border border-border bg-card p-2 shadow-elegant">
+                      {entry.items.map((leaf) => (
+                        <LeafLink
+                          key={leaf.label}
+                          leaf={leaf}
+                          onNavigate={() => setOpenGroup(null)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
-              <a key={item.label} href={item.href} className="transition-colors hover:text-primary">
-                {item.label}
-              </a>
+              <Link
+                key={entry.label}
+                to={entry.to}
+                className="rounded-full px-3 py-2 transition-colors hover:text-primary [&.active]:text-primary"
+              >
+                {entry.label}
+              </Link>
             ),
           )}
         </nav>
@@ -53,7 +114,7 @@ export function Nav() {
             Falar com especialista
           </Link>
 
-          <Sheet open={open} onOpenChange={setOpen}>
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <button
                 type="button"
@@ -63,36 +124,42 @@ export function Nav() {
                 <Menu className="h-5 w-5" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[360px]">
+            <SheetContent side="right" className="w-[320px] overflow-y-auto sm:w-[380px]">
               <SheetHeader>
                 <SheetTitle className="text-left">Navegação</SheetTitle>
               </SheetHeader>
-              <nav className="mt-8 flex flex-col gap-1">
-                {NAV_ITEMS.map((item) =>
-                  item.to ? (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      onClick={() => setOpen(false)}
-                      className="rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-secondary [&.active]:text-primary"
-                    >
-                      {item.label}
-                    </Link>
+              <nav className="mt-8 flex flex-col gap-6">
+                {NAV.map((entry) =>
+                  entry.items ? (
+                    <div key={entry.label}>
+                      <div className="px-3 text-xs font-bold tracking-widest text-brand-sky">
+                        {entry.label.toUpperCase()}
+                      </div>
+                      <div className="mt-2 flex flex-col">
+                        {entry.items.map((leaf) => (
+                          <LeafLink
+                            key={leaf.label}
+                            leaf={leaf}
+                            onNavigate={() => setMobileOpen(false)}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   ) : (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-secondary"
+                    <Link
+                      key={entry.label}
+                      to={entry.to}
+                      onClick={() => setMobileOpen(false)}
+                      className="rounded-lg px-3 py-2.5 text-base font-semibold transition-colors hover:bg-secondary [&.active]:text-primary"
                     >
-                      {item.label}
-                    </a>
+                      {entry.label}
+                    </Link>
                   ),
                 )}
               </nav>
               <Link
                 to="/contato"
-                onClick={() => setOpen(false)}
+                onClick={() => setMobileOpen(false)}
                 className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-card"
               >
                 Falar com especialista
@@ -102,5 +169,27 @@ export function Nav() {
         </div>
       </div>
     </header>
+  );
+}
+
+/** Item de submenu: âncora (#) ou rota interna, com título e descrição. */
+function LeafLink({ leaf, onNavigate }: { leaf: Leaf; onNavigate: () => void }) {
+  const className =
+    "block rounded-xl px-3 py-2.5 transition-colors hover:bg-secondary [&.active]:bg-secondary";
+  const inner = (
+    <>
+      <div className="text-sm font-semibold text-foreground">{leaf.label}</div>
+      {leaf.desc && <div className="mt-0.5 text-xs text-muted-foreground">{leaf.desc}</div>}
+    </>
+  );
+
+  return leaf.to ? (
+    <Link to={leaf.to} onClick={onNavigate} className={className}>
+      {inner}
+    </Link>
+  ) : (
+    <a href={leaf.href} onClick={onNavigate} className={className}>
+      {inner}
+    </a>
   );
 }
