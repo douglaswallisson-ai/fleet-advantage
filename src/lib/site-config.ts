@@ -44,9 +44,26 @@ export const MEDIA = {
  * e o posicionamento já estão prontos e seguem a identidade da SS.
  */
 export const CHAT = {
-  greeting: "Olá! Somos o time da SS. Como podemos ajudar com a sua frota?",
-  availability: "Respondemos em horário comercial",
+  greeting:
+    "Oi! Eu sou a Selma, a copiloto da SS. Posso ajudar com dúvidas do dia a dia, saúde da frota, condução, manutenção preditiva e alertas. Como posso ajudar?",
+  availability: "Copiloto SS · sempre por perto",
   whatsappMessage: "Olá! Vim pelo site da SS Telemática e gostaria de falar com um atendente.",
+};
+
+/**
+ * Selma — a copiloto/assistente da SS, presente no chat e na seção do Copiloto.
+ *
+ * `avatar` fica vazio até o arquivo existir: sem ele, o chat usa o orb da marca
+ * e a seção do Copiloto usa a foto atual — nada quebra. Assim que a imagem for
+ * salva em `public/` e o caminho apontado aqui, a Selma aparece em todo lugar.
+ *
+ * Sugestão de arquivo: PNG de fundo transparente ou branco, corpo inteiro,
+ * ~800px de largura. O recorte para o círculo do chat é feito por CSS.
+ */
+export const SELMA = {
+  nome: "Selma",
+  papel: "Copiloto SS",
+  avatar: "", // ex.: "/selma.png"
 };
 
 /**

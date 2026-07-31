@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle2, Loader2, MessageCircle, Send, X } from "lucide-react";
 import { SSOrb } from "@/components/site/SSOrb";
-import { CHAT, CONTACT, whatsappLink } from "@/lib/site-config";
+import { CHAT, CONTACT, SELMA, whatsappLink } from "@/lib/site-config";
 
 type Status = "idle" | "sending" | "ok" | "error";
 
@@ -106,10 +106,25 @@ export function ChatWidget() {
             className="w-[min(22rem,calc(100vw-2.5rem))] overflow-hidden rounded-3xl border border-border bg-card shadow-elegant"
           >
             <div className="relative flex items-center gap-3 bg-gradient-hero px-5 py-4 text-white">
-              <SSOrb size={44} />
+              {SELMA.avatar ? (
+                <img
+                  src={SELMA.avatar}
+                  alt={SELMA.nome}
+                  className="h-11 w-11 shrink-0 rounded-full border-2 border-white/30 bg-white/10 object-cover object-top"
+                />
+              ) : (
+                <SSOrb size={44} />
+              )}
               <div className="min-w-0 flex-1">
-                <div className="text-sm font-bold">Atendimento SS</div>
-                <div className="text-xs text-white/70">{CHAT.availability}</div>
+                <div className="text-sm font-bold">
+                  {SELMA.avatar ? `${SELMA.nome} · ${SELMA.papel}` : "Atendimento SS"}
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-white/70">
+                  {SELMA.avatar && (
+                    <span className="inline-block h-2 w-2 rounded-full bg-brand-green" />
+                  )}
+                  {CHAT.availability}
+                </div>
               </div>
               <button
                 ref={closeRef}
@@ -272,6 +287,17 @@ export function ChatWidget() {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-hero shadow-elegant">
               <X className="h-6 w-6 text-white" />
             </span>
+          ) : SELMA.avatar ? (
+            <>
+              <span className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-gradient-hero shadow-elegant">
+                <img
+                  src={SELMA.avatar}
+                  alt={`Falar com ${SELMA.nome}`}
+                  className="h-full w-full object-cover object-top"
+                />
+              </span>
+              <span className="absolute right-0.5 top-0.5 h-3.5 w-3.5 rounded-full bg-brand-green ring-2 ring-background" />
+            </>
           ) : (
             <>
               <SSOrb

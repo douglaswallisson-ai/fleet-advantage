@@ -22,7 +22,7 @@ import { Footer } from "@/components/site/Footer";
 import { SSOrb } from "@/components/site/SSOrb";
 import { Backdrop } from "@/components/site/Backdrop";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
-import { MEDIA, pageHead } from "@/lib/site-config";
+import { MEDIA, SELMA, pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
 import iaAltImg from "@/assets/ia-fleet-manager-alt.jpg";
 import fleetImg from "@/assets/ai-fleet-manager.jpg";
@@ -362,27 +362,61 @@ function DriverCopilot() {
       <div className="grid items-center gap-16 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
           <div className="absolute -inset-6 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
-          <img
-            src={driverImg}
-            alt="Motorista com copiloto SS"
-            loading="lazy"
-            className="relative rounded-3xl shadow-elegant"
-            width={1200}
-            height={900}
-          />
+          {SELMA.avatar ? (
+            <div className="relative flex items-end justify-center overflow-hidden rounded-3xl bg-gradient-hero shadow-elegant">
+              <img
+                src={SELMA.avatar}
+                alt={`${SELMA.nome}, ${SELMA.papel} da SS`}
+                loading="lazy"
+                className="relative max-h-[460px] w-auto object-contain"
+              />
+              <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-4 py-2.5 shadow-card">
+                <div className="text-xs font-semibold tracking-widest text-brand-sky">
+                  {SELMA.papel.toUpperCase()}
+                </div>
+                <div className="text-lg font-bold text-[oklch(0.15_0.03_260)]">{SELMA.nome}</div>
+              </div>
+            </div>
+          ) : (
+            <img
+              src={driverImg}
+              alt="Motorista com copiloto SS"
+              loading="lazy"
+              className="relative rounded-3xl shadow-elegant"
+              width={1200}
+              height={900}
+            />
+          )}
         </div>
         <div className="order-1 lg:order-2">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold tracking-widest text-primary">
             <Bot className="h-3.5 w-3.5" /> COPILOTO DO MOTORISTA
           </span>
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            Uma IA no banco do lado. Sem julgamento.
+            {SELMA.avatar ? (
+              <>
+                Conheça a {SELMA.nome}, sua <span className="text-gradient">copiloto</span>.
+              </>
+            ) : (
+              "Uma IA no banco do lado. Sem julgamento."
+            )}
           </h2>
           <p className="mt-4 text-base text-muted-foreground md:text-lg">
-            O Copiloto SS conversa com o motorista em tempo real — sugere rota, avisa sobre condução
-            defensiva, lembra do descanso e responde perguntas por voz. É a virada de página: da
-            fiscalização para o{" "}
-            <strong className="text-foreground">acompanhamento colaborativo</strong>.
+            {SELMA.avatar ? (
+              <>
+                A {SELMA.nome} acompanha o motorista em tempo real — tira dúvidas do dia a dia,
+                avisa sobre a saúde da frota, orienta a condução, antecipa manutenção e dispara
+                alertas. É a virada de página: da fiscalização para o{" "}
+                <strong className="text-foreground">acompanhamento colaborativo</strong>.
+              </>
+            ) : (
+              <>
+                O Copiloto SS conversa com o motorista em tempo real — sugere rota, avisa sobre
+                condução defensiva, lembra do descanso e responde perguntas por voz. É a virada de
+                página: da fiscalização para o{" "}
+                <strong className="text-foreground">acompanhamento colaborativo</strong>.
+              </>
+            )}
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
