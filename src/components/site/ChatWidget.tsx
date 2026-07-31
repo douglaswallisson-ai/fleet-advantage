@@ -28,6 +28,8 @@ export function ChatWidget() {
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const wpp = whatsappLink(CHAT.whatsappMessage);
+  // No círculo do chat, o recorte do rosto lê melhor que o corpo inteiro.
+  const selmaFace = SELMA.avatarRosto || SELMA.avatar;
 
   // Fecha com Esc e devolve o foco ao painel ao abrir.
   useEffect(() => {
@@ -106,11 +108,11 @@ export function ChatWidget() {
             className="w-[min(22rem,calc(100vw-2.5rem))] overflow-hidden rounded-3xl border border-border bg-card shadow-elegant"
           >
             <div className="relative flex items-center gap-3 bg-gradient-hero px-5 py-4 text-white">
-              {SELMA.avatar ? (
+              {selmaFace ? (
                 <img
-                  src={SELMA.avatar}
+                  src={selmaFace}
                   alt={SELMA.nome}
-                  className="h-11 w-11 shrink-0 rounded-full border-2 border-white/30 bg-white/10 object-cover object-top"
+                  className="h-11 w-11 shrink-0 rounded-full border-2 border-white/30 bg-white/10 object-cover"
                 />
               ) : (
                 <SSOrb size={44} />
@@ -287,13 +289,13 @@ export function ChatWidget() {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-hero shadow-elegant">
               <X className="h-6 w-6 text-white" />
             </span>
-          ) : SELMA.avatar ? (
+          ) : selmaFace ? (
             <>
               <span className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-gradient-hero shadow-elegant">
                 <img
-                  src={SELMA.avatar}
+                  src={selmaFace}
                   alt={`Falar com ${SELMA.nome}`}
-                  className="h-full w-full object-cover object-top"
+                  className="h-full w-full object-cover"
                 />
               </span>
               <span className="absolute right-0.5 top-0.5 h-3.5 w-3.5 rounded-full bg-brand-green ring-2 ring-background" />

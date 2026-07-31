@@ -63,7 +63,10 @@ export const CHAT = {
 export const SELMA = {
   nome: "Selma",
   papel: "Copiloto SS",
-  avatar: "", // ex.: "/selma.png"
+  /** Corpo inteiro — usado na seção do Copiloto na home. */
+  avatar: "/selma.png",
+  /** Recorte do rosto — usado no círculo do chat. Cai para `avatar` se vazio. */
+  avatarRosto: "/selma-rosto.png",
 };
 
 /**
