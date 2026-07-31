@@ -19,7 +19,7 @@ const NAV: NavEntry[] = [
     items: [
       { label: "Soluções", href: "/#solucoes", desc: "IA Fleet Manager, pneus, câmeras e EURO 6" },
       { label: "Copiloto do Motorista", href: "/#copiloto", desc: "A Selma acompanha o motorista" },
-      { label: "Clube SS", href: "/#clube", desc: "Fidelidade para caminhoneiros" },
+      { label: "Clube SS", href: "/#clube", desc: "Fidelidade para motoristas" },
       { label: "Selo Verde", to: "/selo-verde", desc: "Certificação de redução de CO₂" },
       { label: "Planos", href: "/#produtos", desc: "Start, Performance e Evolution" },
     ],

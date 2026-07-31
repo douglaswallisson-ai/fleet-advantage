@@ -453,8 +453,8 @@ function DriversClub() {
             <Users className="h-3.5 w-3.5 text-brand-green" /> CLUBE DE FIDELIDADE SS
           </span>
           <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            O primeiro clube de fidelidade{" "}
-            <span className="text-brand-green">para caminhoneiros</span> do Brasil.
+            O primeiro clube de fidelidade <span className="text-brand-green">para motoristas</span>{" "}
+            do Brasil.
           </h2>
           <p className="mt-5 text-lg text-white/75">
             Motorista feliz dirige melhor, cuida mais do veículo e fica na empresa. O Clube SS

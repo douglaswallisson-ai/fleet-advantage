@@ -13,15 +13,8 @@ import { IMAGENS, IMAGENS_PROVISORIAS } from "@/lib/site-config";
  * mantém o veículo visível dentro do recorte 4:3 do card.
  */
 
+// Passageiros primeiro (foco atual da SS); carga fecha a lista.
 const VEICULOS = [
-  {
-    icon: Truck,
-    categoria: "Carretas e rodoviários",
-    desc: "Longa distância monitorada ponta a ponta, do pátio ao destino.",
-    src: IMAGENS.frotaCarreta,
-    objectPosition: "50% 55%",
-    alt: "Carreta em operação rodoviária",
-  },
   {
     icon: Bus,
     categoria: "Ônibus urbanos",
@@ -33,10 +26,18 @@ const VEICULOS = [
   {
     icon: Users,
     categoria: "Fretamento",
-    desc: "Transporte de colaboradores com rastreio e segurança do passageiro.",
+    desc: "Transporte de colaboradores e passageiros com rastreio e segurança a bordo.",
     src: IMAGENS.frotaFretamento,
     objectPosition: "50% 50%",
     alt: "Ônibus de fretamento estacionado",
+  },
+  {
+    icon: Truck,
+    categoria: "Cargas e rodoviários",
+    desc: "Longa distância monitorada ponta a ponta, do pátio ao destino.",
+    src: IMAGENS.frotaCarreta,
+    objectPosition: "50% 55%",
+    alt: "Carreta em operação rodoviária",
   },
 ];
 
@@ -50,7 +51,7 @@ export function GaleriaFrota() {
             Nossa tecnologia anda com quem move o Brasil.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            De carretas rodoviárias a ônibus urbanos e frotas de fretamento — cada segmento tem a
+            De ônibus urbanos e fretamento ao transporte rodoviário de cargas — cada segmento tem a
             sua operação, e a plataforma SS se ajusta a todas.
           </p>
         </div>
