@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatWidget } from "../components/site/ChatWidget";
-import { CONTACT, SITE, SITE_URL, absoluteUrl } from "../lib/site-config";
+import { CONTACT, SITE, SITE_URL, absoluteUrl, socialUrls } from "../lib/site-config";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -25,6 +25,7 @@ const organizationJsonLd = {
   description: SITE.description,
   foundingDate: SITE.foundingYear,
   areaServed: "BR",
+  ...(socialUrls().length ? { sameAs: socialUrls() } : {}),
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -34,6 +35,15 @@ const organizationJsonLd = {
       availableLanguage: ["pt-BR"],
     },
   ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: SITE_URL,
+  inLanguage: "pt-BR",
+  description: SITE.description,
 };
 
 function NotFoundComponent() {
@@ -103,20 +113,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: SITE.name },
       { name: "theme-color", content: "#20448C" },
-      { property: "og:type", content: "website" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: "pt_BR" },
-      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
       { property: "og:image:width", content: "1920" },
       { property: "og:image:height", content: "1080" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(organizationJsonLd),
-      },
+      { type: "application/ld+json", children: JSON.stringify(organizationJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

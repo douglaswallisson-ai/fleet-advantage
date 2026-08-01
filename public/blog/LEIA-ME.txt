@@ -1,0 +1,4 @@
+IMAGENS DE CAPA DO BLOG
+=======================
+Coloque aqui as imagens de capa dos artigos (JPG ou WebP, 1200x630 recomendado).
+Depois aponte o caminho no campo "cover" de cada post em src/lib/blog.ts.

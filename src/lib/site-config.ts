@@ -18,6 +18,41 @@ export const SITE = {
     "IA que transforma dados de frota em decisões: redução de custos, monitoramento de pneus, copiloto do motorista e clube de fidelidade.",
   foundingYear: "2001",
   ogImage: "/og-cover.jpg",
+  /**
+   * Perfis oficiais da SS — entram no `sameAs` do JSON-LD (ajuda o Google a
+   * ligar o site às redes). Preencha as URLs reais; vazias não aparecem.
+   */
+  social: {
+    linkedin: "", // ex.: "https://www.linkedin.com/company/sstelematica"
+    instagram: "",
+    youtube: "",
+    facebook: "",
+  },
+};
+
+/**
+ * Grupo empresarial — a SS faz parte do Grupo Modaxo, da Constellation Software.
+ * Renderizado na página Quem Somos. Os logos ficam gated: sem o arquivo, o card
+ * mostra só o nome; com o arquivo em `public/logos/`, mostra o logo.
+ * Ver public/logos/LEIA-ME.txt.
+ */
+export const GRUPO = {
+  parceiros: [
+    {
+      nome: "Modaxo",
+      logo: "", // ex.: "/logos/modaxo.svg"
+      site: "https://www.modaxo.com",
+      descricao:
+        "Portfólio global de tecnologias para o transporte de pessoas. A Modaxo reúne empresas que movem cidades e operações de transporte no mundo todo.",
+    },
+    {
+      nome: "Constellation Software",
+      logo: "", // ex.: "/logos/constellation.svg"
+      site: "https://www.csisoftware.com",
+      descricao:
+        "Uma das maiores companhias de software do mundo (TSX: CSU), que adquire e faz crescer negócios de software verticais de excelência.",
+    },
+  ],
 };
 
 /**
@@ -28,9 +63,21 @@ export const SITE = {
  * Recomendado: MP4 (H.264) sem áudio, até ~8 s em loop, 1920×1080, abaixo de 3 MB.
  */
 export const MEDIA = {
+  // Fundos de seção (efeito Ken Burns na imagem enquanto não há vídeo).
   heroVideo: "",
   clubeVideo: "",
   indicacaoVideo: "",
+  seloHeroVideo: "",
+
+  // Vídeos dos cards/blocos de produto na home. Cada um substitui a imagem
+  // correspondente. Coloque o arquivo em public/videos/ e aponte o caminho.
+  // O <Media> usa a imagem atual como "poster" enquanto o vídeo carrega.
+  iaFleetManager: "", // card de destaque (IA Fleet Manager)
+  pneus: "", // card "Monitoramento de Pneus"
+  cameras: "", // card "Câmeras com IA a bordo"
+  euro6: "", // card "Regeneração EURO 6"
+  copiloto: "", // seção "Copiloto do Motorista" (quando não usar a Selma)
+  seloVerde: "", // imagem da seção Selo Verde na home
 };
 
 /**
@@ -116,6 +163,9 @@ export const whatsappLink = (message: string) =>
 export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 
+/** URLs de redes sociais preenchidas — usadas em `sameAs` do JSON-LD. */
+export const socialUrls = () => Object.values(SITE.social).filter(Boolean) as string[];
+
 /**
  * Metadados de página em um único lugar: devolve title/description/canonical/og
  * já absolutos. Usado por todas as rotas no `head()`.
@@ -126,18 +176,67 @@ export function pageHead(opts: {
   path: string;
   ogTitle?: string;
   ogDescription?: string;
+  /** Imagem social específica da página (ex.: capa de post). Absoluta ou "/...". */
+  image?: string;
+  /** "website" (padrão) ou "article" para posts do blog. */
+  type?: "website" | "article";
+  /** Bloqueia indexação (ex.: páginas utilitárias). */
+  noindex?: boolean;
 }) {
   const url = absoluteUrl(opts.path);
+  const image = absoluteUrl(opts.image ?? SITE.ogImage);
+  const meta = [
+    { title: opts.title },
+    { name: "description", content: opts.description },
+    { property: "og:type", content: opts.type ?? "website" },
+    { property: "og:title", content: opts.ogTitle ?? opts.title },
+    { property: "og:description", content: opts.ogDescription ?? opts.description },
+    { property: "og:url", content: url },
+    { property: "og:image", content: image },
+    { name: "twitter:image", content: image },
+  ];
+  if (opts.noindex) meta.push({ name: "robots", content: "noindex, nofollow" });
+  return { meta, links: [{ rel: "canonical", href: url }] };
+}
+
+/** JSON-LD de artigo (blog). Retorna um objeto pronto para `JSON.stringify`. */
+export function articleJsonLd(opts: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  datePublished: string;
+  dateModified?: string;
+  author?: string;
+}) {
   return {
-    meta: [
-      { title: opts.title },
-      { name: "description", content: opts.description },
-      { property: "og:title", content: opts.ogTitle ?? opts.title },
-      { property: "og:description", content: opts.ogDescription ?? opts.description },
-      { property: "og:url", content: url },
-      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
-      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
-    ],
-    links: [{ rel: "canonical", href: url }],
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.title,
+    description: opts.description,
+    image: absoluteUrl(opts.image ?? SITE.ogImage),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    author: { "@type": "Organization", name: opts.author ?? SITE.name },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      logo: { "@type": "ImageObject", url: absoluteUrl("/ss-orb.png") },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(opts.path) },
+  };
+}
+
+/** JSON-LD de trilha de navegação (breadcrumbs) — bom para SEO de subpáginas. */
+export function breadcrumbJsonLd(trail: Array<{ name: string; path: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: t.name,
+      item: absoluteUrl(t.path),
+    })),
   };
 }

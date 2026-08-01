@@ -28,6 +28,7 @@ const NAV: NavEntry[] = [
     label: "A Empresa",
     items: [
       { label: "Quem Somos", to: "/quem-somos", desc: "História, propósito e valores" },
+      { label: "Blog", to: "/blog", desc: "Ideias sobre frota, IA e decisão" },
       { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
     ],
   },

@@ -21,6 +21,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { SSOrb } from "@/components/site/SSOrb";
 import { Backdrop } from "@/components/site/Backdrop";
+import { Media } from "@/components/site/Media";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
 import { MEDIA, SELMA, pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
@@ -203,6 +204,8 @@ type Feature = {
   bullets: string[];
   /** Foto do card. Sem foto, o card usa `metric` como painel. */
   image?: string;
+  /** Vídeo opcional que substitui a foto (ver MEDIA em site-config). */
+  video?: string;
   metric?: { value: string; label: string };
 };
 
@@ -230,6 +233,7 @@ function Features() {
         "Rodízio inteligente sugerido",
       ],
       image: tireImg,
+      video: MEDIA.pneus,
     },
     {
       icon: Camera,
@@ -241,6 +245,7 @@ function Features() {
         "Detecção de desatenção",
       ],
       image: cameraImg,
+      video: MEDIA.cameras,
     },
     {
       icon: Wind,
@@ -252,6 +257,7 @@ function Features() {
         "Histórico completo por veículo",
       ],
       image: euro6Img,
+      video: MEDIA.euro6,
     },
   ];
 
@@ -291,11 +297,11 @@ function Features() {
           </ul>
         </div>
         <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
-          <img
-            src={iaAltImg}
+          <Media
+            image={iaAltImg}
+            video={MEDIA.iaFleetManager}
             alt="Painel do IA Fleet Manager"
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="transition-transform duration-700 group-hover:scale-105"
             width={1400}
             height={1000}
           />
@@ -312,17 +318,17 @@ function Features() {
   );
 }
 
-/** Card uniforme: mídia no topo (foto ou painel de número) + conteúdo abaixo. */
-function FeatureCard({ icon: Icon, title, desc, bullets, image, metric }: Feature) {
+/** Card uniforme: mídia no topo (foto/vídeo ou painel de número) + conteúdo abaixo. */
+function FeatureCard({ icon: Icon, title, desc, bullets, image, video, metric }: Feature) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant">
       <div className="relative aspect-[16/9] overflow-hidden">
         {image ? (
-          <img
-            src={image}
+          <Media
+            image={image}
+            video={video}
             alt={title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="transition-transform duration-700 group-hover:scale-105"
             width={1400}
             height={1000}
           />
@@ -540,14 +546,16 @@ function GreenSeal() {
           </div>
         </div>
         <div className="relative">
-          <img
-            src={sustainImg}
-            alt="Sustentabilidade SS"
-            loading="lazy"
-            className="rounded-3xl shadow-elegant"
-            width={1600}
-            height={900}
-          />
+          <div className="overflow-hidden rounded-3xl shadow-elegant">
+            <Media
+              image={sustainImg}
+              video={MEDIA.seloVerde}
+              alt="Sustentabilidade SS"
+              className="aspect-[16/9]"
+              width={1600}
+              height={900}
+            />
+          </div>
           <div className="absolute -bottom-8 left-8 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-elegant">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-green">
               <Leaf className="h-7 w-7 text-white" />

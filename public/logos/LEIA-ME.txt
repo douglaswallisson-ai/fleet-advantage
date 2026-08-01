@@ -1,0 +1,11 @@
+LOGOS DE PARCEIROS / GRUPO
+==========================
+Coloque aqui os arquivos de logo. Formatos aceitos: SVG (ideal), PNG (fundo
+transparente) ou JPG. Depois aponte o caminho em src/lib/site-config.ts (GRUPO).
+
+Arquivos esperados (nomes sugeridos):
+  - modaxo.svg        (ou modaxo.png)        -> logo do Grupo Modaxo
+  - constellation.svg (ou constellation.png) -> logo da Constellation Software
+
+Dica: logos claros ficam melhores sobre o fundo escuro da seção. Se o logo for
+escuro, salve uma versão em branco/monocromática clara.

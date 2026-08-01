@@ -1,0 +1,14 @@
+VÍDEOS DO SITE
+==============
+Coloque aqui os arquivos de vídeo. Recomendado:
+  - Formato: MP4 (H.264) — e, se puder, também .webm para navegadores modernos.
+  - Sem áudio (os vídeos tocam mudos, em loop).
+  - Duração: 6 a 12 segundos em loop.
+  - Resolução: 1920x1080 (fundo) ou proporção do card (16:9 / 4:3).
+  - Tamanho: abaixo de ~4 MB por vídeo (para o site carregar rápido).
+
+Depois de colocar o arquivo aqui, aponte o caminho em src/lib/site-config.ts
+(no objeto MEDIA). O site troca a imagem pelo vídeo sozinho. A imagem
+correspondente continua servindo de "poster" enquanto o vídeo carrega.
+
+Veja o mapa completo "imagem -> onde colocar o vídeo" no README.md do projeto.

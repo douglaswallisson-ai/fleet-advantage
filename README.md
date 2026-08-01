@@ -56,6 +56,37 @@ Ao substituir: fotografe veículos reais já adesivados, obtenha autorização d
 uso de imagem por escrito do cliente dono do veículo, coloque os arquivos em
 `src/assets/`, importe-os em `GaleriaFrota.tsx` e apague `IMAGENS_PROVISORIAS`.
 
+## Vídeos — trocar imagem por vídeo
+
+Qualquer visual de produto/fundo pode virar vídeo. Coloque o arquivo em
+`public/videos/` (MP4 H.264 mudo, em loop, 6–12 s, < 4 MB; opcionalmente também
+`.webm`) e aponte o caminho no objeto `MEDIA` em `src/lib/site-config.ts`. O
+site troca a imagem pelo vídeo sozinho e usa a imagem como *poster*.
+
+| Onde no site | Campo em `MEDIA` | Exemplo de caminho |
+| --- | --- | --- |
+| Fundo do hero (home) | `heroVideo` | `/videos/hero.mp4` |
+| Fundo do Clube SS (home) | `clubeVideo` | `/videos/clube.mp4` |
+| Fundo do hero de Indicação | `indicacaoVideo` | `/videos/indicacao.mp4` |
+| Fundo do hero do Selo Verde | `seloHeroVideo` | `/videos/selo-hero.mp4` |
+| Card **IA Fleet Manager** (home) | `iaFleetManager` | `/videos/ia-fleet.mp4` |
+| Card **Monitoramento de Pneus** | `pneus` | `/videos/pneus.mp4` |
+| Card **Câmeras com IA** | `cameras` | `/videos/cameras.mp4` |
+| Card **Regeneração EURO 6** | `euro6` | `/videos/euro6.mp4` |
+| Seção **Copiloto** (home) | `copiloto` | `/videos/copiloto.mp4` |
+| Imagem da seção **Selo Verde** (home) | `seloVerde` | `/videos/selo-verde.mp4` |
+
+## Blog
+
+Os artigos ficam em `src/lib/blog.ts` (sem CMS). Para publicar: copie um bloco
+de `POSTS`, edite os campos, e coloque a capa (1200×630) em `public/blog/`
+apontando em `cover`. A listagem (`/blog`) e o sitemap se atualizam sozinhos.
+
+## Logos de parceiros (Grupo Modaxo / Constellation)
+
+Coloque os logos em `public/logos/` e aponte em `GRUPO` (`site-config.ts`).
+Sem o arquivo, o card mostra só o nome. Ver `public/logos/LEIA-ME.txt`.
+
 ## Built with
 
 - TanStack Start
