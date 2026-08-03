@@ -22,17 +22,11 @@ import { Footer } from "@/components/site/Footer";
 import { SSOrb } from "@/components/site/SSOrb";
 import { Backdrop } from "@/components/site/Backdrop";
 import { Media } from "@/components/site/Media";
+import { Carrossel } from "@/components/site/Carrossel";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
-import { MEDIA, SELMA, especialistaHref, pageHead } from "@/lib/site-config";
-import heroImg from "@/assets/hero-fleet.jpg";
-import iaAltImg from "@/assets/ia-fleet-manager-alt.jpg";
-import fleetImg from "@/assets/ai-fleet-manager.jpg";
+import { FOTOS, MEDIA, SELMA, especialistaHref, pageHead } from "@/lib/site-config";
 import driverImg from "@/assets/driver-copilot.jpg";
-import tireImg from "@/assets/tire-monitor.jpg";
-import driversClubImg from "@/assets/drivers-club.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
-import cameraImg from "@/assets/ai-camera-monitor.jpg";
-import euro6Img from "@/assets/euro6-regen.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -77,7 +71,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
       <div className="absolute inset-0 opacity-40">
-        <Backdrop image={heroImg} video={MEDIA.heroVideo} />
+        <Backdrop image={FOTOS.heroFundo} video={MEDIA.heroVideo} />
         <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)]/70 via-[oklch(0.18_0.06_260)]/50 to-[oklch(0.18_0.06_260)]" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-20 pb-28 lg:grid-cols-[1.2fr_0.8fr] lg:pt-28 lg:pb-36">
@@ -147,8 +141,8 @@ function Hero() {
           <div className="absolute inset-0 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/15 bg-white/5 p-2 shadow-elegant backdrop-blur">
             <img
-              src={fleetImg}
-              alt="Painel de IA Fleet Manager"
+              src={FOTOS.heroPainel}
+              alt="Central de monitoramento SS Telemática"
               className="rounded-2xl"
               width={1400}
               height={1000}
@@ -204,10 +198,8 @@ type Feature = {
   title: string;
   desc: string;
   bullets: string[];
-  /** Foto do card. Sem foto, o card usa `metric` como painel. */
-  image?: string;
-  /** Vídeo opcional que substitui a foto (ver MEDIA em site-config). */
-  video?: string;
+  /** Fotos do card (principal + secundárias = carrossel). Sem fotos, usa `metric`. */
+  imagens?: string[];
   metric?: { value: string; label: string };
 };
 
@@ -223,7 +215,7 @@ function Features() {
       title: "Redução de Custo de Frota",
       desc: "Combustível, manutenção, pneus e sinistros — em um único painel de rentabilidade por veículo.",
       bullets: ["Custo por km em tempo real", "Simulador de economia", "Benchmark do seu segmento"],
-      metric: { value: "−28%", label: "META DE CUSTO POR KM EM 12 MESES" },
+      imagens: [FOTOS.reducaoCusto],
     },
     {
       icon: Gauge,
@@ -234,8 +226,7 @@ function Features() {
         "Meta de +40% de vida útil",
         "Rodízio inteligente sugerido",
       ],
-      image: tireImg,
-      video: MEDIA.pneus,
+      imagens: [FOTOS.pneus],
     },
     {
       icon: Camera,
@@ -246,8 +237,7 @@ function Features() {
         "Alerta de fadiga e microssono",
         "Detecção de desatenção",
       ],
-      image: cameraImg,
-      video: MEDIA.cameras,
+      imagens: FOTOS.cameras,
     },
     {
       icon: Wind,
@@ -258,8 +248,7 @@ function Features() {
         "Alerta preventivo de derating",
         "Histórico completo por veículo",
       ],
-      image: euro6Img,
-      video: MEDIA.euro6,
+      imagens: FOTOS.euro6,
     },
   ];
 
@@ -299,15 +288,13 @@ function Features() {
           </ul>
         </div>
         <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
-          <Media
-            image={iaAltImg}
-            video={MEDIA.iaFleetManager}
-            alt="Painel do IA Fleet Manager"
-            className="transition-transform duration-700 group-hover:scale-105"
-            width={1400}
-            height={1000}
+          <Carrossel
+            imagens={FOTOS.fleetManager}
+            alt="IA Fleet Manager da SS"
+            aspect="h-full min-h-[280px]"
+            className="h-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.06_260)] via-transparent to-transparent opacity-70 lg:opacity-90" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.06_260)] via-transparent to-transparent opacity-70 lg:opacity-90" />
         </div>
       </article>
 
@@ -320,29 +307,20 @@ function Features() {
   );
 }
 
-/** Card uniforme: mídia no topo (foto/vídeo ou painel de número) + conteúdo abaixo. */
-function FeatureCard({ icon: Icon, title, desc, bullets, image, video, metric }: Feature) {
+/** Card uniforme: mídia no topo (carrossel de fotos ou painel de número) + conteúdo. */
+function FeatureCard({ icon: Icon, title, desc, bullets, imagens, metric }: Feature) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant">
-      <div className="relative aspect-[16/9] overflow-hidden">
-        {image ? (
-          <Media
-            image={image}
-            video={video}
-            alt={title}
-            className="transition-transform duration-700 group-hover:scale-105"
-            width={1400}
-            height={1000}
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-hero text-center">
-            <div className="text-6xl font-bold text-brand-green md:text-7xl">{metric?.value}</div>
-            <div className="mt-3 max-w-[16rem] text-[10px] font-semibold tracking-widest text-white/60">
-              {metric?.label}
-            </div>
+      {imagens && imagens.length > 0 ? (
+        <Carrossel imagens={imagens} alt={title} aspect="aspect-[16/9]" />
+      ) : (
+        <div className="flex aspect-[16/9] w-full flex-col items-center justify-center bg-gradient-hero text-center">
+          <div className="text-6xl font-bold text-brand-green md:text-7xl">{metric?.value}</div>
+          <div className="mt-3 max-w-[16rem] text-[10px] font-semibold tracking-widest text-white/60">
+            {metric?.label}
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-8">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-hero text-white">
@@ -452,7 +430,7 @@ function DriversClub() {
       className="relative scroll-mt-24 overflow-hidden bg-gradient-hero py-24 text-white"
     >
       <div className="absolute inset-0 opacity-20">
-        <Backdrop image={driversClubImg} video={MEDIA.clubeVideo} />
+        <Backdrop image={FOTOS.clube} video={MEDIA.clubeVideo} />
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1fr]">

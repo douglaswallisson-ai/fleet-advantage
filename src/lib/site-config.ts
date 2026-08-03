@@ -134,6 +134,46 @@ export const SELMA = {
  * (com autorização de uso de imagem por escrito), colocar os arquivos em
  * `src/assets/` e importá-los em `GaleriaFrota.tsx`.
  */
+/**
+ * Fotos oficiais da SS (pasta `public/Imagens ss/`, com a marca aplicada).
+ *
+ * Convenção do cliente: cada seção é uma subpasta; onde há "Principal" + outras,
+ * vira carrossel (principal primeiro). Onde há uma foto só, é imagem única.
+ *
+ * Para trocar/atualizar: basta substituir o arquivo dentro de `public/Imagens ss/`
+ * mantendo o nome. Caminhos com espaço/acento são codificados por `ssImg`.
+ */
+const ssImg = (p: string) => encodeURI(`/Imagens ss/${p}`);
+
+export const FOTOS = {
+  heroFundo: ssImg("ss-gestao-frota.jpg"),
+  heroPainel: ssImg("ss-central-monitoramento-v3-logo-corrigido.jpg"),
+  fleetManager: [
+    ssImg("Fleet Manager/Principal.jpg"),
+    ssImg("Fleet Manager/ss-ia-priorizacao.jpg"),
+  ],
+  reducaoCusto: ssImg("Redução de custo/ss-reducao-custo-frota-logo-corrigido.jpg"),
+  pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.jpg"),
+  cameras: [
+    ssImg("VideoTelemetria/Principal.jpg"),
+    ssImg("VideoTelemetria/ss-videotelemetria-v3-logo-corrigido.jpg"),
+  ],
+  euro6: [ssImg("Euro 6/Principal.jpg"), ssImg("Euro 6/ss-euro6-regeneracao.jpg")],
+  urbano: [ssImg("Urbano/Principal.jpg"), ssImg("Urbano/ss-onibus-urbano.jpg")],
+  fretamento: [
+    ssImg("Fretamento/Principal.jpg"),
+    ssImg("Fretamento/ss-onibus-dd-v3-logo-corrigido.jpg"),
+  ],
+  carga: [ssImg("Carga/Principal.jpg"), ssImg("Carga/ss-caminhao-v3-logo-corrigido.jpg")],
+  clube: ssImg("ss-clube-fidelidade-motorista.jpg"),
+  indicacao: ssImg("ss-programa-indicacao.jpg"),
+  grupoModaxoBanner: ssImg("ss-banner-modaxo.jpg"),
+};
+
+/**
+ * A folha do Selo Verde ainda é imagem de terceiro (provisória). As demais fotos
+ * já são oficiais da SS, então a tarja só se aplica a ela.
+ */
 export const IMAGENS_PROVISORIAS = true;
 
 export const IMAGENS = {

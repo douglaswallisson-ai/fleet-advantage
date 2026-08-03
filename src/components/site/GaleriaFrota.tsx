@@ -1,16 +1,11 @@
 import { Bus, Truck, Users } from "lucide-react";
-import { IMAGENS, IMAGENS_PROVISORIAS } from "@/lib/site-config";
+import { Carrossel } from "@/components/site/Carrossel";
+import { FOTOS } from "@/lib/site-config";
 
 /**
- * "A SS na estrada" — os segmentos atendidos pela plataforma.
- *
- * As fotos são PROVISÓRIAS (ver IMAGENS_PROVISORIAS em site-config.ts): são
- * ilustrações de segmento vindas de banco de imagens livre, NÃO são veículos de
- * clientes da SS nem trazem os adesivos da marca. Trocar pelas fotos reais
- * antes de publicar.
- *
- * `objectPosition` existe porque as fotos têm enquadramentos diferentes; ele
- * mantém o veículo visível dentro do recorte 4:3 do card.
+ * "A SS na estrada" — os segmentos atendidos pela plataforma, com as fotos
+ * oficiais da SS. Cada segmento é um carrossel (foto principal + secundárias),
+ * vindo de `public/Imagens ss/` via FOTOS em site-config.
  */
 
 // Passageiros primeiro (foco atual da SS); carga fecha a lista.
@@ -19,25 +14,22 @@ const VEICULOS = [
     icon: Bus,
     categoria: "Ônibus urbanos",
     desc: "Linha urbana com controle de jornada, rota e comportamento de condução.",
-    src: IMAGENS.frotaOnibus,
-    objectPosition: "28% 72%",
-    alt: "Ônibus urbano em via de cidade",
+    imagens: FOTOS.urbano,
+    alt: "Ônibus urbano da SS Telemática",
   },
   {
     icon: Users,
     categoria: "Fretamento",
     desc: "Transporte de colaboradores e passageiros com rastreio e segurança a bordo.",
-    src: IMAGENS.frotaFretamento,
-    objectPosition: "50% 50%",
-    alt: "Ônibus de fretamento estacionado",
+    imagens: FOTOS.fretamento,
+    alt: "Ônibus de fretamento da SS Telemática",
   },
   {
     icon: Truck,
     categoria: "Cargas e rodoviários",
     desc: "Longa distância monitorada ponta a ponta, do pátio ao destino.",
-    src: IMAGENS.frotaCarreta,
-    objectPosition: "50% 55%",
-    alt: "Carreta em operação rodoviária",
+    imagens: FOTOS.carga,
+    alt: "Caminhão de carga da SS Telemática",
   },
 ];
 
@@ -57,31 +49,16 @@ export function GaleriaFrota() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {VEICULOS.map(({ icon: Icon, categoria, desc, src, alt, objectPosition }) => (
+          {VEICULOS.map(({ icon: Icon, categoria, desc, imagens, alt }) => (
             <article
               key={categoria}
               className="group overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-                <img
-                  src={src}
-                  alt={alt}
-                  loading="lazy"
-                  style={{ objectPosition }}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  width={1400}
-                  height={1050}
-                />
-                {IMAGENS_PROVISORIAS && (
-                  <span className="absolute left-3 top-3 rounded-full bg-[oklch(0.15_0.03_260)]/80 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur">
-                    FOTO PROVISÓRIA
-                  </span>
-                )}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[oklch(0.15_0.03_260)]/85 to-transparent p-5">
-                  <div className="flex items-center gap-2 text-white">
-                    <Icon className="h-5 w-5 shrink-0 text-brand-green" />
-                    <h3 className="text-lg font-bold">{categoria}</h3>
-                  </div>
+              <div className="relative bg-secondary">
+                <Carrossel imagens={imagens} alt={alt} aspect="aspect-[4/3]" />
+                <div className="pointer-events-none absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-[oklch(0.15_0.03_260)]/70 px-3 py-1.5 text-white backdrop-blur">
+                  <Icon className="h-4 w-4 shrink-0 text-brand-green" />
+                  <h3 className="text-sm font-bold">{categoria}</h3>
                 </div>
               </div>
               <p className="p-6 text-sm leading-relaxed text-muted-foreground">{desc}</p>

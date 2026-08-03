@@ -3,7 +3,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { ArrowUpRight, Building2, Compass, HeartHandshake, Rocket, Target } from "lucide-react";
 import { SSOrb } from "@/components/site/SSOrb";
-import { GRUPO, pageHead } from "@/lib/site-config";
+import { FOTOS, GRUPO, pageHead } from "@/lib/site-config";
 import teamImg from "@/assets/team-about.jpg";
 
 export const Route = createFileRoute("/quem-somos")({
@@ -161,6 +161,14 @@ function GrupoModaxo() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero py-24 text-white">
       <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-12 overflow-hidden rounded-3xl border border-white/15 shadow-elegant">
+          <img
+            src={FOTOS.grupoModaxoBanner}
+            alt="SS Telemática — empresa do Grupo Modaxo"
+            loading="lazy"
+            className="w-full object-cover"
+          />
+        </div>
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-widest backdrop-blur">
             <Building2 className="h-3.5 w-3.5 text-brand-green" /> PARTE DE ALGO MAIOR

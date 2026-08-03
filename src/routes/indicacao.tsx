@@ -12,8 +12,7 @@ import {
   useLeadForm,
 } from "@/components/site/lead-form";
 import { Backdrop } from "@/components/site/Backdrop";
-import { CONTACT, MEDIA, pageHead } from "@/lib/site-config";
-import referralImg from "@/assets/referral.jpg";
+import { CONTACT, FOTOS, MEDIA, pageHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/indicacao")({
   component: Indicacao,
@@ -38,7 +37,7 @@ function Indicacao() {
       <main>
         <section className="relative overflow-hidden bg-gradient-hero py-24 text-white">
           <div className="absolute inset-0 opacity-25">
-            <Backdrop image={referralImg} video={MEDIA.indicacaoVideo} />
+            <Backdrop image={FOTOS.indicacao} video={MEDIA.indicacaoVideo} />
             <div className="absolute inset-0 bg-gradient-hero opacity-80" />
           </div>
           <div className="relative mx-auto max-w-6xl px-6">
@@ -46,17 +45,25 @@ function Indicacao() {
               <Gift className="h-3.5 w-3.5 text-brand-green" /> PROGRAMA DE INDICAÇÃO SS
             </span>
             <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] md:text-6xl">
-              Indique a SS e ganhe até <span className="text-brand-green">R$ 500</span> por veículo ativado.
+              Indique a SS e ganhe até <span className="text-brand-green">R$ 500</span> por veículo
+              ativado.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/80">
-              O programa de indicação mais generoso do setor. Sua rede confia em você —
-              transforme essa confiança em receita recorrente para o seu bolso e economia para a frota do amigo.
+              O programa de indicação mais generoso do setor. Sua rede confia em você — transforme
+              essa confiança em receita recorrente para o seu bolso e economia para a frota do
+              amigo.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#formulario" className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-4 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5">
+              <a
+                href="#formulario"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-4 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5"
+              >
                 Indicar agora <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#regulamento" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-4 text-sm font-semibold backdrop-blur hover:bg-white/10">
+              <a
+                href="#regulamento"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-4 text-sm font-semibold backdrop-blur hover:bg-white/10"
+              >
                 <FileText className="h-4 w-4" /> Ver o regulamento
               </a>
             </div>
@@ -67,11 +74,29 @@ function Indicacao() {
           <h2 className="text-center text-4xl font-bold">Como funciona</h2>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {[
-              { icon: Share2, s: "01", t: "Indique", d: "Envie o contato de um gestor de frota pelo formulário abaixo. Leva 30 segundos." },
-              { icon: Check, s: "02", t: "A SS conversa", d: "Nosso time faz a demonstração e apresenta a proposta. Você acompanha em tempo real." },
-              { icon: Wallet, s: "03", t: "Você recebe", d: "Contrato assinado? R$ 100 a R$ 500 por veículo ativado — direto no PIX." },
+              {
+                icon: Share2,
+                s: "01",
+                t: "Indique",
+                d: "Envie o contato de um gestor de frota pelo formulário abaixo. Leva 30 segundos.",
+              },
+              {
+                icon: Check,
+                s: "02",
+                t: "A SS conversa",
+                d: "Nosso time faz a demonstração e apresenta a proposta. Você acompanha em tempo real.",
+              },
+              {
+                icon: Wallet,
+                s: "03",
+                t: "Você recebe",
+                d: "Contrato assinado? R$ 100 a R$ 500 por veículo ativado — direto no PIX.",
+              },
             ].map(({ icon: Icon, s, t, d }) => (
-              <div key={s} className="relative rounded-3xl border border-border bg-card p-8 shadow-card">
+              <div
+                key={s}
+                className="relative rounded-3xl border border-border bg-card p-8 shadow-card"
+              >
                 <div className="text-6xl font-bold text-brand-sky/20">{s}</div>
                 <div className="mt-2 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-hero text-white">
                   <Icon className="h-5 w-5" />
@@ -91,11 +116,29 @@ function Indicacao() {
             </p>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[
-                { size: "Até 30 veículos", value: "R$ 100", per: "por veículo ativado", bonus: "+ 1 mês de mensalidade grátis para o indicado" },
-                { size: "31 a 100 veículos", value: "R$ 250", per: "por veículo ativado", bonus: "+ 2 meses de mensalidade grátis + kit SS" },
-                { size: "100+ veículos", value: "R$ 500", per: "por veículo ativado", bonus: "+ 3 meses grátis + comissão recorrente" },
+                {
+                  size: "Até 30 veículos",
+                  value: "R$ 100",
+                  per: "por veículo ativado",
+                  bonus: "+ 1 mês de mensalidade grátis para o indicado",
+                },
+                {
+                  size: "31 a 100 veículos",
+                  value: "R$ 250",
+                  per: "por veículo ativado",
+                  bonus: "+ 2 meses de mensalidade grátis + kit SS",
+                },
+                {
+                  size: "100+ veículos",
+                  value: "R$ 500",
+                  per: "por veículo ativado",
+                  bonus: "+ 3 meses grátis + comissão recorrente",
+                },
               ].map((p, i) => (
-                <div key={p.size} className={`rounded-3xl border bg-card p-8 shadow-card ${i === 1 ? "border-brand-sky ring-2 ring-brand-sky/40" : "border-border"}`}>
+                <div
+                  key={p.size}
+                  className={`rounded-3xl border bg-card p-8 shadow-card ${i === 1 ? "border-brand-sky ring-2 ring-brand-sky/40" : "border-border"}`}
+                >
                   <div className="text-sm font-semibold text-muted-foreground">{p.size}</div>
                   <div className="mt-4 text-5xl font-bold text-primary">{p.value}</div>
                   <div className="mt-1 text-xs text-muted-foreground">{p.per}</div>
@@ -153,8 +196,8 @@ function Indicacao() {
               <FleetSizeSelect />
               <ConsentCheckbox error={fieldErrors.consentimento} />
               <p className="text-xs text-muted-foreground">
-                A chave PIX para pagamento é solicitada só depois da ativação do contrato —
-                nunca peça nem envie dados bancários por este formulário.
+                A chave PIX para pagamento é solicitada só depois da ativação do contrato — nunca
+                peça nem envie dados bancários por este formulário.
               </p>
               <FormFeedback
                 status={status}
@@ -173,9 +216,9 @@ function Indicacao() {
           <h2 className="text-2xl font-bold md:text-3xl">Regulamento do programa</h2>
           <ol className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
             <li>
-              <strong className="text-foreground">1. Quem pode participar.</strong> Pessoas
-              físicas ou jurídicas maiores de 18 anos. Colaboradores da SS Telemática e de suas
-              controladas não são elegíveis à recompensa.
+              <strong className="text-foreground">1. Quem pode participar.</strong> Pessoas físicas
+              ou jurídicas maiores de 18 anos. Colaboradores da SS Telemática e de suas controladas
+              não são elegíveis à recompensa.
             </li>
             <li>
               <strong className="text-foreground">2. Validade da indicação.</strong> A empresa
@@ -183,19 +226,19 @@ function Indicacao() {
               indicação. Vale a primeira indicação registrada para cada empresa.
             </li>
             <li>
-              <strong className="text-foreground">3. Quando a recompensa é devida.</strong> Após
-              a assinatura do contrato pela empresa indicada e a ativação efetiva dos veículos,
+              <strong className="text-foreground">3. Quando a recompensa é devida.</strong> Após a
+              assinatura do contrato pela empresa indicada e a ativação efetiva dos veículos,
               considerando a faixa de frota contratada.
             </li>
             <li>
               <strong className="text-foreground">4. Pagamento.</strong> Via PIX, em até 30 dias
-              corridos após a ativação, mediante confirmação dos dados do indicador. A chave PIX
-              é solicitada em canal próprio — nunca por este formulário.
+              corridos após a ativação, mediante confirmação dos dados do indicador. A chave PIX é
+              solicitada em canal próprio — nunca por este formulário.
             </li>
             <li>
-              <strong className="text-foreground">5. Cancelamento.</strong> Contratos cancelados
-              ou veículos desativados dentro de 90 dias da ativação podem gerar estorno
-              proporcional da recompensa.
+              <strong className="text-foreground">5. Cancelamento.</strong> Contratos cancelados ou
+              veículos desativados dentro de 90 dias da ativação podem gerar estorno proporcional da
+              recompensa.
             </li>
             <li>
               <strong className="text-foreground">6. Tributos.</strong> Os valores recebidos podem
@@ -211,8 +254,7 @@ function Indicacao() {
             <a href={`mailto:${CONTACT.email}`} className="underline hover:text-primary">
               {CONTACT.email}
             </a>
-            .{" "}
-            <strong className="text-foreground">Antes de publicar:</strong> submeta este
+            . <strong className="text-foreground">Antes de publicar:</strong> submeta este
             regulamento à validação jurídica da SS e ajuste prazos e condições ao contrato real.
           </p>
         </section>
