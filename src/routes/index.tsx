@@ -261,20 +261,17 @@ function Features() {
         </h2>
       </div>
 
-      <article className="group grid overflow-hidden rounded-3xl bg-gradient-hero text-white shadow-elegant lg:grid-cols-[1fr_1fr]">
-        <div className="flex flex-col justify-center p-8 md:p-12">
+      <article className="group grid items-stretch overflow-hidden rounded-3xl bg-gradient-hero text-white shadow-elegant lg:grid-cols-[5fr_7fr]">
+        <div className="flex flex-col justify-center p-8 md:p-10">
           <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
-            <Sparkles className="h-3 w-3" /> DESTAQUE
+            <Brain className="h-3 w-3" /> DESTAQUE
           </span>
-          <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 backdrop-blur">
-            <Brain className="h-6 w-6 text-brand-green" />
-          </div>
-          <h3 className="mt-6 text-3xl font-bold md:text-4xl">IA Fleet Manager</h3>
-          <p className="mt-4 text-base leading-relaxed text-white/75">
+          <h3 className="mt-5 text-3xl font-bold md:text-4xl">IA Fleet Manager</h3>
+          <p className="mt-3 text-base leading-relaxed text-white/75">
             O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos por
             dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.
           </p>
-          <ul className="mt-7 space-y-2.5">
+          <ul className="mt-5 space-y-2">
             {[
               "Priorização automática de ações",
               "Detecção preditiva de falhas",
@@ -287,13 +284,12 @@ function Features() {
             ))}
           </ul>
         </div>
-        <div className="relative min-h-[280px] overflow-hidden bg-[oklch(0.16_0.05_260)] lg:min-h-full">
+        <div className="relative overflow-hidden">
           <Carrossel
             imagens={FOTOS.fleetManager}
             alt="IA Fleet Manager da SS"
-            aspect="h-full min-h-[280px]"
-            fit="contain"
-            className="h-full"
+            aspect="aspect-[16/9] h-full"
+            fit="cover"
           />
         </div>
       </article>

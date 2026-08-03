@@ -154,10 +154,7 @@ export const FOTOS = {
   ],
   reducaoCusto: ssImg("Redução de custo/ss-reducao-custo-frota-logo-corrigido.jpg"),
   pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.jpg"),
-  cameras: [
-    ssImg("VideoTelemetria/Principal.jpg"),
-    ssImg("VideoTelemetria/ss-videotelemetria-v3-logo-corrigido.jpg"),
-  ],
+  cameras: [ssImg("VideoTelemetria/ss-videotelemetria-v3-logo-corrigido.jpg")],
   euro6: [ssImg("Euro 6/Principal.jpg"), ssImg("Euro 6/ss-euro6-regeneracao.jpg")],
   urbano: [ssImg("Urbano/Principal.jpg"), ssImg("Urbano/ss-onibus-urbano.jpg")],
   fretamento: [
