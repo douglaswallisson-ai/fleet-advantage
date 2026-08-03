@@ -13,17 +13,21 @@ export function Carrossel({
   className,
   aspect = "aspect-[16/9]",
   autoPlay = true,
+  fit = "cover",
 }: {
   imagens: string[];
   alt: string;
   className?: string;
   aspect?: string;
   autoPlay?: boolean;
+  /** "cover" preenche (pode cortar); "contain" mostra a imagem inteira. */
+  fit?: "cover" | "contain";
 }) {
   const [i, setI] = useState(0);
   const [pausado, setPausado] = useState(false);
   const total = imagens.length;
   const timer = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const objeto = fit === "contain" ? "object-contain" : "object-cover";
 
   const ir = (n: number) => setI((n + total) % total);
 
@@ -36,7 +40,7 @@ export function Carrossel({
   if (total <= 1) {
     return (
       <div className={cn("relative overflow-hidden", aspect, className)}>
-        <img src={imagens[0]} alt={alt} loading="lazy" className="h-full w-full object-cover" />
+        <img src={imagens[0]} alt={alt} loading="lazy" className={cn("h-full w-full", objeto)} />
       </div>
     );
   }
@@ -57,7 +61,8 @@ export function Carrossel({
           alt={n === 0 ? alt : `${alt} — imagem ${n + 1}`}
           loading={n === 0 ? "eager" : "lazy"}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+            "absolute inset-0 h-full w-full transition-opacity duration-500",
+            objeto,
             n === i ? "opacity-100" : "opacity-0",
           )}
         />

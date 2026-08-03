@@ -70,9 +70,9 @@ function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
-      <div className="absolute inset-0 opacity-40">
-        <Backdrop image={FOTOS.heroFundo} video={MEDIA.heroVideo} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)]/70 via-[oklch(0.18_0.06_260)]/50 to-[oklch(0.18_0.06_260)]" />
+      <div className="absolute inset-0">
+        {MEDIA.heroVideo && <Backdrop image={FOTOS.heroPainel} video={MEDIA.heroVideo} />}
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)] via-[oklch(0.18_0.06_260)] to-[oklch(0.16_0.05_260)]" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-20 pb-28 lg:grid-cols-[1.2fr_0.8fr] lg:pt-28 lg:pb-36">
         <div>
@@ -141,8 +141,8 @@ function Hero() {
           <div className="absolute inset-0 rounded-3xl bg-gradient-accent opacity-20 blur-3xl" />
           <div className="relative rounded-3xl border border-white/15 bg-white/5 p-2 shadow-elegant backdrop-blur">
             <img
-              src={FOTOS.heroPainel}
-              alt="Central de monitoramento SS Telemática"
+              src={FOTOS.heroFundo}
+              alt="Gestão de frota com a SS Telemática"
               className="rounded-2xl"
               width={1400}
               height={1000}
@@ -287,14 +287,14 @@ function Features() {
             ))}
           </ul>
         </div>
-        <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
+        <div className="relative min-h-[280px] overflow-hidden bg-[oklch(0.16_0.05_260)] lg:min-h-full">
           <Carrossel
             imagens={FOTOS.fleetManager}
             alt="IA Fleet Manager da SS"
             aspect="h-full min-h-[280px]"
+            fit="contain"
             className="h-full"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.06_260)] via-transparent to-transparent opacity-70 lg:opacity-90" />
         </div>
       </article>
 
@@ -312,7 +312,13 @@ function FeatureCard({ icon: Icon, title, desc, bullets, imagens, metric }: Feat
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant">
       {imagens && imagens.length > 0 ? (
-        <Carrossel imagens={imagens} alt={title} aspect="aspect-[16/9]" />
+        <Carrossel
+          imagens={imagens}
+          alt={title}
+          aspect="aspect-[16/9]"
+          fit="contain"
+          className="bg-secondary"
+        />
       ) : (
         <div className="flex aspect-[16/9] w-full flex-col items-center justify-center bg-gradient-hero text-center">
           <div className="text-6xl font-bold text-brand-green md:text-7xl">{metric?.value}</div>

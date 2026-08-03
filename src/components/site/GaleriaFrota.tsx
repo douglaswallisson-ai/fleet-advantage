@@ -55,7 +55,7 @@ export function GaleriaFrota() {
               className="group overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant"
             >
               <div className="relative bg-secondary">
-                <Carrossel imagens={imagens} alt={alt} aspect="aspect-[4/3]" />
+                <Carrossel imagens={imagens} alt={alt} aspect="aspect-[4/3]" fit="contain" />
                 <div className="pointer-events-none absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-[oklch(0.15_0.03_260)]/70 px-3 py-1.5 text-white backdrop-blur">
                   <Icon className="h-4 w-4 shrink-0 text-brand-green" />
                   <h3 className="text-sm font-bold">{categoria}</h3>
