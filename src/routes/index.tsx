@@ -70,9 +70,9 @@ function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
-      <div className="absolute inset-0">
-        {MEDIA.heroVideo && <Backdrop image={FOTOS.heroPainel} video={MEDIA.heroVideo} />}
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)] via-[oklch(0.18_0.06_260)] to-[oklch(0.16_0.05_260)]" />
+      <div className="absolute inset-0 opacity-40">
+        <Backdrop image="/og-cover.jpg" video={MEDIA.heroVideo} />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)]/70 via-[oklch(0.18_0.06_260)]/50 to-[oklch(0.18_0.06_260)]" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-20 pb-28 lg:grid-cols-[1.2fr_0.8fr] lg:pt-28 lg:pb-36">
         <div>
