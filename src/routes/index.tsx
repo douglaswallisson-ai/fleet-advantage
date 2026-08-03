@@ -23,7 +23,7 @@ import { SSOrb } from "@/components/site/SSOrb";
 import { Backdrop } from "@/components/site/Backdrop";
 import { Media } from "@/components/site/Media";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
-import { MEDIA, SELMA, pageHead } from "@/lib/site-config";
+import { MEDIA, SELMA, especialistaHref, pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
 import iaAltImg from "@/assets/ia-fleet-manager-alt.jpg";
 import fleetImg from "@/assets/ai-fleet-manager.jpg";
@@ -103,12 +103,14 @@ function Hero() {
             >
               Conhecer plataforma <ArrowRight className="h-4 w-4" />
             </a>
-            <Link
-              to="/contato"
+            <a
+              href={especialistaHref()}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur hover:bg-white/10"
             >
               Falar com especialista
-            </Link>
+            </a>
           </div>
 
           {/*

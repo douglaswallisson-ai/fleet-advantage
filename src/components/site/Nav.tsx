@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu } from "lucide-react";
 import logo from "@/assets/ss-logo.png.asset.json";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { especialistaHref } from "@/lib/site-config";
 
 type Leaf = { label: string; to?: string; href?: string; desc?: string };
 type NavEntry = { label: string; to?: string; href?: string; items?: Leaf[] };
@@ -108,12 +109,14 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/contato"
+          <a
+            href={especialistaHref()}
+            target="_blank"
+            rel="noreferrer"
             className="hidden items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             Falar com especialista
-          </Link>
+          </a>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -158,13 +161,15 @@ export function Nav() {
                   ),
                 )}
               </nav>
-              <Link
-                to="/contato"
+              <a
+                href={especialistaHref()}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-card"
               >
                 Falar com especialista
-              </Link>
+              </a>
             </SheetContent>
           </Sheet>
         </div>

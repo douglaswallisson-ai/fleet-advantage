@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Clock } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Media } from "@/components/site/Media";
-import { articleJsonLd, breadcrumbJsonLd, pageHead } from "@/lib/site-config";
+import { articleJsonLd, breadcrumbJsonLd, especialistaHref, pageHead } from "@/lib/site-config";
 import { dataExtenso, getPost, leituraMinutos, postsRecentes, type Post } from "@/lib/blog";
 import sustainImg from "@/assets/sustainability.jpg";
 
@@ -113,12 +113,14 @@ function PostPage() {
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Agende uma demonstração e veja a IA da SS transformar os dados da sua frota em ação.
             </p>
-            <Link
-              to="/contato"
+            <a
+              href={especialistaHref()}
+              target="_blank"
+              rel="noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5"
             >
               Falar com especialista <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </section>
 

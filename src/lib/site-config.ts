@@ -148,17 +148,27 @@ export const IMAGENS = {
 };
 
 export const CONTACT = {
-  email: "comercial@sstelematica.com.br",
-  // TODO(SS): preencher com os dados reais — enquanto vazios, não são exibidos.
+  email: "sales@sstelematica.com.br",
   phone: "", // ex.: "0800 123 4567"
-  whatsapp: "", // apenas dígitos com DDI, ex.: "5511999999999"
+  whatsapp: "5531984033906", // dígitos com DDI (55) + DDD (31) + número
   cnpj: "", // ex.: "12.345.678/0001-90"
   address: "", // ex.: "Av. Exemplo, 1000 — São Paulo/SP"
   supportHours: "Suporte 24/7",
 };
 
+/** Mensagem padrão ao abrir o WhatsApp pelos botões de "Falar com especialista". */
+export const WHATSAPP_ESPECIALISTA =
+  "Olá! Vim pelo site da SS Telemática e gostaria de falar com um especialista.";
+
 export const whatsappLink = (message: string) =>
   CONTACT.whatsapp ? `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}` : null;
+
+/**
+ * Destino dos botões "Falar com especialista": abre o WhatsApp quando há número;
+ * senão, cai na página de contato. Sempre retorna um href válido.
+ */
+export const especialistaHref = () => whatsappLink(WHATSAPP_ESPECIALISTA) ?? "/contato";
+export const especialistaAbreWhatsapp = () => Boolean(CONTACT.whatsapp);
 
 export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
