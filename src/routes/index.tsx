@@ -147,15 +147,16 @@ function Hero() {
               width={1400}
               height={1000}
             />
-            <div className="absolute -bottom-6 -left-6 rounded-2xl bg-brand-green px-5 py-4 shadow-elegant">
-              <div className="flex items-center gap-2 text-[oklch(0.15_0.03_260)]">
-                <Brain className="h-5 w-5" />
-                <span className="text-xs font-bold tracking-wide">IA FLEET MANAGER</span>
-              </div>
-              <p className="mt-1 text-xs text-[oklch(0.15_0.03_260)]/80">
-                Recomendando 3 ações agora
-              </p>
-            </div>
+          </div>
+          <div className="relative mt-6 overflow-hidden rounded-3xl border border-white/15 shadow-elegant">
+            <img
+              src={FOTOS.heroTelemetria}
+              alt="Videotelemetria com IA da SS"
+              loading="lazy"
+              className="w-full"
+              width={1600}
+              height={1600}
+            />
           </div>
         </div>
       </div>

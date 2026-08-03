@@ -148,6 +148,7 @@ const ssImg = (p: string) => encodeURI(`/Imagens ss/${p}`);
 export const FOTOS = {
   heroFundo: ssImg("ss-gestao-frota.jpg"),
   heroPainel: ssImg("ss-central-monitoramento-v3-logo-corrigido.jpg"),
+  heroTelemetria: ssImg("telemetria.jpg"),
   fleetManager: [
     ssImg("Fleet Manager/Principal.jpg"),
     ssImg("Fleet Manager/ss-ia-priorizacao.jpg"),
