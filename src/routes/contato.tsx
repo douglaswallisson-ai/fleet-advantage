@@ -14,7 +14,7 @@ import {
   TextArea,
   useLeadForm,
 } from "@/components/site/lead-form";
-import { CONTACT, pageHead, whatsappLink } from "@/lib/site-config";
+import { CONTACT, localBusinessJsonLd, pageHead, whatsappLink } from "@/lib/site-config";
 
 const searchSchema = z.object({
   plano: z.string().optional(),
@@ -23,8 +23,8 @@ const searchSchema = z.object({
 export const Route = createFileRoute("/contato")({
   component: Contato,
   validateSearch: searchSchema,
-  head: () =>
-    pageHead({
+  head: () => ({
+    ...pageHead({
       path: "/contato",
       title: "Fale com um especialista — SS Telemática",
       description:
@@ -33,6 +33,13 @@ export const Route = createFileRoute("/contato")({
       ogDescription:
         "Demonstração de 20 minutos, sem compromisso. Traga sua frota e veja a IA da SS em ação.",
     }),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessJsonLd()),
+      },
+    ],
+  }),
 });
 
 function Contato() {

@@ -29,6 +29,7 @@ import {
   MEDIA,
   SELMA,
   especialistaHref,
+  localBusinessJsonLd,
   pageHead,
   softwareApplicationJsonLd,
 } from "@/lib/site-config";
@@ -50,6 +51,10 @@ export const Route = createFileRoute("/")({
       {
         type: "application/ld+json",
         children: JSON.stringify(softwareApplicationJsonLd()),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessJsonLd()),
       },
     ],
   }),

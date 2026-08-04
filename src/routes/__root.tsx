@@ -25,6 +25,8 @@ const organizationJsonLd = {
   description: SITE.description,
   foundingDate: SITE.foundingYear,
   areaServed: "BR",
+  email: CONTACT.email,
+  ...(CONTACT.phone ? { telephone: CONTACT.phone } : {}),
   ...(socialUrls().length ? { sameAs: socialUrls() } : {}),
   contactPoint: [
     {

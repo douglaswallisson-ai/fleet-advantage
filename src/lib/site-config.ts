@@ -23,11 +23,21 @@ export const SITE = {
    * ligar o site às redes). Preencha as URLs reais; vazias não aparecem.
    */
   social: {
-    linkedin: "", // ex.: "https://www.linkedin.com/company/sstelematica"
-    instagram: "",
+    instagram: "https://www.instagram.com/sstelematica/",
+    linkedin: "https://www.linkedin.com/company/ss-telematica/",
     youtube: "",
     facebook: "",
   },
+};
+
+/** Endereço da sede (Cartão CNPJ) — usado no LocalBusiness e no rodapé. */
+export const ENDERECO = {
+  rua: "R. Alvarenga Peixoto, 295, Andar 4",
+  bairro: "Lourdes",
+  cidade: "Belo Horizonte",
+  estado: "MG",
+  cep: "30.180-120",
+  pais: "BR",
 };
 
 /**
@@ -189,10 +199,10 @@ export const IMAGENS = {
 
 export const CONTACT = {
   email: "sales@sstelematica.com.br",
-  phone: "", // ex.: "0800 123 4567"
+  phone: "+55 31 98403-3906",
   whatsapp: "5531984033906", // dígitos com DDI (55) + DDD (31) + número
-  cnpj: "", // ex.: "12.345.678/0001-90"
-  address: "", // ex.: "Av. Exemplo, 1000 — São Paulo/SP"
+  cnpj: "01.862.295/0005-00", // com pontuação (formato aceito para taxID)
+  address: "R. Alvarenga Peixoto, 295, Andar 4 — Lourdes, Belo Horizonte/MG — CEP 30.180-120",
   supportHours: "Suporte 24/7",
 };
 
@@ -277,6 +287,33 @@ export function softwareApplicationJsonLd() {
       availability: "https://schema.org/InStock",
       url: absoluteUrl("/#produtos"),
     })),
+  };
+}
+
+/**
+ * JSON-LD LocalBusiness (subtipo ProfessionalService) com os dados da sede —
+ * CNPJ (taxID), telefone, e-mail, endereço e redes. Usado só na home e na
+ * página de contato. Separado do Organization.
+ */
+export function localBusinessJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: SITE.name,
+    url: SITE_URL,
+    image: absoluteUrl(SITE.ogImage),
+    taxID: CONTACT.cnpj,
+    email: CONTACT.email,
+    telephone: CONTACT.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${ENDERECO.rua} — ${ENDERECO.bairro}`,
+      addressLocality: ENDERECO.cidade,
+      addressRegion: ENDERECO.estado,
+      postalCode: ENDERECO.cep,
+      addressCountry: ENDERECO.pais,
+    },
+    ...(socialUrls().length ? { sameAs: socialUrls() } : {}),
   };
 }
 
