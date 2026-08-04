@@ -15,11 +15,14 @@ export function Backdrop({
   video,
   className,
   alt = "",
+  eager = false,
 }: {
   image: string;
   video?: string;
   className?: string;
   alt?: string;
+  /** true = carrega imediatamente (fundos acima da dobra, ex.: hero). */
+  eager?: boolean;
 }) {
   if (video) {
     return (
@@ -42,6 +45,9 @@ export function Backdrop({
     <img
       src={image}
       alt={alt}
+      role={alt ? undefined : "presentation"}
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : undefined}
       className={cn("h-full w-full object-cover animate-ken-burns", className)}
       width={1920}
       height={1080}

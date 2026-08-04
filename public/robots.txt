@@ -1,5 +1,37 @@
+# SS Telemática — robots.txt
+
+# Buscadores e crawlers em geral
 User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://www.sstelematica.com.br/sitemap.xml
+# Crawlers de busca (explícito)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawlers de IA (explícito) — liberados
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://sstelematica.com.br/sitemap.xml

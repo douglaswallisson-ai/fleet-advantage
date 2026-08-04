@@ -3,7 +3,7 @@
  * Campos vazios simplesmente não são renderizados — preencha e eles aparecem.
  */
 
-const FALLBACK_URL = "https://www.sstelematica.com.br";
+const FALLBACK_URL = "https://sstelematica.com.br";
 
 /** Base absoluta usada em canonical, og:url, sitemap e JSON-LD. */
 export const SITE_URL = (
@@ -110,8 +110,10 @@ export const CHAT = {
 export const SELMA = {
   nome: "Selma",
   papel: "Copiloto SS",
+  /** Alt text descritivo para as imagens da Selma. */
+  alt: "Selma, copiloto de IA para motoristas da SS Telemática",
   /** Corpo inteiro — usado na seção do Copiloto na home. */
-  avatar: "/selma.png",
+  avatar: "/selma.webp",
   /** Recorte do rosto — usado no círculo do chat. Cai para `avatar` se vazio. */
   avatarRosto: "/selma-rosto.png",
 };
@@ -135,34 +137,34 @@ export const SELMA = {
  * `src/assets/` e importá-los em `GaleriaFrota.tsx`.
  */
 /**
- * Fotos oficiais da SS (pasta `public/Imagens ss/`, com a marca aplicada).
+ * Fotos oficiais da SS (pasta `public/imagens-ss/`, com a marca aplicada).
  *
- * Convenção do cliente: cada seção é uma subpasta; onde há "Principal" + outras,
+ * Convenção do cliente: cada seção é uma subpasta; onde há "principal" + outras,
  * vira carrossel (principal primeiro). Onde há uma foto só, é imagem única.
  *
- * Para trocar/atualizar: basta substituir o arquivo dentro de `public/Imagens ss/`
- * mantendo o nome. Caminhos com espaço/acento são codificados por `ssImg`.
+ * Caminhos em kebab-case, sem espaço nem acento (bom para SEO/URLs). Para
+ * trocar/atualizar, substitua o arquivo em `public/imagens-ss/` mantendo o nome.
  */
-const ssImg = (p: string) => encodeURI(`/Imagens ss/${p}`);
+const ssImg = (p: string) => `/imagens-ss/${p}`;
 
 export const FOTOS = {
   heroFundo: ssImg("ss-gestao-frota.jpg"),
   heroPainel: ssImg("ss-central-monitoramento-v3-logo-corrigido.jpg"),
-  heroTelemetria: ssImg("telemetria.jpg"),
+  heroTelemetria: ssImg("telemetria.webp"),
   fleetManager: [
-    ssImg("Fleet Manager/Principal.jpg"),
-    ssImg("Fleet Manager/ss-ia-priorizacao.jpg"),
+    ssImg("fleet-manager/principal.jpg"),
+    ssImg("fleet-manager/ss-ia-priorizacao.jpg"),
   ],
-  reducaoCusto: ssImg("Redução de custo/ss-reducao-custo-frota-logo-corrigido.jpg"),
+  reducaoCusto: ssImg("reducao-de-custo/ss-reducao-custo-frota-logo-corrigido.jpg"),
   pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.jpg"),
-  cameras: [ssImg("VideoTelemetria/ss-videotelemetria-v3-logo-corrigido.jpg")],
-  euro6: [ssImg("Euro 6/Principal.jpg"), ssImg("Euro 6/ss-euro6-regeneracao.jpg")],
-  urbano: [ssImg("Urbano/Principal.jpg"), ssImg("Urbano/ss-onibus-urbano.jpg")],
+  cameras: [ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.jpg")],
+  euro6: [ssImg("euro-6/principal.jpg"), ssImg("euro-6/ss-euro6-regeneracao.jpg")],
+  urbano: [ssImg("urbano/principal.jpg"), ssImg("urbano/ss-onibus-urbano.jpg")],
   fretamento: [
-    ssImg("Fretamento/Principal.jpg"),
-    ssImg("Fretamento/ss-onibus-dd-v3-logo-corrigido.jpg"),
+    ssImg("fretamento/principal.jpg"),
+    ssImg("fretamento/ss-onibus-dd-v3-logo-corrigido.jpg"),
   ],
-  carga: [ssImg("Carga/Principal.jpg"), ssImg("Carga/ss-caminhao-v3-logo-corrigido.jpg")],
+  carga: [ssImg("carga/principal.jpg"), ssImg("carga/ss-caminhao-v3-logo-corrigido.jpg")],
   clube: ssImg("ss-clube-fidelidade-motorista.jpg"),
   indicacao: ssImg("ss-programa-indicacao.jpg"),
   grupoModaxoBanner: ssImg("ss-banner-modaxo.jpg"),
@@ -233,18 +235,49 @@ export function pageHead(opts: {
 }) {
   const url = absoluteUrl(opts.path);
   const image = absoluteUrl(opts.image ?? SITE.ogImage);
+  const ogTitle = opts.ogTitle ?? opts.title;
+  const ogDescription = opts.ogDescription ?? opts.description;
   const meta = [
     { title: opts.title },
     { name: "description", content: opts.description },
     { property: "og:type", content: opts.type ?? "website" },
-    { property: "og:title", content: opts.ogTitle ?? opts.title },
-    { property: "og:description", content: opts.ogDescription ?? opts.description },
+    { property: "og:title", content: ogTitle },
+    { property: "og:description", content: ogDescription },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
+    { name: "twitter:title", content: ogTitle },
+    { name: "twitter:description", content: ogDescription },
     { name: "twitter:image", content: image },
   ];
   if (opts.noindex) meta.push({ name: "robots", content: "noindex, nofollow" });
   return { meta, links: [{ rel: "canonical", href: url }] };
+}
+
+/**
+ * JSON-LD da plataforma SS como SoftwareApplication, com os três planos como
+ * offers. Sem preço (o site não publica valores) — os offers trazem só nome e
+ * categoria, para não inventar dados.
+ */
+export function softwareApplicationJsonLd() {
+  const planos = ["SS Start", "SS Performance", "SS Evolution"];
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Plataforma SS Telemática",
+    description: SITE.description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, Android, iOS",
+    url: SITE_URL,
+    inLanguage: "pt-BR",
+    provider: { "@type": "Organization", name: SITE.name, url: SITE_URL },
+    offers: planos.map((nome) => ({
+      "@type": "Offer",
+      name: nome,
+      category: "Gestão de frotas",
+      availability: "https://schema.org/InStock",
+      url: absoluteUrl("/#produtos"),
+    })),
+  };
 }
 
 /** JSON-LD de artigo (blog). Retorna um objeto pronto para `JSON.stringify`. */

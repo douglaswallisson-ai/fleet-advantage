@@ -5,7 +5,7 @@ import { FOTOS } from "@/lib/site-config";
 /**
  * "A SS na estrada" — os segmentos atendidos pela plataforma, com as fotos
  * oficiais da SS. Cada segmento é um carrossel (foto principal + secundárias),
- * vindo de `public/Imagens ss/` via FOTOS em site-config.
+ * vindo de `public/imagens-ss/` via FOTOS em site-config.
  */
 
 // Passageiros primeiro (foco atual da SS); carga fecha a lista.

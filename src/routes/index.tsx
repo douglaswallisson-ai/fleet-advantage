@@ -24,22 +24,35 @@ import { Backdrop } from "@/components/site/Backdrop";
 import { Media } from "@/components/site/Media";
 import { Carrossel } from "@/components/site/Carrossel";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
-import { FOTOS, MEDIA, SELMA, especialistaHref, pageHead } from "@/lib/site-config";
+import {
+  FOTOS,
+  MEDIA,
+  SELMA,
+  especialistaHref,
+  pageHead,
+  softwareApplicationJsonLd,
+} from "@/lib/site-config";
 import driverImg from "@/assets/driver-copilot.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () =>
-    pageHead({
+  head: () => ({
+    ...pageHead({
       path: "/",
-      title: "SS Telemática — Da telemetria à tomada de decisão",
+      title: "SS Telemática — Decisão, não apenas dado.",
       description:
         "IA que transforma dados de frota em decisões: redução de custos, monitoramento de pneus, copiloto do motorista e clube de fidelidade. O novo padrão em gestão de frotas.",
-      ogTitle: "SS Telemática — Decisão, não apenas dado.",
       ogDescription:
         "IA Fleet Manager, copiloto do motorista, monitoramento inteligente de pneus e clube de fidelidade. A telemática que decide junto com você.",
     }),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(softwareApplicationJsonLd()),
+      },
+    ],
+  }),
 });
 
 /**
@@ -71,7 +84,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
       <div className="absolute inset-0 opacity-40">
-        <Backdrop image="/og-cover.jpg" video={MEDIA.heroVideo} />
+        <Backdrop image="/og-cover.jpg" video={MEDIA.heroVideo} eager />
         <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.06_260)]/70 via-[oklch(0.18_0.06_260)]/50 to-[oklch(0.18_0.06_260)]" />
       </div>
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-20 pb-28 lg:grid-cols-[1.2fr_0.8fr] lg:pt-28 lg:pb-36">
@@ -355,7 +368,7 @@ function DriverCopilot() {
             <div className="relative flex items-end justify-center overflow-hidden rounded-3xl bg-gradient-hero shadow-elegant">
               <img
                 src={SELMA.avatar}
-                alt={`${SELMA.nome}, ${SELMA.papel} da SS`}
+                alt={SELMA.alt}
                 loading="lazy"
                 className="relative max-h-[460px] w-auto object-contain"
               />

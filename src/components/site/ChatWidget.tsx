@@ -111,7 +111,7 @@ export function ChatWidget() {
               {selmaFace ? (
                 <img
                   src={selmaFace}
-                  alt={SELMA.nome}
+                  alt={SELMA.alt}
                   className="h-11 w-11 shrink-0 rounded-full border-2 border-white/30 bg-white/10 object-cover"
                 />
               ) : (
@@ -294,7 +294,7 @@ export function ChatWidget() {
               <span className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-gradient-hero shadow-elegant">
                 <img
                   src={selmaFace}
-                  alt={`Falar com ${SELMA.nome}`}
+                  alt={`Abrir atendimento com a ${SELMA.alt}`}
                   className="h-full w-full object-cover"
                 />
               </span>

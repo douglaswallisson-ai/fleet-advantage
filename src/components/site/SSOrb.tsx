@@ -128,6 +128,7 @@ export function SSOrb({ size = 96, halo = false, still = false, className }: SSO
       <img
         src="/ss-orb.png"
         alt=""
+        role="presentation"
         width={256}
         height={256}
         decoding="async"
