@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { Media } from "@/components/site/Media";
 import { articleJsonLd, breadcrumbJsonLd, especialistaHref, pageHead } from "@/lib/site-config";
 import { dataExtenso, getPost, leituraMinutos, postsRecentes, type Post } from "@/lib/blog";
-import sustainImg from "@/assets/sustainability.jpg";
+import sustainImg from "@/assets/sustainability.webp";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {

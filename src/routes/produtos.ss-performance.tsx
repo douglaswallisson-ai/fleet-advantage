@@ -7,8 +7,8 @@ import { TiersRecap } from "@/components/site/TiersRecap";
 import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
-import cameraImg from "@/assets/ai-camera-monitor.jpg";
-import tireImg from "@/assets/tire-monitor.jpg";
+import cameraImg from "@/assets/ai-camera-monitor.webp";
+import tireImg from "@/assets/tire-monitor.webp";
 
 export const Route = createFileRoute("/produtos/ss-performance")({
   component: SSPerformance,
@@ -166,7 +166,7 @@ function Euro6() {
         </div>
         <div className="overflow-hidden rounded-3xl shadow-elegant">
           <img
-            src="/imagens-ss/euro-6/principal.jpg"
+            src="/imagens-ss/euro-6/principal.webp"
             alt="Painel de regeneração EURO 6 mostrando saturação do filtro DPF, temperatura e status do sistema"
             loading="lazy"
             className="h-full w-full object-cover"

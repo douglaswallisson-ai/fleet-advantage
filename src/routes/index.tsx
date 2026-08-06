@@ -34,8 +34,8 @@ import {
   pageHead,
   softwareApplicationJsonLd,
 } from "@/lib/site-config";
-import driverImg from "@/assets/driver-copilot.jpg";
-import sustainImg from "@/assets/sustainability.jpg";
+import driverImg from "@/assets/driver-copilot.webp";
+import sustainImg from "@/assets/sustainability.webp";
 
 export const Route = createFileRoute("/")({
   component: Home,

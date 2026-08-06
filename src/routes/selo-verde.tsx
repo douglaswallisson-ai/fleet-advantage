@@ -30,7 +30,7 @@ import { EcoRing } from "@/components/site/EcoRing";
 import { EsgVenn } from "@/components/site/EsgVenn";
 import { formatCnpj, isValidCnpj, onlyDigits } from "@/lib/cnpj";
 import { IMAGENS, IMAGENS_PROVISORIAS, pageHead } from "@/lib/site-config";
-import sustainImg from "@/assets/sustainability.jpg";
+import sustainImg from "@/assets/sustainability.webp";
 
 export const Route = createFileRoute("/selo-verde")({
   component: SeloVerde,

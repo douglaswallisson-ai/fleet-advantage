@@ -4,7 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { ArrowUpRight, Building2, Compass, HeartHandshake, Rocket, Target } from "lucide-react";
 import { SSOrb } from "@/components/site/SSOrb";
 import { FOTOS, GRUPO, pageHead } from "@/lib/site-config";
-import teamImg from "@/assets/team-about.jpg";
+import teamImg from "@/assets/team-about.webp";
 
 export const Route = createFileRoute("/quem-somos")({
   component: QuemSomos,

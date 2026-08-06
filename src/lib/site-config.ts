@@ -125,7 +125,7 @@ export const SELMA = {
   /** Corpo inteiro — usado na seção do Copiloto na home. */
   avatar: "/selma.webp",
   /** Recorte do rosto — usado no círculo do chat. Cai para `avatar` se vazio. */
-  avatarRosto: "/selma-rosto.png",
+  avatarRosto: "/selma-rosto.webp",
 };
 
 /**
@@ -158,26 +158,26 @@ export const SELMA = {
 const ssImg = (p: string) => `/imagens-ss/${p}`;
 
 export const FOTOS = {
-  heroFundo: ssImg("ss-gestao-frota.jpg"),
-  heroPainel: ssImg("ss-central-monitoramento-v3-logo-corrigido.jpg"),
+  heroFundo: ssImg("ss-gestao-frota.webp"),
+  heroPainel: ssImg("ss-central-monitoramento-v3-logo-corrigido.webp"),
   heroTelemetria: ssImg("telemetria.webp"),
   fleetManager: [
-    ssImg("fleet-manager/principal.jpg"),
-    ssImg("fleet-manager/ss-ia-priorizacao.jpg"),
+    ssImg("fleet-manager/principal.webp"),
+    ssImg("fleet-manager/ss-ia-priorizacao.webp"),
   ],
-  reducaoCusto: ssImg("reducao-de-custo/ss-reducao-custo-frota-logo-corrigido.jpg"),
-  pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.jpg"),
-  cameras: [ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.jpg")],
-  euro6: [ssImg("euro-6/principal.jpg"), ssImg("euro-6/ss-euro6-regeneracao.jpg")],
-  urbano: [ssImg("urbano/principal.jpg"), ssImg("urbano/ss-onibus-urbano.jpg")],
+  reducaoCusto: ssImg("reducao-de-custo/ss-reducao-custo-frota-logo-corrigido.webp"),
+  pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.webp"),
+  cameras: [ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.webp")],
+  euro6: [ssImg("euro-6/principal.webp"), ssImg("euro-6/ss-euro6-regeneracao.webp")],
+  urbano: [ssImg("urbano/principal.webp"), ssImg("urbano/ss-onibus-urbano.webp")],
   fretamento: [
-    ssImg("fretamento/principal.jpg"),
-    ssImg("fretamento/ss-onibus-dd-v3-logo-corrigido.jpg"),
+    ssImg("fretamento/principal.webp"),
+    ssImg("fretamento/ss-onibus-dd-v3-logo-corrigido.webp"),
   ],
-  carga: [ssImg("carga/principal.jpg"), ssImg("carga/ss-caminhao-v3-logo-corrigido.jpg")],
-  clube: ssImg("ss-clube-fidelidade-motorista.jpg"),
-  indicacao: ssImg("ss-programa-indicacao.jpg"),
-  grupoModaxoBanner: ssImg("ss-banner-modaxo.jpg"),
+  carga: [ssImg("carga/principal.webp"), ssImg("carga/ss-caminhao-v3-logo-corrigido.webp")],
+  clube: ssImg("ss-clube-fidelidade-motorista.webp"),
+  indicacao: ssImg("ss-programa-indicacao.webp"),
+  grupoModaxoBanner: ssImg("ss-banner-modaxo.webp"),
 };
 
 /**

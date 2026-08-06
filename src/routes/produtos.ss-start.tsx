@@ -7,7 +7,7 @@ import { TiersRecap } from "@/components/site/TiersRecap";
 import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
-import heroImg from "@/assets/hero-fleet.jpg";
+import heroImg from "@/assets/hero-fleet.webp";
 
 export const Route = createFileRoute("/produtos/ss-start")({
   component: SSStart,

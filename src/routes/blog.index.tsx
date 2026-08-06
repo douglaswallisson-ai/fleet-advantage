@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { Media } from "@/components/site/Media";
 import { breadcrumbJsonLd, pageHead } from "@/lib/site-config";
 import { dataExtenso, leituraMinutos, postsRecentes } from "@/lib/blog";
-import sustainImg from "@/assets/sustainability.jpg";
+import sustainImg from "@/assets/sustainability.webp";
 
 export const Route = createFileRoute("/blog/")({
   component: BlogIndex,

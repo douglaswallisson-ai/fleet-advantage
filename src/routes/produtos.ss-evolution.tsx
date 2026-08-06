@@ -7,7 +7,7 @@ import { TiersRecap } from "@/components/site/TiersRecap";
 import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
-import managerImg from "@/assets/ai-fleet-manager.jpg";
+import managerImg from "@/assets/ai-fleet-manager.webp";
 
 export const Route = createFileRoute("/produtos/ss-evolution")({
   component: SSEvolution,
@@ -94,7 +94,7 @@ function FleetManager() {
         </div>
         <div className="overflow-hidden rounded-3xl shadow-elegant">
           <img
-            src="/imagens-ss/fleet-manager/principal.jpg"
+            src="/imagens-ss/fleet-manager/principal.webp"
             alt="IA de priorização do Fleet Manager mostrando recomendações Crítico, Alto e Médio para a frota"
             loading="lazy"
             className="h-full w-full object-cover"
