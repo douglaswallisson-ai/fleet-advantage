@@ -1,7 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 
-export const TIERS = [
+type Tier = {
+  name: string;
+  badge?: string;
+  badgeCategoria: string;
+  desc: string;
+  features: string[];
+  color: string;
+  cta: string;
+  href: string;
+};
+
+export const TIERS: Tier[] = [
   {
     name: "SS Start",
     badgeCategoria: "Telemetria básica",
@@ -46,7 +57,7 @@ export const TIERS = [
     cta: "Para frotas que buscam automação de decisão em escala",
     href: "/produtos/ss-evolution",
   },
-] as const;
+];
 
 /**
  * Recap dos 3 tiers — usado na home (seção completa) e repetido no rodapé de

@@ -223,6 +223,7 @@ export function leituraMinutos(post: Post) {
   if (post.leituraMin) return post.leituraMin;
   const palavras = post.body.reduce((n, b) => {
     if (b.tipo === "ul") return n + b.itens.join(" ").split(/\s+/).length;
+    if (b.tipo === "img") return n;
     return n + b.texto.split(/\s+/).length;
   }, 0);
   return Math.max(1, Math.round(palavras / 200));
