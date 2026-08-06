@@ -15,7 +15,7 @@ export const Route = createFileRoute("/produtos/ss-performance")({
   head: () =>
     pageHead({
       path: "/produtos/ss-performance",
-      title: "SS Performance — Telemetria avançada e copiloto de IA | SS Telemática",
+      title: "SS Performance — Copiloto de IA | SS Telemática",
       description:
         "Copiloto do motorista com feedback em tempo real, monitoramento de pneus e painel de rentabilidade para operações que competem por eficiência.",
     }),

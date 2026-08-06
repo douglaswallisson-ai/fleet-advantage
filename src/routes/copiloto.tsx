@@ -9,7 +9,7 @@ export const Route = createFileRoute("/copiloto")({
   head: () =>
     pageHead({
       path: "/copiloto",
-      title: "Copiloto SS — Feedback em tempo real para o motorista | SS Telemática",
+      title: "Copiloto SS — Feedback em tempo real | SS Telemática",
       description:
         "A Selma acompanha o motorista em tempo real e envia o resumo da viagem por WhatsApp, mostrando o que foi bom e o que precisa de atenção.",
     }),
