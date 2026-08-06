@@ -576,7 +576,8 @@ function ProductTiers() {
   const tiers = [
     {
       name: "SS Start",
-      desc: "Rastreio, roteirização e relatórios essenciais para frotas em crescimento.",
+      badgeCategoria: "Telemetria básica",
+      desc: "Visibilidade e controle essencial para começar a profissionalizar a gestão da frota.",
       features: [
         "Rastreamento em tempo real",
         "Cerca eletrônica",
@@ -584,34 +585,38 @@ function ProductTiers() {
         "App do motorista",
       ],
       color: "border-border",
-      cta: "Ideal para até 50 veículos",
+      cta: "Operações que estão estruturando o controle da frota agora",
+      href: "/produtos/ss-start",
     },
     {
       name: "SS Performance",
       badge: "MAIS ESCOLHIDO",
-      desc: "Toda a base + copiloto do motorista, gamificação e monitoramento de pneus.",
+      badgeCategoria: "Telemetria avançada",
+      desc: "O copiloto de IA que orienta o motorista em tempo real, com feedback contínuo para reduzir consumo e sinistros.",
       features: [
         "Tudo do SS Start",
-        "Copiloto do Motorista",
-        "Clube de Fidelidade",
+        "Copiloto do Motorista com feedback em tempo real",
         "Monitoramento de Pneus",
         "Painel de rentabilidade",
       ],
       color: "border-brand-sky ring-2 ring-brand-sky/40",
       cta: "Para operações que competem por eficiência",
+      href: "/produtos/ss-performance",
     },
     {
       name: "SS Evolution",
-      desc: "IA Fleet Manager completo, integrações ERP/TMS e Selo Verde ESG.",
+      badgeCategoria: "Decisão automatizada",
+      desc: "Plano de ação pronto para a sua frota. O gestor chega e já encontra a decisão certa, não um painel para interpretar.",
       features: [
         "Tudo do SS Performance",
-        "IA Fleet Manager",
+        "IA Fleet Manager — plano de ação automatizado",
         "Integração ERP/TMS",
-        "Selo Verde SS",
         "SLA dedicado + CSM",
+        "Selo Verde ESG",
       ],
       color: "border-border bg-gradient-hero text-white",
-      cta: "Frotas 500+ com metas ESG",
+      cta: "Para frotas que buscam automação de decisão em escala",
+      href: "/produtos/ss-evolution",
     },
   ];
   return (
@@ -644,7 +649,14 @@ function ProductTiers() {
                     {t.badge}
                   </span>
                 )}
-                <h3 className="text-2xl font-bold">{t.name}</h3>
+                <span
+                  className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-semibold tracking-wide ${
+                    isDark ? "bg-white/10 text-white/80" : "bg-secondary text-muted-foreground"
+                  }`}
+                >
+                  {t.badgeCategoria}
+                </span>
+                <h3 className="mt-3 text-2xl font-bold">{t.name}</h3>
                 <p className={`mt-2 text-sm ${isDark ? "text-white/70" : "text-muted-foreground"}`}>
                   {t.desc}
                 </p>
@@ -662,8 +674,7 @@ function ProductTiers() {
                   {t.cta}
                 </div>
                 <Link
-                  to="/contato"
-                  search={{ plano: t.name }}
+                  to={t.href}
                   className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${isDark ? "bg-brand-green text-[oklch(0.15_0.03_260)]" : "bg-primary text-primary-foreground"}`}
                 >
                   Ver mais
