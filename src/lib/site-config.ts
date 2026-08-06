@@ -164,11 +164,20 @@ export const FOTOS = {
   fleetManager: [
     ssImg("fleet-manager/principal.webp"),
     ssImg("fleet-manager/ss-ia-priorizacao.webp"),
+    ssImg("fleet-manager/ss-ia-priorizacao-clara.webp"),
   ],
   reducaoCusto: ssImg("reducao-de-custo/ss-reducao-custo-frota-logo-corrigido.webp"),
   pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.webp"),
-  cameras: [ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.webp")],
-  euro6: [ssImg("euro-6/principal.webp"), ssImg("euro-6/ss-euro6-regeneracao.webp")],
+  cameras: [
+    ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.webp"),
+    ssImg("videotelemetria/ss-videotelemetria-clara.webp"),
+    ssImg("videotelemetria/ss-monitoramento-pneus-videotelemetria.webp"),
+  ],
+  euro6: [
+    ssImg("euro-6/principal.webp"),
+    ssImg("euro-6/ss-euro6-regeneracao.webp"),
+    ssImg("euro-6/ss-euro6-claro.webp"),
+  ],
   urbano: [ssImg("urbano/principal.webp"), ssImg("urbano/ss-onibus-urbano.webp")],
   fretamento: [
     ssImg("fretamento/principal.webp"),

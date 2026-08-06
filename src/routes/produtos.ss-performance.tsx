@@ -92,8 +92,8 @@ function Copiloto() {
         </div>
         <div className="overflow-hidden rounded-3xl shadow-elegant">
           <img
-            src={cameraImg}
-            alt="Painel do copiloto de IA identificando sinais de atenção do motorista durante a condução"
+            src="/imagens-ss/copiloto/ss-copiloto-ia-v2-sem-fundo.webp"
+            alt="Motorista recebendo orientação em tempo real do Copiloto: distância curta, aceleração brusca e feedback positivo"
             loading="lazy"
             className="h-full w-full object-cover"
           />
@@ -197,6 +197,14 @@ function Rentabilidade() {
   ];
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mb-10 overflow-hidden rounded-3xl shadow-elegant">
+        <img
+          src="/imagens-ss/reducao-de-custo/ss-reducao-custo-clara.webp"
+          alt="Painel mostrando redução de 18% no custo por km, consumo de combustível e manutenção ao longo de 6 meses"
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+      </div>
       <div className="grid gap-6 sm:grid-cols-3">
         {itens.map(({ icon: Icon, t, d }) => (
           <div key={t} className="rounded-2xl border border-border bg-card p-6 shadow-card">
