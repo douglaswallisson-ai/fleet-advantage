@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CopilotoRouteImport } from './routes/copiloto'
 import { Route as IndicacaoRouteImport } from './routes/indicacao'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CopilotoRoute = CopilotoRouteImport.update({
+  id: '/copiloto',
+  path: '/copiloto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndicacaoRoute = IndicacaoRouteImport.update({
@@ -98,6 +104,7 @@ const ProdutosSsStartRoute = ProdutosSsStartRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
+  '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contato'
+    | '/copiloto'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contato'
+    | '/copiloto'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contato'
+    | '/copiloto'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -198,6 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
+  CopilotoRoute: typeof CopilotoRoute
   IndicacaoRoute: typeof IndicacaoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   QuemSomosRoute: typeof QuemSomosRoute
@@ -226,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/copiloto': {
+      id: '/copiloto'
+      path: '/copiloto'
+      fullPath: '/copiloto'
+      preLoaderRoute: typeof CopilotoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/indicacao': {
@@ -318,6 +338,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
+  CopilotoRoute: CopilotoRoute,
   IndicacaoRoute: IndicacaoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   QuemSomosRoute: QuemSomosRoute,
