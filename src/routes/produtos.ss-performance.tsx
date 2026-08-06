@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BarChart3, Gauge, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, Check, Gauge, ShieldCheck, Sparkles } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
@@ -30,6 +30,7 @@ function SSPerformance() {
         <RoiTrustBar />
         <Copiloto />
         <Pneus />
+        <Euro6 />
         <Rentabilidade />
         <ParaQuemE />
         <ReferralTeaser />
@@ -129,6 +130,47 @@ function Pneus() {
               comportamento evitável custa a carcaça inteira, não um pneu.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Euro6() {
+  return (
+    <section className="mx-auto max-w-6xl px-6 py-20">
+      <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <span className="text-xs font-bold tracking-widest text-brand-sky">
+            REGENERAÇÃO EURO 6
+          </span>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            DPF e AdBlue sob controle, não sob surpresa
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite
+            derating, multas ambientais e paradas não programadas.
+          </p>
+          <ul className="mt-6 space-y-2.5 text-sm">
+            {[
+              "Regeneração em tempo real",
+              "Alerta preventivo de derating",
+              "Histórico completo por veículo",
+            ].map((f) => (
+              <li key={f} className="flex items-start gap-2">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="overflow-hidden rounded-3xl shadow-elegant">
+          <img
+            src="/imagens-ss/euro-6/principal.jpg"
+            alt="Painel de regeneração EURO 6 mostrando saturação do filtro DPF, temperatura e status do sistema"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
     </section>
