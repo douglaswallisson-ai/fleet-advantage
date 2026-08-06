@@ -57,6 +57,40 @@ function Hero() {
   );
 }
 
+function ChatMockup() {
+  return (
+    <div className="mx-auto max-w-sm rounded-3xl border border-border bg-card p-4 shadow-elegant">
+      <div className="flex items-center gap-3 border-b border-border pb-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-hero text-sm font-bold text-white">
+          {SELMA.nome.charAt(0)}
+        </div>
+        <div>
+          <div className="text-sm font-bold">{SELMA.nome}</div>
+          <div className="text-[11px] text-muted-foreground">Resumo da viagem · agora</div>
+        </div>
+      </div>
+      <div className="mt-4 rounded-2xl rounded-tl-sm bg-secondary/70 p-4 text-sm">
+        <p className="font-semibold">Viagem finalizada 🚌</p>
+        <p className="mt-2 text-muted-foreground">Aqui está o resumo de hoje:</p>
+        <div className="mt-3 space-y-2">
+          <div className="flex items-start gap-2">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />
+            <span>Frenagem suave e boa condução na maior parte do trajeto</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="mt-0.5 text-amber-500">⚠️</span>
+            <span>Atenção: 2 momentos de aceleração brusca na BR-116</span>
+          </div>
+        </div>
+        <p className="mt-3 flex items-center justify-end gap-1 text-[10px] text-muted-foreground">
+          14:52 <Check className="h-3 w-3 text-brand-sky" />
+          <Check className="-ml-2 h-3 w-3 text-brand-sky" />
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function FeedbackTempoReal() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
@@ -92,13 +126,8 @@ function ResumoWhatsapp() {
     <section className="bg-secondary/40 py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="order-2 overflow-hidden rounded-3xl shadow-elegant lg:order-1">
-            <img
-              src="/imagens-ss/videotelemetria/ss-monitoramento-pneus-videotelemetria.webp"
-              alt="Resumo da viagem com distância percorrida, tempo de viagem, eventos detectados e comportamento do motorista"
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+          <div className="order-2 lg:order-1">
+            <ChatMockup />
           </div>
           <div className="order-1 lg:order-2">
             <span className="text-xs font-bold tracking-widest text-brand-sky">
