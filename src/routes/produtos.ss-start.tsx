@@ -94,7 +94,9 @@ function ComoFunciona() {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-bold tracking-widest text-brand-sky">COMO FUNCIONA</span>
-        <h2 className="mt-3 text-3xl font-bold md:text-4xl">O que o SS Start entrega</h2>
+        <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+          O que o SS Start <span className="text-gradient">entrega</span>
+        </h2>
         <p className="mt-4 text-muted-foreground">
           Leitura direta do equipamento embarcado no veículo, com os dados organizados em quatro
           frentes essenciais para quem está estruturando o controle da frota.
@@ -125,7 +127,7 @@ function Relatorios() {
               RELATÓRIOS OPERACIONAIS
             </span>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Os números da frota, organizados sem esforço
+              Os números da frota, organizados <span className="text-gradient">sem esforço</span>
             </h2>
             <p className="mt-5 text-muted-foreground">
               Km rodado, veículos em operação, manutenção e alertas — tudo já calculado e pronto

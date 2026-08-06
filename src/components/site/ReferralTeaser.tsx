@@ -11,7 +11,8 @@ export function ReferralTeaser() {
             PROGRAMA DE INDICAÇÃO
           </span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            Conhece uma frota que precisa disso? Indique e ganhe.
+            Conhece uma frota que precisa disso?{" "}
+            <span className="text-gradient">Indique e ganhe.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
             3% sobre o valor de 12 meses do contrato fechado pelo indicado, sem teto. Simule ao lado

@@ -73,7 +73,8 @@ function FleetManager() {
         <div>
           <span className="text-xs font-bold tracking-widest text-brand-sky">IA FLEET MANAGER</span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            Uma lista do que fazer primeiro, não uma tela cheia de números
+            Uma lista do que <span className="text-gradient">fazer primeiro</span>, não uma tela
+            cheia de números
           </h2>
           <p className="mt-5 text-muted-foreground">
             O IA Fleet Manager reúne os sinais de consumo, comportamento e operação de toda a frota

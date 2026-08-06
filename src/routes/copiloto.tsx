@@ -40,7 +40,7 @@ function Hero() {
             <Bot className="h-3.5 w-3.5 text-brand-green" /> COPILOTO DO MOTORISTA
           </span>
           <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-6xl">
-            Conheça a {SELMA.nome}, sua copiloto.
+            Conheça a {SELMA.nome}, sua <span className="text-gradient">copiloto</span>.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-white/80 lg:mx-0">
             Orienta o motorista em tempo real durante a viagem e manda o resumo do que foi bom e do
@@ -58,7 +58,7 @@ function Hero() {
           src="/imagens-ss/selma/selma-ajudando.webp"
           alt={SELMA.alt}
           loading="eager"
-          className="mx-auto max-h-[420px] w-auto object-contain drop-shadow-2xl"
+          className="mx-auto max-h-[420px] w-auto object-contain"
         />
       </div>
     </section>
@@ -108,7 +108,8 @@ function FeedbackTempoReal() {
             FEEDBACK EM TEMPO REAL
           </span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            O ajuste acontece na hora, não no relatório do mês seguinte
+            O ajuste acontece <span className="text-gradient">na hora</span>, não no relatório do
+            mês seguinte
           </h2>
           <p className="mt-5 text-muted-foreground">
             A {SELMA.nome} acompanha frenagem, aceleração e distância enquanto o motorista está na
@@ -142,7 +143,7 @@ function ResumoWhatsapp() {
               RESUMO DA VIAGEM NO WHATSAPP
             </span>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Depois da viagem, a análise chega sozinha
+              Depois da viagem, a análise <span className="text-gradient">chega sozinha</span>
             </h2>
             <p className="mt-5 text-muted-foreground">
               Terminada a viagem, a {SELMA.nome} envia um resumo direto no WhatsApp: o que foi bom

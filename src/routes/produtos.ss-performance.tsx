@@ -78,7 +78,8 @@ function Copiloto() {
             COPILOTO DO MOTORISTA
           </span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            Orientação em tempo real, não punição depois do fato
+            Orientação em tempo real, <span className="text-gradient">não punição</span> depois do
+            fato
           </h2>
           <p className="mt-5 text-muted-foreground">
             O Copiloto acompanha sinais de comportamento de condução — frenagem brusca, aceleração e
@@ -121,7 +122,7 @@ function Pneus() {
               MONITORAMENTO DE PNEUS
             </span>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              O pneu não estoura — ele é estourado
+              O pneu não estoura — ele é <span className="text-gradient">estourado</span>
             </h2>
             <p className="mt-5 text-muted-foreground">
               O SS Performance lê os sinais de pressão direto do CAN do veículo — disponíveis a
@@ -145,7 +146,7 @@ function Euro6() {
             REGENERAÇÃO EURO 6
           </span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-            DPF e AdBlue sob controle, não sob surpresa
+            DPF e AdBlue <span className="text-gradient">sob controle</span>, não sob surpresa
           </h2>
           <p className="mt-5 text-muted-foreground">
             DPF, AdBlue e ciclos de regeneração de toda a frota EURO 6 em um só painel. Evite
