@@ -25,6 +25,7 @@ import { Media } from "@/components/site/Media";
 import { Carrossel } from "@/components/site/Carrossel";
 import { GaleriaFrota } from "@/components/site/GaleriaFrota";
 import { TiersRecap } from "@/components/site/TiersRecap";
+import { GrupoModaxo } from "@/components/site/GrupoModaxo";
 import {
   FOTOS,
   MEDIA,
@@ -79,6 +80,7 @@ function Home() {
         <DriversClub />
         <GreenSeal />
         <TiersRecap />
+        <GrupoModaxo />
         <CTA />
       </main>
       <Footer />
