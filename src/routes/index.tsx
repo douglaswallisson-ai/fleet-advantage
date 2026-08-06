@@ -666,7 +666,7 @@ function ProductTiers() {
                   search={{ plano: t.name }}
                   className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${isDark ? "bg-brand-green text-[oklch(0.15_0.03_260)]" : "bg-primary text-primary-foreground"}`}
                 >
-                  Simular meu plano
+                  Ver mais
                 </Link>
               </article>
             );
