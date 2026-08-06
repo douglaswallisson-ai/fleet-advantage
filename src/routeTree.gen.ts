@@ -20,6 +20,9 @@ import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as ApiSeloRouteImport } from './routes/api/selo'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ProdutosSsEvolutionRouteImport } from './routes/produtos.ss-evolution'
+import { Route as ProdutosSsPerformanceRouteImport } from './routes/produtos.ss-performance'
+import { Route as ProdutosSsStartRouteImport } from './routes/produtos.ss-start'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +79,21 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProdutosSsEvolutionRoute = ProdutosSsEvolutionRouteImport.update({
+  id: '/produtos/ss-evolution',
+  path: '/produtos/ss-evolution',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosSsPerformanceRoute = ProdutosSsPerformanceRouteImport.update({
+  id: '/produtos/ss-performance',
+  path: '/produtos/ss-performance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosSsStartRoute = ProdutosSsStartRouteImport.update({
+  id: '/produtos/ss-start',
+  path: '/produtos/ss-start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +106,9 @@ export interface FileRoutesByFullPath {
   '/api/leads': typeof ApiLeadsRoute
   '/api/selo': typeof ApiSeloRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/produtos/ss-evolution': typeof ProdutosSsEvolutionRoute
+  '/produtos/ss-performance': typeof ProdutosSsPerformanceRoute
+  '/produtos/ss-start': typeof ProdutosSsStartRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +122,9 @@ export interface FileRoutesByTo {
   '/api/leads': typeof ApiLeadsRoute
   '/api/selo': typeof ApiSeloRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/produtos/ss-evolution': typeof ProdutosSsEvolutionRoute
+  '/produtos/ss-performance': typeof ProdutosSsPerformanceRoute
+  '/produtos/ss-start': typeof ProdutosSsStartRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
@@ -115,6 +139,9 @@ export interface FileRoutesById {
   '/api/leads': typeof ApiLeadsRoute
   '/api/selo': typeof ApiSeloRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/produtos/ss-evolution': typeof ProdutosSsEvolutionRoute
+  '/produtos/ss-performance': typeof ProdutosSsPerformanceRoute
+  '/produtos/ss-start': typeof ProdutosSsStartRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +157,9 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/selo'
     | '/blog/$slug'
+    | '/produtos/ss-evolution'
+    | '/produtos/ss-performance'
+    | '/produtos/ss-start'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +173,9 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/selo'
     | '/blog/$slug'
+    | '/produtos/ss-evolution'
+    | '/produtos/ss-performance'
+    | '/produtos/ss-start'
     | '/blog'
   id:
     | '__root__'
@@ -156,6 +189,9 @@ export interface FileRouteTypes {
     | '/api/leads'
     | '/api/selo'
     | '/blog/$slug'
+    | '/produtos/ss-evolution'
+    | '/produtos/ss-performance'
+    | '/produtos/ss-start'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +206,9 @@ export interface RootRouteChildren {
   ApiLeadsRoute: typeof ApiLeadsRoute
   ApiSeloRoute: typeof ApiSeloRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  ProdutosSsEvolutionRoute: typeof ProdutosSsEvolutionRoute
+  ProdutosSsPerformanceRoute: typeof ProdutosSsPerformanceRoute
+  ProdutosSsStartRoute: typeof ProdutosSsStartRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
@@ -252,6 +291,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/produtos/ss-evolution': {
+      id: '/produtos/ss-evolution'
+      path: '/produtos/ss-evolution'
+      fullPath: '/produtos/ss-evolution'
+      preLoaderRoute: typeof ProdutosSsEvolutionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos/ss-performance': {
+      id: '/produtos/ss-performance'
+      path: '/produtos/ss-performance'
+      fullPath: '/produtos/ss-performance'
+      preLoaderRoute: typeof ProdutosSsPerformanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos/ss-start': {
+      id: '/produtos/ss-start'
+      path: '/produtos/ss-start'
+      fullPath: '/produtos/ss-start'
+      preLoaderRoute: typeof ProdutosSsStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -266,6 +326,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiLeadsRoute: ApiLeadsRoute,
   ApiSeloRoute: ApiSeloRoute,
   BlogSlugRoute: BlogSlugRoute,
+  ProdutosSsEvolutionRoute: ProdutosSsEvolutionRoute,
+  ProdutosSsPerformanceRoute: ProdutosSsPerformanceRoute,
+  ProdutosSsStartRoute: ProdutosSsStartRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
