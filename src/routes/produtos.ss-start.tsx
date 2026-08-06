@@ -154,7 +154,8 @@ function ParaQuemE() {
       <div className="mx-auto max-w-4xl px-6 text-center">
         <span className="text-xs font-bold tracking-widest text-brand-sky">PARA QUEM É</span>
         <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-          Operações que estão estruturando o controle da frota agora
+          Operações que estão <span className="text-gradient">estruturando o controle</span> da
+          frota agora
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
           Ideal para quem precisa sair da planilha e da ligação para o motorista e passar a ter

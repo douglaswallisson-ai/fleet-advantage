@@ -208,7 +208,9 @@ function CTA() {
   return (
     <section className="bg-secondary/40 py-20">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">Disponível a partir do SS Performance</h2>
+        <h2 className="text-3xl font-bold md:text-4xl">
+          Disponível a partir do <span className="text-gradient">SS Performance</span>
+        </h2>
         <p className="mt-4 text-muted-foreground">
           O Copiloto usa os sinais de comportamento de condução do hardware VL08.
         </p>

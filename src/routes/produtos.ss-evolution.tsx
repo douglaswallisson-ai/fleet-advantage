@@ -158,7 +158,7 @@ function ParaQuemE() {
     <section className="mx-auto max-w-4xl px-6 py-20 text-center">
       <span className="text-xs font-bold tracking-widest text-brand-sky">PARA QUEM É</span>
       <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-        Frotas que buscam automação de decisão em escala
+        Frotas que buscam <span className="text-gradient">automação de decisão</span> em escala
       </h2>
       <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
         Ideal para operações com estrutura de gestão em múltiplas frentes, em que centralizar

@@ -227,7 +227,7 @@ function ParaQuemE() {
       <div className="mx-auto max-w-4xl px-6 text-center">
         <span className="text-xs font-bold tracking-widest text-brand-sky">PARA QUEM É</span>
         <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-          Para operações que competem por eficiência
+          Para operações que competem por <span className="text-gradient">eficiência</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
           Ideal para frotas em que consumo, sinistro e desgaste de pneu já pesam na conta e precisam
