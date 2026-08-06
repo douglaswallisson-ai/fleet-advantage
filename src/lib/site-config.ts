@@ -203,7 +203,7 @@ export const CONTACT = {
   whatsapp: "5531984033906", // dígitos com DDI (55) + DDD (31) + número
   cnpj: "01.862.295/0005-00", // com pontuação (formato aceito para taxID)
   address: "R. Alvarenga Peixoto, 295, Andar 4 — Lourdes, Belo Horizonte/MG — CEP 30.180-120",
-  supportHours: "Suporte 24/7",
+  supportHours: "Suporte via chat, e-mail e WhatsApp",
 };
 
 /** Mensagem padrão ao abrir o WhatsApp pelos botões de "Falar com especialista". */

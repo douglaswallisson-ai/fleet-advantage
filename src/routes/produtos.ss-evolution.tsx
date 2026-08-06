@@ -3,6 +3,9 @@ import { ArrowRight, Cable, Headset, Leaf, ListChecks, Sparkles } from "lucide-r
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
+import { TiersRecap } from "@/components/site/TiersRecap";
+import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import managerImg from "@/assets/ai-fleet-manager.jpg";
 
@@ -23,9 +26,12 @@ function SSEvolution() {
       <Nav />
       <main>
         <Hero />
+        <RoiTrustBar />
         <FleetManager />
         <Integracoes />
         <ParaQuemE />
+        <ReferralTeaser />
+        <TiersRecap compact activeName="SS Evolution" />
       </main>
       <Footer />
     </div>
@@ -88,8 +94,8 @@ function FleetManager() {
         </div>
         <div className="overflow-hidden rounded-3xl shadow-elegant">
           <img
-            src={managerImg}
-            alt="Gestor de frota acompanhando painel de decisão do IA Fleet Manager"
+            src="/imagens-ss/fleet-manager/principal.jpg"
+            alt="IA de priorização do Fleet Manager mostrando recomendações Crítico, Alto e Médio para a frota"
             loading="lazy"
             className="h-full w-full object-cover"
           />
@@ -115,19 +121,29 @@ function Integracoes() {
       icon: Leaf,
       t: "Selo Verde ESG",
       d: "Certificação de redução de emissões calculada a partir dos dados reais de telemetria da própria operação.",
+      href: "/selo-verde",
+      hrefLabel: "Conhecer o Selo Verde",
     },
   ];
   return (
     <section className="bg-secondary/40 py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-6 sm:grid-cols-3">
-          {itens.map(({ icon: Icon, t, d }) => (
+          {itens.map(({ icon: Icon, t, d, href, hrefLabel }) => (
             <div key={t} className="rounded-2xl border border-border bg-card p-6 shadow-card">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-background">
                 <Icon className="h-5 w-5 text-brand-sky" />
               </div>
               <h3 className="mt-4 text-base font-bold">{t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+              {href && (
+                <Link
+                  to={href}
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-sky hover:underline"
+                >
+                  {hrefLabel} <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              )}
             </div>
           ))}
         </div>

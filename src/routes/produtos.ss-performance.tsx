@@ -3,6 +3,9 @@ import { ArrowRight, BarChart3, Gauge, ShieldCheck, Sparkles } from "lucide-reac
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
+import { TiersRecap } from "@/components/site/TiersRecap";
+import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import cameraImg from "@/assets/ai-camera-monitor.jpg";
 import tireImg from "@/assets/tire-monitor.jpg";
@@ -24,11 +27,13 @@ function SSPerformance() {
       <Nav />
       <main>
         <Hero />
+        <RoiTrustBar />
         <Copiloto />
         <Pneus />
         <Rentabilidade />
         <ParaQuemE />
-        <ProximoNivel />
+        <ReferralTeaser />
+        <TiersRecap compact activeName="SS Performance" />
       </main>
       <Footer />
     </div>
@@ -177,27 +182,6 @@ function ParaQuemE() {
           Ideal para frotas em que consumo, sinistro e desgaste de pneu já pesam na conta e precisam
           de intervenção no momento em que acontecem, não só de relatório no fim do mês.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function ProximoNivel() {
-  return (
-    <section className="mx-auto max-w-4xl px-6 py-20">
-      <div className="rounded-3xl border border-border bg-card p-8 text-center shadow-card md:p-12">
-        <span className="text-xs font-bold tracking-widest text-muted-foreground">
-          QUANDO A FROTA CRESCER EM ESCALA
-        </span>
-        <h3 className="mt-3 text-2xl font-bold md:text-3xl">
-          O SS Evolution soma o IA Fleet Manager, integrações ERP/TMS e SLA dedicado
-        </h3>
-        <Link
-          to="/produtos/ss-evolution"
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5"
-        >
-          Conhecer o SS Evolution <ArrowRight className="h-4 w-4" />
-        </Link>
       </div>
     </section>
   );

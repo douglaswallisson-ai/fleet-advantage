@@ -3,6 +3,9 @@ import { ArrowRight, Bell, ClipboardList, MapPin, Radar, Smartphone } from "luci
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
+import { TiersRecap } from "@/components/site/TiersRecap";
+import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.jpg";
 
@@ -23,9 +26,11 @@ function SSStart() {
       <Nav />
       <main>
         <Hero />
+        <RoiTrustBar />
         <ComoFunciona />
         <ParaQuemE />
-        <ProximoNivel />
+        <ReferralTeaser />
+        <TiersRecap compact activeName="SS Start" />
       </main>
       <Footer />
     </div>
@@ -121,28 +126,6 @@ function ParaQuemE() {
           Ideal para quem precisa sair da planilha e da ligação para o motorista e passar a ter
           visibilidade confiável da operação, com uma curva de adoção rápida para o time.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function ProximoNivel() {
-  return (
-    <section className="mx-auto max-w-4xl px-6 py-20">
-      <div className="rounded-3xl border border-border bg-card p-8 text-center shadow-card md:p-12">
-        <span className="text-xs font-bold tracking-widest text-muted-foreground">
-          QUANDO SUA OPERAÇÃO PRECISAR DE MAIS
-        </span>
-        <h3 className="mt-3 text-2xl font-bold md:text-3xl">
-          O SS Performance adiciona o copiloto de IA, monitoramento de pneus e painel de
-          rentabilidade
-        </h3>
-        <Link
-          to="/produtos/ss-performance"
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5"
-        >
-          Conhecer o SS Performance <ArrowRight className="h-4 w-4" />
-        </Link>
       </div>
     </section>
   );

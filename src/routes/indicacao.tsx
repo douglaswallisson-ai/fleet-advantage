@@ -12,6 +12,7 @@ import {
   useLeadForm,
 } from "@/components/site/lead-form";
 import { Backdrop } from "@/components/site/Backdrop";
+import { ReferralCalculator } from "@/components/site/ReferralCalculator";
 import { CONTACT, FOTOS, MEDIA, pageHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/indicacao")({
@@ -21,10 +22,9 @@ export const Route = createFileRoute("/indicacao")({
       path: "/indicacao",
       title: "Programa de Indicação — SS Telemática",
       description:
-        "Indique a SS e ganhe. Até R$ 500 por veículo ativado + meses de mensalidade grátis para o indicado. Veja as regras do programa.",
+        "Indique a SS e ganhe 3% sobre o valor de 12 meses do contrato fechado pelo indicado. Simule sua recompensa.",
       ogTitle: "Programa de Indicação SS",
-      ogDescription:
-        "Recompensa real para quem confia na SS: dinheiro na conta e mensalidade grátis para o indicado.",
+      ogDescription: "3% sobre 12 meses de contrato para quem indica — sem teto.",
     }),
 });
 
@@ -45,20 +45,19 @@ function Indicacao() {
               <Gift className="h-3.5 w-3.5 text-brand-green" /> PROGRAMA DE INDICAÇÃO SS
             </span>
             <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] md:text-6xl">
-              Indique a SS e ganhe até <span className="text-brand-green">R$ 500</span> por veículo
-              ativado.
+              Indique a SS e ganhe <span className="text-brand-green">3%</span> sobre 12 meses de
+              contrato.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/80">
-              O programa de indicação mais generoso do setor. Sua rede confia em você — transforme
-              essa confiança em receita recorrente para o seu bolso e economia para a frota do
-              amigo.
+              Sem teto de frota, sem teto de valor. Fechou contrato de R$ 5.000/mês? Você recebe 3%
+              dos R$ 60.000 de 12 meses — R$ 1.800 direto no PIX.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
-                href="#formulario"
+                href="#calculadora"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-4 text-sm font-semibold text-[oklch(0.15_0.03_260)] shadow-glow transition-transform hover:-translate-y-0.5"
               >
-                Indicar agora <ArrowRight className="h-4 w-4" />
+                Simular minha recompensa <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#regulamento"
@@ -90,7 +89,7 @@ function Indicacao() {
                 icon: Wallet,
                 s: "03",
                 t: "Você recebe",
-                d: "Contrato assinado? R$ 100 a R$ 500 por veículo ativado — direto no PIX.",
+                d: "Contrato assinado e ativado? 3% sobre o valor de 12 meses do contrato — direto no PIX.",
               },
             ].map(({ icon: Icon, s, t, d }) => (
               <div
@@ -108,47 +107,17 @@ function Indicacao() {
           </div>
         </section>
 
-        <section className="bg-secondary/40 py-24">
-          <div className="mx-auto max-w-5xl px-6">
+        <section id="calculadora" className="scroll-mt-24 bg-secondary/40 py-24">
+          <div className="mx-auto max-w-3xl px-6">
             <h2 className="text-center text-4xl font-bold">Quanto você ganha</h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-              Escala pelo tamanho da frota indicada. Sem teto — indique quantas empresas quiser.
+              3% sobre o valor de 12 meses do contrato fechado pelo indicado. Sem teto — indique
+              quantas empresas quiser.
             </p>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  size: "Até 30 veículos",
-                  value: "R$ 100",
-                  per: "por veículo ativado",
-                  bonus: "+ 1 mês de mensalidade grátis para o indicado",
-                },
-                {
-                  size: "31 a 100 veículos",
-                  value: "R$ 250",
-                  per: "por veículo ativado",
-                  bonus: "+ 2 meses de mensalidade grátis + kit SS",
-                },
-                {
-                  size: "100+ veículos",
-                  value: "R$ 500",
-                  per: "por veículo ativado",
-                  bonus: "+ 3 meses grátis + comissão recorrente",
-                },
-              ].map((p, i) => (
-                <div
-                  key={p.size}
-                  className={`rounded-3xl border bg-card p-8 shadow-card ${i === 1 ? "border-brand-sky ring-2 ring-brand-sky/40" : "border-border"}`}
-                >
-                  <div className="text-sm font-semibold text-muted-foreground">{p.size}</div>
-                  <div className="mt-4 text-5xl font-bold text-primary">{p.value}</div>
-                  <div className="mt-1 text-xs text-muted-foreground">{p.per}</div>
-                  <div className="mt-6 rounded-xl bg-brand-green/10 px-4 py-3 text-xs text-[oklch(0.3_0.12_138)]">
-                    {p.bonus}
-                  </div>
-                </div>
-              ))}
+            <div className="mt-12">
+              <ReferralCalculator />
             </div>
-            <p className="mt-8 text-center text-xs text-muted-foreground">
+            <p className="mt-6 text-center text-xs text-muted-foreground">
               Valores válidos para contratos assinados e veículos efetivamente ativados.{" "}
               <a href="#regulamento" className="underline hover:text-primary">
                 Consulte o regulamento
@@ -227,8 +196,8 @@ function Indicacao() {
             </li>
             <li>
               <strong className="text-foreground">3. Quando a recompensa é devida.</strong> Após a
-              assinatura do contrato pela empresa indicada e a ativação efetiva dos veículos,
-              considerando a faixa de frota contratada.
+              assinatura do contrato pela empresa indicada e a ativação efetiva dos veículos, no
+              valor de 3% sobre o total de 12 meses do contrato assinado.
             </li>
             <li>
               <strong className="text-foreground">4. Pagamento.</strong> Via PIX, em até 30 dias
