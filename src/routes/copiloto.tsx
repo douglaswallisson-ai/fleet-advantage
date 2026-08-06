@@ -34,24 +34,32 @@ function Copiloto() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-white">
-      <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-widest backdrop-blur">
-          <Bot className="h-3.5 w-3.5 text-brand-green" /> COPILOTO DO MOTORISTA
-        </span>
-        <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-6xl">
-          Conheça a {SELMA.nome}, sua copiloto.
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80">
-          Orienta o motorista em tempo real durante a viagem e manda o resumo do que foi bom e do
-          que precisa de atenção — direto no WhatsApp, depois que a viagem termina.
-        </p>
-        <Link
-          to="/contato"
-          search={{ plano: "Copiloto SS" }}
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] transition-transform hover:-translate-y-0.5"
-        >
-          Simular meu plano <ArrowRight className="h-4 w-4" />
-        </Link>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-[1fr_auto] lg:text-left">
+        <div className="text-center lg:text-left">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-widest backdrop-blur">
+            <Bot className="h-3.5 w-3.5 text-brand-green" /> COPILOTO DO MOTORISTA
+          </span>
+          <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-6xl">
+            Conheça a {SELMA.nome}, sua copiloto.
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-white/80 lg:mx-0">
+            Orienta o motorista em tempo real durante a viagem e manda o resumo do que foi bom e do
+            que precisa de atenção — direto no WhatsApp, depois que a viagem termina.
+          </p>
+          <Link
+            to="/contato"
+            search={{ plano: "Copiloto SS" }}
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3.5 text-sm font-semibold text-[oklch(0.15_0.03_260)] transition-transform hover:-translate-y-0.5"
+          >
+            Simular meu plano <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <img
+          src="/imagens-ss/selma/selma-ajudando.webp"
+          alt={SELMA.alt}
+          loading="eager"
+          className="mx-auto max-h-[420px] w-auto object-contain drop-shadow-2xl"
+        />
       </div>
     </section>
   );
