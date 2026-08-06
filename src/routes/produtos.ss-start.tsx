@@ -28,6 +28,7 @@ function SSStart() {
         <Hero />
         <RoiTrustBar />
         <ComoFunciona />
+        <Relatorios />
         <ParaQuemE />
         <ReferralTeaser />
         <TiersRecap compact activeName="SS Start" />
@@ -109,6 +110,37 @@ function ComoFunciona() {
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function Relatorios() {
+  return (
+    <section className="bg-secondary/40 py-20">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <span className="text-xs font-bold tracking-widest text-brand-sky">
+              RELATÓRIOS OPERACIONAIS
+            </span>
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+              Os números da frota, organizados sem esforço
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              Km rodado, veículos em operação, manutenção e alertas — tudo já calculado e pronto
+              para consultar, sem precisar montar planilha.
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-3xl shadow-elegant">
+            <img
+              src="/imagens-ss/dashboards/ss-dashboards-avancados-sem-fundo.webp"
+              alt="Painel de relatórios operacionais com visão geral da frota, distância percorrida e consumo"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

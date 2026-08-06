@@ -4,7 +4,6 @@ import { Footer } from "@/components/site/Footer";
 import { ArrowUpRight, Building2, Compass, HeartHandshake, Rocket, Target } from "lucide-react";
 import { SSOrb } from "@/components/site/SSOrb";
 import { FOTOS, GRUPO, pageHead } from "@/lib/site-config";
-import teamImg from "@/assets/team-about.webp";
 
 export const Route = createFileRoute("/quem-somos")({
   component: QuemSomos,
@@ -44,8 +43,8 @@ function QuemSomos() {
         <section className="mx-auto max-w-7xl px-6 py-24">
           <div className="grid gap-16 lg:grid-cols-2 items-center">
             <img
-              src={teamImg}
-              alt="Time SS Telemática"
+              src="/imagens-ss/fleet-manager/ss-ia-priorizacao-clara.webp"
+              alt="Recomendação priorizada da IA Fleet Manager para a equipe de manutenção"
               loading="lazy"
               className="rounded-3xl shadow-elegant"
               width={1600}

@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { Wallet } from "lucide-react";
 
 const REWARD_PCT = 0.03;
+/** Ticket médio mensal por veículo usado apenas para estimar a simulação. */
+const VALOR_MEDIO_POR_VEICULO = 120;
 
 function formatBRL(v: number) {
   return v.toLocaleString("pt-BR", {
@@ -13,16 +15,17 @@ function formatBRL(v: number) {
 
 /**
  * Calculadora do programa de indicação: 3% sobre o valor de 12 meses do
- * contrato fechado pelo indicado. Ex.: contrato de R$ 5.000/mês → 12 meses =
- * R$ 60.000 → recompensa de R$ 1.800.
+ * contrato fechado pelo indicado, estimado a partir do número de veículos da
+ * frota indicada (ticket médio de R$ 120/veículo/mês).
  */
 export function ReferralCalculator({ compact = false }: { compact?: boolean }) {
-  const [mensal, setMensal] = useState(5000);
+  const [veiculos, setVeiculos] = useState(20);
 
-  const { total12, reward } = useMemo(() => {
+  const { mensal, total12, reward } = useMemo(() => {
+    const mensal = veiculos * VALOR_MEDIO_POR_VEICULO;
     const total12 = mensal * 12;
-    return { total12, reward: total12 * REWARD_PCT };
-  }, [mensal]);
+    return { mensal, total12, reward: total12 * REWARD_PCT };
+  }, [veiculos]);
 
   return (
     <div
@@ -39,27 +42,27 @@ export function ReferralCalculator({ compact = false }: { compact?: boolean }) {
       </div>
 
       <div className="mt-6">
-        <label htmlFor="mensal" className="text-xs font-semibold text-muted-foreground">
-          Valor mensal estimado do contrato da empresa que você vai indicar
+        <label htmlFor="veiculos" className="text-xs font-semibold text-muted-foreground">
+          Número de veículos da frota que você vai indicar
         </label>
         <div className="mt-2 flex items-center gap-4">
           <input
-            id="mensal"
+            id="veiculos"
             type="range"
-            min={500}
-            max={50000}
-            step={100}
-            value={mensal}
-            onChange={(e) => setMensal(Number(e.target.value))}
+            min={1}
+            max={500}
+            step={1}
+            value={veiculos}
+            onChange={(e) => setVeiculos(Number(e.target.value))}
             className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-secondary accent-primary"
           />
           <input
             type="number"
-            min={0}
-            value={mensal}
-            onChange={(e) => setMensal(Math.max(0, Number(e.target.value) || 0))}
-            className="w-28 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold"
-            aria-label="Valor mensal em reais"
+            min={1}
+            value={veiculos}
+            onChange={(e) => setVeiculos(Math.max(1, Number(e.target.value) || 1))}
+            className="w-24 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold"
+            aria-label="Número de veículos"
           />
         </div>
       </div>
@@ -75,8 +78,9 @@ export function ReferralCalculator({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        Estimativa para fins de simulação. O valor final depende do contrato efetivamente assinado e
-        ativado pela empresa indicada.
+        Estimativa com ticket médio de {formatBRL(VALOR_MEDIO_POR_VEICULO)}/veículo/mês (
+        {formatBRL(mensal)}/mês para {veiculos} veículo{veiculos === 1 ? "" : "s"}). O valor final
+        depende do contrato efetivamente assinado e ativado pela empresa indicada.
       </p>
     </div>
   );

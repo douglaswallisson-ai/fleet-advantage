@@ -223,8 +223,7 @@ function Indicacao() {
             <a href={`mailto:${CONTACT.email}`} className="underline hover:text-primary">
               {CONTACT.email}
             </a>
-            . <strong className="text-foreground">Antes de publicar:</strong> submeta este
-            regulamento à validação jurídica da SS e ajuste prazos e condições ao contrato real.
+            .
           </p>
         </section>
       </main>

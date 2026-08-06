@@ -167,11 +167,10 @@ export const FOTOS = {
     ssImg("fleet-manager/ss-ia-priorizacao-clara.webp"),
   ],
   reducaoCusto: ssImg("reducao-de-custo/ss-reducao-custo-frota-logo-corrigido.webp"),
-  pneus: ssImg("ss-monitoramento-pneus-logo-corrigido.webp"),
+  pneus: ssImg("videotelemetria/ss-monitoramento-pneus-videotelemetria.webp"),
   cameras: [
     ssImg("videotelemetria/ss-videotelemetria-v3-logo-corrigido.webp"),
     ssImg("videotelemetria/ss-videotelemetria-clara.webp"),
-    ssImg("videotelemetria/ss-monitoramento-pneus-videotelemetria.webp"),
   ],
   euro6: [
     ssImg("euro-6/principal.webp"),
