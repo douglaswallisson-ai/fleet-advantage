@@ -50,14 +50,14 @@ export const GRUPO = {
   parceiros: [
     {
       nome: "Modaxo",
-      logo: "", // ex.: "/logos/modaxo.svg"
+      logo: "/logos/modaxo.svg",
       site: "https://www.modaxo.com",
       descricao:
         "Portfólio global de tecnologias para o transporte de pessoas. A Modaxo reúne empresas que movem cidades e operações de transporte no mundo todo.",
     },
     {
       nome: "Constellation Software",
-      logo: "", // ex.: "/logos/constellation.svg"
+      logo: "/logos/constellation.png",
       site: "https://www.csisoftware.com",
       descricao:
         "Uma das maiores companhias de software do mundo (TSX: CSU), que adquire e faz crescer negócios de software verticais de excelência.",

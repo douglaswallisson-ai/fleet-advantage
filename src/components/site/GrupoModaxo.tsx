@@ -41,7 +41,9 @@ export function GrupoModaxo() {
             >
               <div className="flex h-16 items-center">
                 {p.logo ? (
-                  <img src={p.logo} alt={p.nome} className="max-h-12 w-auto" />
+                  <span className="inline-flex h-14 items-center rounded-xl bg-white px-4">
+                    <img src={p.logo} alt={p.nome} className="max-h-9 w-auto" />
+                  </span>
                 ) : (
                   <span className="text-2xl font-bold tracking-tight">{p.nome}</span>
                 )}
