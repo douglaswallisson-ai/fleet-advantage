@@ -223,6 +223,8 @@ type Feature = {
   /** Fotos do card (principal + secundárias = carrossel). Sem fotos, usa `metric`. */
   imagens?: string[];
   metric?: { value: string; label: string };
+  /** Link opcional para um artigo do blog relacionado ao card. */
+  href?: string;
 };
 
 /**
@@ -271,6 +273,7 @@ function Features() {
         "Histórico completo por veículo",
       ],
       imagens: FOTOS.euro6,
+      href: "/blog/euro6-chegou-e-agora",
     },
   ];
 
@@ -326,7 +329,7 @@ function Features() {
 }
 
 /** Card uniforme: mídia no topo (carrossel de fotos ou painel de número) + conteúdo. */
-function FeatureCard({ icon: Icon, title, desc, bullets, imagens, metric }: Feature) {
+function FeatureCard({ icon: Icon, title, desc, bullets, imagens, metric, href }: Feature) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-card transition-shadow hover:shadow-elegant">
       {imagens && imagens.length > 0 ? (
@@ -361,6 +364,14 @@ function FeatureCard({ icon: Icon, title, desc, bullets, imagens, metric }: Feat
             </li>
           ))}
         </ul>
+        {href && (
+          <Link
+            to={href}
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-sky hover:underline"
+          >
+            Ler o artigo completo <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
       </div>
     </article>
   );

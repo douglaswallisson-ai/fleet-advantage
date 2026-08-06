@@ -176,6 +176,13 @@ function PostBody({ post }: { post: Post }) {
             </ul>
           );
         }
+        if (b.tipo === "img") {
+          return (
+            <div key={i} className="overflow-hidden rounded-2xl shadow-card">
+              <img src={b.src} alt={b.alt} loading="lazy" className="h-full w-full object-cover" />
+            </div>
+          );
+        }
         return (
           <p key={i} className="text-base leading-relaxed text-muted-foreground md:text-lg">
             {b.texto}
