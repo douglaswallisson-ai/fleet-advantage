@@ -3,15 +3,19 @@ import type {} from "@tanstack/react-start";
 import { z } from "zod";
 
 /**
- * Recebe os formulários do site (contato e indicação).
+ * Recebe os formulários do site (contato, indicação e cadastro de evento).
  *
  * Entrega do lead:
  *  - sempre grava um log estruturado no servidor (visível nos logs do deploy);
  *  - se `LEADS_WEBHOOK_URL` estiver definida, faz POST do JSON para lá
- *    (compatível com Zapier / Make / n8n / Slack / endpoint próprio de CRM).
+ *    (compatível com Zapier / Make / n8n / Slack / endpoint próprio de CRM);
+ *  - se `RESEND_API_KEY` estiver definida, envia um e-mail com o lead via
+ *    Resend (https://resend.com) para `LEADS_TO_EMAIL`.
  *
- * Enquanto a variável não existir, nenhum lead se perde no navegador: ele fica
- * registrado no log do servidor.
+ * Nenhum desses dois canais é obrigatório — o lead nunca se perde no
+ * navegador, ele fica no log do servidor mesmo sem nenhuma variável setada.
+ * Ambos falham "em silêncio" (não derrubam a resposta pro usuário): um erro
+ * de e-mail não pode fazer o formulário parecer que falhou pro visitante.
  */
 
 const baseFields = {
@@ -110,6 +114,72 @@ function readEnv(key: string): string | undefined {
   }
 }
 
+/** Rótulos amigáveis para exibir no corpo do e-mail (em vez do nome do campo). */
+const FIELD_LABELS: Record<string, string> = {
+  tipo: "Formulário",
+  nome: "Nome",
+  empresa: "Empresa",
+  email: "E-mail",
+  telefone: "Telefone",
+  cargo: "Cargo",
+  responsavelSS: "Responsável SS",
+  observacao: "Observação",
+  evento: "Evento",
+  mensagem: "Mensagem",
+  plano: "Plano de interesse",
+  frota: "Tamanho da frota",
+  empresaIndicada: "Empresa indicada",
+  contatoIndicado: "Contato na empresa indicada",
+  portfolio_Telemetria: "Interesse — Telemetria",
+  portfolio_Videotelemetria: "Interesse — Videotelemetria",
+  recebidoEm: "Recebido em",
+};
+
+function leadToHtml(record: Record<string, unknown>): string {
+  const rows = Object.entries(record)
+    .filter(([, v]) => v !== "" && v !== undefined && v !== null)
+    .map(([k, v]) => {
+      const label = FIELD_LABELS[k] ?? k;
+      const value = k.startsWith("portfolio_") ? (v ? "Sim" : "Não") : String(v);
+      return `<tr><td style="padding:4px 12px;color:#667;font-weight:600">${label}</td><td style="padding:4px 12px">${value}</td></tr>`;
+    })
+    .join("");
+  return `<table cellpadding="0" cellspacing="0">${rows}</table>`;
+}
+
+async function sendLeadEmail(record: Record<string, unknown>) {
+  const apiKey = readEnv("RESEND_API_KEY");
+  if (!apiKey) return;
+
+  const to = readEnv("LEADS_TO_EMAIL") || "sales@sstelematica.com.br";
+  // resend.dev é o domínio de teste da Resend — funciona sem verificação, mas
+  // só entrega para o próprio e-mail cadastrado na conta Resend. Assim que a
+  // SS verificar um domínio próprio (ex.: sstelematica.com.br) na Resend,
+  // troque LEADS_FROM_EMAIL para algo como "leads@sstelematica.com.br".
+  const from = readEnv("LEADS_FROM_EMAIL") || "SS Telemática <onboarding@resend.dev>";
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject: `Novo lead (${record.tipo}) — ${record.nome ?? "sem nome"}`,
+        html: leadToHtml(record),
+      }),
+    });
+    if (!res.ok) {
+      console.error("[lead] Resend respondeu", res.status, await res.text());
+    }
+  } catch (error) {
+    console.error("[lead] falha ao enviar e-mail via Resend", error);
+  }
+}
+
 export const Route = createFileRoute("/api/leads")({
   server: {
     handlers: {
@@ -157,6 +227,8 @@ export const Route = createFileRoute("/api/leads")({
             console.error("[lead] falha ao enviar para o webhook", error);
           }
         }
+
+        await sendLeadEmail(record);
 
         return json({ ok: true }, 200);
       },

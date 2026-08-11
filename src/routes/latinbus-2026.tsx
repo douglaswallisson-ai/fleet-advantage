@@ -15,18 +15,18 @@ import {
 } from "@/components/site/lead-form";
 import { pageHead } from "@/lib/site-config";
 
-export const Route = createFileRoute("/fit-latinbus-2026")({
-  component: FitLatinbus2026,
+export const Route = createFileRoute("/latinbus-2026")({
+  component: Latinbus2026,
   head: () =>
     pageHead({
-      path: "/fit-latinbus-2026",
-      title: "Cadastro FIT Latinbus 2026 — SS Telemática",
-      description: "Deixe seus dados no stand da SS Telemática na FIT Latinbus 2026.",
+      path: "/latinbus-2026",
+      title: "Cadastro Latinbus 2026 — SS Telemática",
+      description: "Deixe seus dados no stand da SS Telemática na Latinbus 2026.",
       noindex: true,
     }),
 });
 
-function FitLatinbus2026() {
+function Latinbus2026() {
   const { status, fieldErrors, message, onSubmit } = useLeadForm("evento");
 
   return (
@@ -37,7 +37,7 @@ function FitLatinbus2026() {
           <div className="mx-auto max-w-2xl px-6">
             <SSOrb size={72} halo className="mx-auto text-brand-green" />
             <span className="mt-6 block text-xs font-bold tracking-widest text-brand-green">
-              FIT LATINBUS 2026
+              LATINBUS 2026
             </span>
             <h1 className="mt-3 text-3xl font-bold md:text-4xl">Cadastre-se com a SS</h1>
             <p className="mt-4 text-white/80">
@@ -49,7 +49,7 @@ function FitLatinbus2026() {
 
         <section className="mx-auto max-w-2xl px-6 py-16">
           <form onSubmit={onSubmit} className="space-y-5">
-            <input type="hidden" name="evento" value="FIT Latinbus 2026" />
+            <input type="hidden" name="evento" value="Latinbus 2026" />
             <Honeypot />
 
             <Field label="Nome" name="nome" autoComplete="name" error={fieldErrors.nome} />

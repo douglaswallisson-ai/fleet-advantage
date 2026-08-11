@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CopilotoRouteImport } from './routes/copiloto'
-import { Route as FitLatinbus2026RouteImport } from './routes/fit-latinbus-2026'
 import { Route as IndicacaoRouteImport } from './routes/indicacao'
+import { Route as Latinbus2026RouteImport } from './routes/latinbus-2026'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as SeloVerdeRouteImport } from './routes/selo-verde'
@@ -41,14 +41,14 @@ const CopilotoRoute = CopilotoRouteImport.update({
   path: '/copiloto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FitLatinbus2026Route = FitLatinbus2026RouteImport.update({
-  id: '/fit-latinbus-2026',
-  path: '/fit-latinbus-2026',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndicacaoRoute = IndicacaoRouteImport.update({
   id: '/indicacao',
   path: '/indicacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Latinbus2026Route = Latinbus2026RouteImport.update({
+  id: '/latinbus-2026',
+  path: '/latinbus-2026',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -111,8 +111,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
-  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
+  '/latinbus-2026': typeof Latinbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -129,8 +129,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
-  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
+  '/latinbus-2026': typeof Latinbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -148,8 +148,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
-  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
+  '/latinbus-2026': typeof Latinbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -168,8 +168,8 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
-    | '/fit-latinbus-2026'
     | '/indicacao'
+    | '/latinbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -186,8 +186,8 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
-    | '/fit-latinbus-2026'
     | '/indicacao'
+    | '/latinbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -204,8 +204,8 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
-    | '/fit-latinbus-2026'
     | '/indicacao'
+    | '/latinbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -223,8 +223,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   CopilotoRoute: typeof CopilotoRoute
-  FitLatinbus2026Route: typeof FitLatinbus2026Route
   IndicacaoRoute: typeof IndicacaoRoute
+  Latinbus2026Route: typeof Latinbus2026Route
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   QuemSomosRoute: typeof QuemSomosRoute
   SeloVerdeRoute: typeof SeloVerdeRoute
@@ -261,18 +261,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CopilotoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/fit-latinbus-2026': {
-      id: '/fit-latinbus-2026'
-      path: '/fit-latinbus-2026'
-      fullPath: '/fit-latinbus-2026'
-      preLoaderRoute: typeof FitLatinbus2026RouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/indicacao': {
       id: '/indicacao'
       path: '/indicacao'
       fullPath: '/indicacao'
       preLoaderRoute: typeof IndicacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/latinbus-2026': {
+      id: '/latinbus-2026'
+      path: '/latinbus-2026'
+      fullPath: '/latinbus-2026'
+      preLoaderRoute: typeof Latinbus2026RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -359,8 +359,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   CopilotoRoute: CopilotoRoute,
-  FitLatinbus2026Route: FitLatinbus2026Route,
   IndicacaoRoute: IndicacaoRoute,
+  Latinbus2026Route: Latinbus2026Route,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   QuemSomosRoute: QuemSomosRoute,
   SeloVerdeRoute: SeloVerdeRoute,
