@@ -9,7 +9,7 @@ type Status = "idle" | "sending" | "ok" | "error";
  * Lê os campos via FormData (por isso todo input precisa de `name`) e envia
  * para /api/leads.
  */
-export function useLeadForm(tipo: "contato" | "indicacao") {
+export function useLeadForm(tipo: "contato" | "indicacao" | "evento") {
   const [status, setStatus] = useState<Status>("idle");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [message, setMessage] = useState("");
@@ -148,6 +148,88 @@ export function FleetSizeSelect({ name = "frota" }: { name?: string }) {
         <option value="Mais de 100 veículos">Mais de 100 veículos</option>
       </select>
     </label>
+  );
+}
+
+export function Select({
+  label,
+  name,
+  options,
+  error,
+  required = true,
+  placeholder = "Selecione",
+}: {
+  label: string;
+  name: string;
+  options: string[];
+  error?: string;
+  required?: boolean;
+  placeholder?: string;
+}) {
+  return (
+    <label className="block" htmlFor={name}>
+      <span className="text-xs font-semibold tracking-wide text-muted-foreground">
+        {label.toUpperCase()}
+      </span>
+      <select
+        id={name}
+        name={name}
+        required={required}
+        defaultValue=""
+        aria-invalid={error ? true : undefined}
+        className={`mt-1.5 w-full rounded-xl border bg-background px-4 py-3 text-sm outline-none transition focus:ring-2 ${
+          error
+            ? "border-destructive focus:border-destructive focus:ring-destructive/30"
+            : "border-input focus:border-brand-sky focus:ring-brand-sky/30"
+        }`}
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+      {error && <span className="mt-1.5 block text-xs text-destructive">{error}</span>}
+    </label>
+  );
+}
+
+/**
+ * Grupo de checkboxes independentes (cada opção é um campo próprio no
+ * FormData, ex.: name="portfolio_Telemetria"), para não colidir com o
+ * `Object.fromEntries` simples do `useLeadForm` — que perderia valores
+ * repetidos se todas as opções usassem o mesmo `name`.
+ */
+export function CheckboxGroup({
+  label,
+  namePrefix,
+  options,
+}: {
+  label: string;
+  namePrefix: string;
+  options: string[];
+}) {
+  return (
+    <fieldset>
+      <span className="text-xs font-semibold tracking-wide text-muted-foreground">
+        {label.toUpperCase()}
+      </span>
+      <div className="mt-2 flex flex-wrap gap-4">
+        {options.map((o) => (
+          <label key={o} className="flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              name={`${namePrefix}_${o}`}
+              className="h-4 w-4 rounded border-input accent-[oklch(0.32_0.13_260)]"
+            />
+            {o}
+          </label>
+        ))}
+      </div>
+    </fieldset>
   );
 }
 

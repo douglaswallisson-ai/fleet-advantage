@@ -43,6 +43,27 @@ const indicacaoSchema = z.object({
 });
 
 /**
+ * Cadastro presencial em stand de evento (ex.: FIT Latinbus 2026). Sem
+ * honeypot — preenchido por vendedor/hostess no tablet do stand, não por
+ * visitante anônimo sujeito a spam de bot.
+ */
+const eventoSchema = z.object({
+  tipo: z.literal("evento"),
+  evento: z.string().trim().max(120).optional().default(""),
+  empresa: z.string().trim().min(2, "Informe a empresa.").max(160),
+  cargo: z.string().trim().max(60).optional().default(""),
+  portfolio_Telemetria: z.string().trim().max(10).optional().default(""),
+  portfolio_Videotelemetria: z.string().trim().max(10).optional().default(""),
+  responsavelSS: z.string().trim().max(60).optional().default(""),
+  observacao: z.string().trim().max(2000).optional().default(""),
+  nome: baseFields.nome,
+  email: baseFields.email,
+  telefone: baseFields.telefone,
+  consentimento: baseFields.consentimento,
+  website: baseFields.website,
+});
+
+/**
  * Mensagem enviada pelo chat flutuante. Formulário curto de propósito: o
  * visitante já está em modo conversa, pedir empresa e porte de frota afugenta.
  * Um campo só de contato aceita e-mail OU telefone.
@@ -66,7 +87,12 @@ const chatSchema = z.object({
   website: z.string().max(0).optional(),
 });
 
-const leadSchema = z.discriminatedUnion("tipo", [contatoSchema, indicacaoSchema, chatSchema]);
+const leadSchema = z.discriminatedUnion("tipo", [
+  contatoSchema,
+  indicacaoSchema,
+  chatSchema,
+  eventoSchema,
+]);
 
 export type LeadPayload = z.infer<typeof leadSchema>;
 

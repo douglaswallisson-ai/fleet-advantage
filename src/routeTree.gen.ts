@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CopilotoRouteImport } from './routes/copiloto'
+import { Route as FitLatinbus2026RouteImport } from './routes/fit-latinbus-2026'
 import { Route as IndicacaoRouteImport } from './routes/indicacao'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
@@ -38,6 +39,11 @@ const ContatoRoute = ContatoRouteImport.update({
 const CopilotoRoute = CopilotoRouteImport.update({
   id: '/copiloto',
   path: '/copiloto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FitLatinbus2026Route = FitLatinbus2026RouteImport.update({
+  id: '/fit-latinbus-2026',
+  path: '/fit-latinbus-2026',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndicacaoRoute = IndicacaoRouteImport.update({
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
+  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
+  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
+  '/fit-latinbus-2026': typeof FitLatinbus2026Route
   '/indicacao': typeof IndicacaoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
+    | '/fit-latinbus-2026'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
+    | '/fit-latinbus-2026'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contato'
     | '/copiloto'
+    | '/fit-latinbus-2026'
     | '/indicacao'
     | '/politica-de-privacidade'
     | '/quem-somos'
@@ -211,6 +223,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   CopilotoRoute: typeof CopilotoRoute
+  FitLatinbus2026Route: typeof FitLatinbus2026Route
   IndicacaoRoute: typeof IndicacaoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   QuemSomosRoute: typeof QuemSomosRoute
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       path: '/copiloto'
       fullPath: '/copiloto'
       preLoaderRoute: typeof CopilotoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fit-latinbus-2026': {
+      id: '/fit-latinbus-2026'
+      path: '/fit-latinbus-2026'
+      fullPath: '/fit-latinbus-2026'
+      preLoaderRoute: typeof FitLatinbus2026RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/indicacao': {
@@ -339,6 +359,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   CopilotoRoute: CopilotoRoute,
+  FitLatinbus2026Route: FitLatinbus2026Route,
   IndicacaoRoute: IndicacaoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   QuemSomosRoute: QuemSomosRoute,
