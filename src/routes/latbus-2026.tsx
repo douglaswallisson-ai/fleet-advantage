@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { SSOrb } from "@/components/site/SSOrb";
 import {
   CheckboxGroup,
   ConsentCheckbox,
@@ -14,6 +13,7 @@ import {
   useLeadForm,
 } from "@/components/site/lead-form";
 import { pageHead } from "@/lib/site-config";
+import heroImg from "@/assets/hero-fleet.webp";
 
 export const Route = createFileRoute("/latbus-2026")({
   component: LatBus2026,
@@ -33,17 +33,28 @@ function LatBus2026() {
     <div className="min-h-screen bg-background">
       <Nav />
       <main>
-        <section className="bg-gradient-hero py-16 text-center text-white">
-          <div className="mx-auto max-w-2xl px-6">
-            <SSOrb size={72} halo className="mx-auto text-brand-green" />
-            <span className="mt-6 block text-xs font-bold tracking-widest text-brand-green">
-              LAT.BUS 2026
-            </span>
-            <h1 className="mt-3 text-3xl font-bold md:text-4xl">Cadastre-se com a SS</h1>
-            <p className="mt-4 text-white/80">
-              Preencha as informações para garantir o direcionamento e o acompanhamento adequado de
-              cada contato.
-            </p>
+        <section className="relative overflow-hidden bg-gradient-hero text-white">
+          <div className="mx-auto grid max-w-5xl items-center gap-10 px-6 py-16 md:grid-cols-2">
+            <div className="text-center md:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-widest backdrop-blur">
+                LAT.BUS 2026
+              </span>
+              <h1 className="mt-5 text-3xl font-bold leading-tight md:text-4xl">
+                Cadastre-se com a <span className="text-gradient">SS</span>
+              </h1>
+              <p className="mx-auto mt-4 max-w-md text-white/80 md:mx-0">
+                Preencha as informações para garantir o direcionamento e o acompanhamento adequado
+                de cada contato.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-3xl shadow-elegant">
+              <img
+                src={heroImg}
+                alt="Frota monitorada pela telemetria da SS Telemática"
+                loading="eager"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </section>
 
