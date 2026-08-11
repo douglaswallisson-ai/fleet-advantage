@@ -13,7 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CopilotoRouteImport } from './routes/copiloto'
 import { Route as IndicacaoRouteImport } from './routes/indicacao'
-import { Route as Latinbus2026RouteImport } from './routes/latinbus-2026'
+import { Route as Latbus2026RouteImport } from './routes/latbus-2026'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as SeloVerdeRouteImport } from './routes/selo-verde'
@@ -46,9 +46,9 @@ const IndicacaoRoute = IndicacaoRouteImport.update({
   path: '/indicacao',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Latinbus2026Route = Latinbus2026RouteImport.update({
-  id: '/latinbus-2026',
-  path: '/latinbus-2026',
+const Latbus2026Route = Latbus2026RouteImport.update({
+  id: '/latbus-2026',
+  path: '/latbus-2026',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -112,7 +112,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
-  '/latinbus-2026': typeof Latinbus2026Route
+  '/latbus-2026': typeof Latbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -130,7 +130,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
-  '/latinbus-2026': typeof Latinbus2026Route
+  '/latbus-2026': typeof Latbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -149,7 +149,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/copiloto': typeof CopilotoRoute
   '/indicacao': typeof IndicacaoRoute
-  '/latinbus-2026': typeof Latinbus2026Route
+  '/latbus-2026': typeof Latbus2026Route
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/quem-somos': typeof QuemSomosRoute
   '/selo-verde': typeof SeloVerdeRoute
@@ -169,7 +169,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/copiloto'
     | '/indicacao'
-    | '/latinbus-2026'
+    | '/latbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -187,7 +187,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/copiloto'
     | '/indicacao'
-    | '/latinbus-2026'
+    | '/latbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -205,7 +205,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/copiloto'
     | '/indicacao'
-    | '/latinbus-2026'
+    | '/latbus-2026'
     | '/politica-de-privacidade'
     | '/quem-somos'
     | '/selo-verde'
@@ -224,7 +224,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   CopilotoRoute: typeof CopilotoRoute
   IndicacaoRoute: typeof IndicacaoRoute
-  Latinbus2026Route: typeof Latinbus2026Route
+  Latbus2026Route: typeof Latbus2026Route
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   QuemSomosRoute: typeof QuemSomosRoute
   SeloVerdeRoute: typeof SeloVerdeRoute
@@ -268,11 +268,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndicacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/latinbus-2026': {
-      id: '/latinbus-2026'
-      path: '/latinbus-2026'
-      fullPath: '/latinbus-2026'
-      preLoaderRoute: typeof Latinbus2026RouteImport
+    '/latbus-2026': {
+      id: '/latbus-2026'
+      path: '/latbus-2026'
+      fullPath: '/latbus-2026'
+      preLoaderRoute: typeof Latbus2026RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -360,7 +360,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   CopilotoRoute: CopilotoRoute,
   IndicacaoRoute: IndicacaoRoute,
-  Latinbus2026Route: Latinbus2026Route,
+  Latbus2026Route: Latbus2026Route,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   QuemSomosRoute: QuemSomosRoute,
   SeloVerdeRoute: SeloVerdeRoute,
