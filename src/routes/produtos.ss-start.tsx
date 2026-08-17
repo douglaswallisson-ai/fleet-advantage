@@ -4,7 +4,8 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
 import { TiersRecap } from "@/components/site/TiersRecap";
-import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+// Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
+// import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import heroImg from "@/assets/hero-fleet.webp";
@@ -30,7 +31,7 @@ function SSStart() {
         <ComoFunciona />
         <Relatorios />
         <ParaQuemE />
-        <ReferralTeaser />
+        {/* <ReferralTeaser /> */}
         <TiersRecap compact activeName="SS Start" />
       </main>
       <Footer />

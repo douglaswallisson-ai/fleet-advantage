@@ -82,7 +82,7 @@ export const MEDIA = {
   // Vídeos dos cards/blocos de produto na home. Cada um substitui a imagem
   // correspondente. Coloque o arquivo em public/videos/ e aponte o caminho.
   // O <Media> usa a imagem atual como "poster" enquanto o vídeo carrega.
-  iaFleetManager: "", // card de destaque (IA Fleet Manager)
+  aiFleetManager: "", // card de destaque (AI Fleet Manager)
   pneus: "", // card "Monitoramento de Pneus"
   cameras: "", // card "Câmeras com IA a bordo"
   euro6: "", // card "Regeneração EURO 6"

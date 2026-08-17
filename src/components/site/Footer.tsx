@@ -3,7 +3,7 @@ import logo from "@/assets/ss-logo.png.asset.json";
 import { CONTACT, SITE } from "@/lib/site-config";
 
 const PRODUTOS = [
-  { label: "IA Fleet Manager", href: "/#solucoes" },
+  { label: "AI Fleet Manager", href: "/#solucoes" },
   { label: "Monitoramento de Pneus", href: "/#solucoes" },
   { label: "Câmeras com IA", href: "/#solucoes" },
   { label: "Copiloto do Motorista", href: "/#copiloto" },
@@ -57,11 +57,13 @@ export function Footer() {
                   Blog
                 </Link>
               </li>
+              {/* Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
               <li>
                 <Link to="/indicacao" className="transition-colors hover:text-white">
                   Programa de Indicação
                 </Link>
               </li>
+              */}
               <li>
                 <Link to="/contato" className="transition-colors hover:text-white">
                   Contato

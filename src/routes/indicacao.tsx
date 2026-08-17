@@ -12,7 +12,8 @@ import {
   useLeadForm,
 } from "@/components/site/lead-form";
 import { Backdrop } from "@/components/site/Backdrop";
-import { ReferralCalculator } from "@/components/site/ReferralCalculator";
+// Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
+// import { ReferralCalculator } from "@/components/site/ReferralCalculator";
 import { CONTACT, FOTOS, MEDIA, pageHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/indicacao")({
@@ -114,9 +115,7 @@ function Indicacao() {
               3% sobre o valor de 12 meses do contrato fechado pelo indicado. Sem teto — indique
               quantas empresas quiser.
             </p>
-            <div className="mt-12">
-              <ReferralCalculator />
-            </div>
+            <div className="mt-12">{/* <ReferralCalculator /> */}</div>
             <p className="mt-6 text-center text-xs text-muted-foreground">
               Valores válidos para contratos assinados e veículos efetivamente ativados.{" "}
               <a href="#regulamento" className="underline hover:text-primary">

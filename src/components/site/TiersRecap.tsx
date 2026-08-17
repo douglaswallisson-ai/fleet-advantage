@@ -48,7 +48,7 @@ export const TIERS: Tier[] = [
     desc: "Plano de ação pronto para a sua frota. O gestor chega e já encontra a decisão certa, não um painel para interpretar.",
     features: [
       "Tudo do SS Performance",
-      "IA Fleet Manager — plano de ação automatizado",
+      "AI Fleet Manager — plano de ação automatizado",
       "Integração ERP/TMS",
       "SLA dedicado + CSM",
       "Selo Verde ESG",

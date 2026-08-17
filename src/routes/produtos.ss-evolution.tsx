@@ -4,7 +4,8 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
 import { TiersRecap } from "@/components/site/TiersRecap";
-import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+// Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
+// import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import managerImg from "@/assets/ai-fleet-manager.webp";
@@ -14,9 +15,9 @@ export const Route = createFileRoute("/produtos/ss-evolution")({
   head: () =>
     pageHead({
       path: "/produtos/ss-evolution",
-      title: "SS Evolution — IA Fleet Manager | SS Telemática",
+      title: "SS Evolution — AI Fleet Manager | SS Telemática",
       description:
-        "IA Fleet Manager, integrações ERP/TMS e SLA dedicado para frotas que buscam automação de decisão em escala.",
+        "AI Fleet Manager, integrações ERP/TMS e SLA dedicado para frotas que buscam automação de decisão em escala.",
     }),
 });
 
@@ -30,7 +31,7 @@ function SSEvolution() {
         <FleetManager />
         <Integracoes />
         <ParaQuemE />
-        <ReferralTeaser />
+        {/* <ReferralTeaser /> */}
         <TiersRecap compact activeName="SS Evolution" />
       </main>
       <Footer />
@@ -71,19 +72,19 @@ function FleetManager() {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
-          <span className="text-xs font-bold tracking-widest text-brand-sky">IA FLEET MANAGER</span>
+          <span className="text-xs font-bold tracking-widest text-brand-sky">AI FLEET MANAGER</span>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl">
             Uma lista do que <span className="text-gradient">fazer primeiro</span>, não uma tela
             cheia de números
           </h2>
           <p className="mt-5 text-muted-foreground">
-            O IA Fleet Manager reúne os sinais de consumo, comportamento e operação de toda a frota
+            O AI Fleet Manager reúne os sinais de consumo, comportamento e operação de toda a frota
             — a mesma base de dados do SS Performance — e organiza isso em um plano de ação
             priorizado. Em vez de o gestor abrir vários dashboards para descobrir onde agir, a
             plataforma já aponta a prioridade.
           </p>
           <ul className="mt-6 space-y-2.5 text-sm">
-            {["Tudo do SS Performance", "IA Fleet Manager — plano de ação automatizado"].map(
+            {["Tudo do SS Performance", "AI Fleet Manager — plano de ação automatizado"].map(
               (f) => (
                 <li key={f} className="flex items-start gap-2">
                   <ListChecks className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" />

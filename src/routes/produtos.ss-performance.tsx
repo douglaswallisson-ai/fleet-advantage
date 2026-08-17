@@ -4,7 +4,8 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Backdrop } from "@/components/site/Backdrop";
 import { TiersRecap } from "@/components/site/TiersRecap";
-import { ReferralTeaser } from "@/components/site/ReferralTeaser";
+// Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
+// import { ReferralTeaser } from "@/components/site/ReferralTeaser";
 import { RoiTrustBar } from "@/components/site/RoiTrustBar";
 import { pageHead } from "@/lib/site-config";
 import cameraImg from "@/assets/ai-camera-monitor.webp";
@@ -33,7 +34,7 @@ function SSPerformance() {
         <Euro6 />
         <Rentabilidade />
         <ParaQuemE />
-        <ReferralTeaser />
+        {/* <ReferralTeaser /> */}
         <TiersRecap compact activeName="SS Performance" />
       </main>
       <Footer />

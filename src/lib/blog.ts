@@ -56,7 +56,7 @@ export const POSTS: Post[] = [
       {
         tipo: "p",
         texto:
-          "A virada é simples de enunciar e difícil de executar: em vez de mostrar tudo, mostrar as poucas ações que mais movem o resultado hoje. É o que faz o IA Fleet Manager da SS — lê milhões de eventos e devolve as três decisões de maior impacto.",
+          "A virada é simples de enunciar e difícil de executar: em vez de mostrar tudo, mostrar as poucas ações que mais movem o resultado hoje. É o que faz o AI Fleet Manager da SS — lê milhões de eventos e devolve as três decisões de maior impacto.",
       },
       {
         tipo: "ul",

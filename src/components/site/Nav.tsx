@@ -18,7 +18,7 @@ const NAV: NavEntry[] = [
   {
     label: "Plataforma",
     items: [
-      { label: "Soluções", href: "/#solucoes", desc: "IA Fleet Manager, pneus, câmeras e EURO 6" },
+      { label: "Soluções", href: "/#solucoes", desc: "AI Fleet Manager, pneus, câmeras e EURO 6" },
       { label: "Copiloto do Motorista", href: "/#copiloto", desc: "A Selma acompanha o motorista" },
       { label: "Clube SS", href: "/#clube", desc: "Fidelidade para motoristas" },
       { label: "Selo Verde", to: "/selo-verde", desc: "Certificação de redução de CO₂" },
@@ -30,7 +30,8 @@ const NAV: NavEntry[] = [
     items: [
       { label: "Quem Somos", to: "/quem-somos", desc: "História, propósito e valores" },
       { label: "Blog", to: "/blog", desc: "Ideias sobre frota, IA e decisão" },
-      { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
+      // Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
+      // { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
     ],
   },
 ];

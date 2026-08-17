@@ -45,7 +45,7 @@ function QuemSomos() {
           <div className="grid gap-16 lg:grid-cols-2 items-center">
             <img
               src="/imagens-ss/fleet-manager/ss-ia-priorizacao-clara.webp"
-              alt="Recomendação priorizada da IA Fleet Manager para a equipe de manutenção"
+              alt="Recomendação priorizada da AI Fleet Manager para a equipe de manutenção"
               loading="lazy"
               className="rounded-3xl shadow-elegant"
               width={1600}

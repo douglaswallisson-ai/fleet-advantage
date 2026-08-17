@@ -47,7 +47,7 @@ export const Route = createFileRoute("/")({
       description:
         "IA que transforma dados de frota em decisões: redução de custos, monitoramento de pneus, copiloto do motorista e clube de fidelidade. O novo padrão em gestão de frotas.",
       ogDescription:
-        "IA Fleet Manager, copiloto do motorista, monitoramento inteligente de pneus e clube de fidelidade. A telemática que decide junto com você.",
+        "AI Fleet Manager, copiloto do motorista, monitoramento inteligente de pneus e clube de fidelidade. A telemática que decide junto com você.",
     }),
     scripts: [
       {
@@ -291,7 +291,7 @@ function Features() {
           <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-green px-3 py-1 text-[10px] font-bold tracking-wider text-[oklch(0.15_0.03_260)]">
             <Brain className="h-3 w-3" /> DESTAQUE
           </span>
-          <h3 className="mt-5 text-3xl font-bold md:text-4xl">IA Fleet Manager</h3>
+          <h3 className="mt-5 text-3xl font-bold md:text-4xl">AI Fleet Manager</h3>
           <p className="mt-3 text-base leading-relaxed text-white/75">
             O primeiro gestor virtual de frotas do Brasil. A IA da SS analisa milhões de eventos por
             dia e devolve as 3 ações que mais impactam o resultado da sua operação — hoje.
@@ -312,7 +312,7 @@ function Features() {
         <div className="relative overflow-hidden">
           <Carrossel
             imagens={FOTOS.fleetManager}
-            alt="IA Fleet Manager da SS"
+            alt="AI Fleet Manager da SS"
             aspect="aspect-[16/9] h-full"
             fit="cover"
           />
@@ -609,12 +609,14 @@ function CTA() {
           >
             Agendar demo <ArrowRight className="h-4 w-4" />
           </Link>
+          {/* Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
           <Link
             to="/indicacao"
             className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:bg-secondary"
           >
             Ganhar indicando →
           </Link>
+          */}
         </div>
       </div>
     </section>
