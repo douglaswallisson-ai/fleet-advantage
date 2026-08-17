@@ -74,6 +74,7 @@ function Home() {
       <main>
         <Hero />
         <Positioning />
+        <Clientes />
         <Features />
         <GaleriaFrota />
         <DriverCopilot />
@@ -207,6 +208,44 @@ function Positioning() {
                 <p className="text-sm text-muted-foreground line-through">{from}</p>
                 <p className="mt-1 text-base font-semibold text-foreground">→ {to}</p>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Clientes() {
+  const logos = [
+    { nome: "Saritur", src: "/imagens-ss/clientes/saritur.webp" },
+    { nome: "Fertran", src: "/imagens-ss/clientes/fertran.webp" },
+    { nome: "Aperam", src: "/imagens-ss/clientes/aperam.webp" },
+    { nome: "Consórcio Fênix", src: "/imagens-ss/clientes/consorcio-fenix.webp" },
+    { nome: "Turin", src: "/imagens-ss/clientes/turin.webp" },
+    { nome: "Rouxinol", src: "/imagens-ss/clientes/rouxinol.webp" },
+    { nome: "Presidente", src: "/imagens-ss/clientes/presidente.webp" },
+    { nome: "Grupo CSC", src: "/imagens-ss/clientes/csc.webp" },
+    { nome: "Santa Edwiges", src: "/imagens-ss/clientes/santa-edwiges.webp" },
+  ];
+  return (
+    <section className="py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <p className="text-center text-xs font-bold tracking-widest text-muted-foreground">
+          FROTAS QUE JÁ DECIDEM COM A SS
+        </p>
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+          {logos.map((l) => (
+            <div
+              key={l.nome}
+              className="flex h-20 items-center justify-center rounded-2xl border border-border bg-white p-4"
+            >
+              <img
+                src={l.src}
+                alt={l.nome}
+                loading="lazy"
+                className="max-h-10 w-auto max-w-full object-contain"
+              />
             </div>
           ))}
         </div>
