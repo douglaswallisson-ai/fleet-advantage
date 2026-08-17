@@ -168,13 +168,26 @@
   will-change: transform;
 }
 
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-scroll 30s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .ss-orb-ring,
   .ss-orb-halo,
-  .animate-ken-burns {
+  .animate-ken-burns,
+  .animate-marquee {
     animation: none;
   }
 }

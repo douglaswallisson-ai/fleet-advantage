@@ -230,21 +230,24 @@ function Clientes() {
   ];
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-7xl px-6">
-        <p className="text-center text-xs font-bold tracking-widest text-muted-foreground">
-          FROTAS QUE JÁ DECIDEM COM A SS
-        </p>
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-          {logos.map((l) => (
+      <p className="text-center text-xs font-bold tracking-widest text-muted-foreground">
+        FROTAS QUE JÁ DECIDEM COM A SS
+      </p>
+      <div className="relative mt-8 overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-32" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-32" />
+        <div className="flex w-max animate-marquee gap-6">
+          {[...logos, ...logos].map((l, i) => (
             <div
-              key={l.nome}
-              className="flex h-20 items-center justify-center rounded-2xl border border-border bg-white p-4"
+              key={`${l.nome}-${i}`}
+              aria-hidden={i >= logos.length ? true : undefined}
+              className="flex h-32 w-56 shrink-0 items-center justify-center rounded-2xl border border-border bg-white p-6"
             >
               <img
                 src={l.src}
                 alt={l.nome}
                 loading="lazy"
-                className="max-h-10 w-auto max-w-full object-contain"
+                className="max-h-16 w-auto max-w-full object-contain"
               />
             </div>
           ))}
