@@ -32,7 +32,7 @@ Tudo já está ligado com os IDs reais:
 
 | | ID | Situação |
 |---|---|---|
-| GTM | `GTM-MD5RMDC4` | Carregando, sem tags configuradas ainda |
+| GTM | `GTM-PTNCCVB9` | Carregando, sem tags configuradas ainda |
 | GA4 | `G-RSDMNS5KE5` | Carregando direto pelo site |
 | Apollo | `699eff9dee7a1c00119c7cc8` | Carrega após aceite de marketing |
 
@@ -60,15 +60,23 @@ Para desligar o Apollo, por exemplo, basta esvaziar `apolloAppId`.
 Se preferir não versionar os IDs, as variáveis `VITE_GTM_ID`, `VITE_GA4_ID` e
 `VITE_APOLLO_APP_ID` têm prioridade sobre o arquivo.
 
-### Nunca colar o snippet do GA4 no site
+### Nunca colar os snippets que o Google entrega
 
-O Google entrega um bloco `<script>` pronto ao criar o fluxo. **Ele não deve ser
-colado em lugar nenhum deste projeto.** O código já carrega o GA4 com esse mesmo
-ID, e sob consentimento — colar o snippet duplicaria a contagem e furaria o
-banner de cookies, porque o snippet do Google não respeita o Consent Mode
-declarado aqui.
+Tanto o GA4 quanto o GTM entregam um bloco `<script>` pronto na tela de
+instalação. **Nenhum dos dois deve ser colado neste projeto.**
 
-Do snippet, o que importa é só o ID.
+O código já carrega os dois, com esses mesmos IDs e sob consentimento. Colar os
+snippets duplicaria a contagem e furaria o banner de cookies — os snippets do
+Google não conhecem o Consent Mode declarado aqui e disparam antes de o
+visitante decidir.
+
+Dos snippets, o que importa é só o ID.
+
+**O `<noscript>` do GTM também fica de fora.** Ele existe para visitantes sem
+JavaScript, e é justamente aí que o problema aparece: o banner de consentimento
+é React, então sem JavaScript ele não roda. O iframe rastrearia essas visitas
+sem consentimento nenhum. Como o site é uma aplicação React que também não
+funciona sem JavaScript, a perda de medição é irrelevante.
 
 ## Consentimento (LGPD)
 
