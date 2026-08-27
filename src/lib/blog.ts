@@ -14,6 +14,7 @@ export type Bloco =
   | { tipo: "h2"; texto: string }
   | { tipo: "p"; texto: string }
   | { tipo: "ul"; itens: string[] }
+  | { tipo: "ol"; itens: string[] }
   | { tipo: "img"; src: string; alt: string };
 
 export type Post = {
@@ -211,6 +212,153 @@ export const POSTS: Post[] = [
       },
     ],
   },
+  {
+    slug: "obd-ii-ou-can-bus-diferenca-diesel",
+    titulo: "OBD-II ou barramento CAN? A diferença aparece no diesel",
+    resumo:
+      "Duas propostas de telemetria podem parecer iguais na apresentação e entregar coisas completamente diferentes na operação. A diferença está em quantos dados o equipamento consegue ler de dentro do veículo.",
+    data: "2026-08-27",
+    categoria: "Tecnologia",
+    cover: "",
+    body: [
+      {
+        tipo: "p",
+        texto:
+          "Se você já pediu orçamento de telemetria para a sua frota, provavelmente reparou numa coisa estranha: os preços variam muito mais do que as descrições. Duas propostas dizem quase a mesma coisa — rastreamento em tempo real, relatórios, alertas, telemetria — e uma custa uma fração da outra.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Não é margem. Na maioria das vezes, é tecnologia diferente sendo chamada pelo mesmo nome.",
+      },
+      { tipo: "h2", texto: "Duas formas de ler um veículo" },
+      {
+        tipo: "p",
+        texto:
+          "Todo veículo moderno tem uma rede interna de comunicação. É por ela que o computador do motor avisa o câmbio qual é a rotação, e o freio avisa quanto o veículo está andando. Essa rede se chama barramento CAN, e é por ali que passa tudo que o veículo sabe sobre si mesmo.",
+      },
+      { tipo: "p", texto: "Existem duas maneiras de tirar informação de lá." },
+      {
+        tipo: "p",
+        texto:
+          "A primeira é pela porta OBD-II. É aquele conector de 16 pinos que fica embaixo do painel dos carros. Ele foi criado por lei, nos anos 90, com um objetivo específico: permitir que qualquer oficina verifique se o sistema de controle de poluição do carro está funcionando. Não foi feito para gestão de frota — foi feito para teste de emissões.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Um aparelho plugado nessa porta funciona por pergunta e resposta. Ele envia uma requisição pedindo um dado, espera o computador do motor responder, recebe, e só então pode pedir o próximo. É como ligar para a portaria para perguntar uma coisa, desligar, e ligar de novo para perguntar outra. Quanto mais informações você quer acompanhar, mais devagar cada uma delas é atualizada.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "A segunda é lendo o barramento diretamente. Aqui não há pergunta nenhuma. As centrais eletrônicas do veículo já estão transmitindo tudo continuamente — elas precisam fazer isso para o veículo funcionar. O equipamento apenas escuta. A rotação do motor é atualizada cinquenta vezes por segundo. O consumo de combustível, dez vezes por segundo.",
+      },
+      { tipo: "h2", texto: "O ponto que confunde quase todo mundo: e os pesados?" },
+      {
+        tipo: "p",
+        texto: "Aqui mora a confusão mais comum do setor, e vale desfazer com cuidado.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Ônibus e caminhões têm, sim, um sistema de autodiagnóstico obrigatório. O Proconve P7 exige isso desde 2012, e o Proconve P8 — equivalente brasileiro do Euro 6, obrigatório em veículos novos desde janeiro de 2023 — ampliou bastante essa exigência.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Só que esse sistema serve para uma coisa só: verificar se o controle de poluição está funcionando. Nível de ARLA 32, estado do filtro de particulado, sensores de emissões. É diagnóstico ambiental, não gestão de frota.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "E ele não fica na porta de 16 pinos do carro de passeio. Veículos pesados usam um conector diferente e um protocolo diferente, chamado J1939, que é o idioma que ônibus e caminhões falam dentro do barramento CAN.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Então a frase correta é esta: veículos pesados têm OBD, mas é OBD de emissões — e os dados que interessam para economia de combustível estão em outro lugar da rede.",
+      },
+      { tipo: "h2", texto: "O que isso muda na prática" },
+      {
+        tipo: "p",
+        texto: "A diferença não é acadêmica. Ela define quais decisões você consegue tomar.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Lendo apenas o que a porta de diagnóstico oferece, você acompanha rotação, velocidade, quilometragem e códigos de falha genéricos. Dá para saber que o veículo rodou, por onde andou e quanto tempo ficou parado.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Lendo o barramento diretamente, entram informações que simplesmente não existem do outro lado:",
+      },
+      {
+        tipo: "ul",
+        itens: [
+          "Consumo instantâneo medido pelo próprio motor, em litros por hora — não estimado por cálculo indireto.",
+          "Consumo acumulado, o total real gasto no período.",
+          "Marcha engatada, que mostra quem está rodando na faixa errada de rotação.",
+          "Uso do freio motor, que separa condução econômica de condução que só desgasta freio.",
+          "Torque e carga real do motor, que mostram quem está forçando a máquina.",
+          "Nível e consumo de ARLA 32 e estado da regeneração do filtro.",
+          "Horímetro, peso por eixo, dados de freio e de tacógrafo.",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "Repare no fio que une essa lista. É tudo aquilo que responde como o veículo rodou — não apenas que ele rodou.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "E é aí que está o dinheiro. Combustível é a segunda maior despesa de uma operação de transporte, atrás apenas da folha. Qualquer programa de economia de diesel depende de uma coisa antes de qualquer outra: medir o consumo, não estimá-lo. Um sistema que calcula o gasto por dedução tem margem de erro de vários pontos percentuais — o suficiente para inviabilizar a conta que justificou a contratação.",
+      },
+      { tipo: "h2", texto: "Cinco perguntas para fazer ao seu fornecedor" },
+      {
+        tipo: "p",
+        texto:
+          "Você não precisa entender de protocolo para separar uma coisa da outra. Precisa fazer as perguntas certas. Estas cinco resolvem em cinco minutos:",
+      },
+      {
+        tipo: "ol",
+        itens: [
+          "O sistema mostra o consumo instantâneo, em litros por hora, medido pela central eletrônica do motor?",
+          "Consigo ver a marcha engatada e o uso do freio motor por trecho da rota?",
+          "O equipamento acompanha o nível e o consumo de ARLA 32?",
+          "Como o equipamento é instalado — plugado numa porta acessível ou fixo, ligado ao barramento?",
+          "Quantos parâmetros ele lê nos modelos de veículo que eu tenho na frota, especificamente?",
+        ],
+      },
+      {
+        tipo: "p",
+        texto:
+          "A última é a mais reveladora. Cada montadora organiza seus dados de um jeito, e cobrir Mercedes-Benz, Volvo, Scania, Volkswagen, Iveco e DAF exige um trabalho de mapeamento que leva anos. A resposta a essa pergunta costuma separar quem lê o barramento de verdade de quem lê um pouco.",
+      },
+      { tipo: "h2", texto: "Onde a SS Telemática está nessa história" },
+      {
+        tipo: "p",
+        texto:
+          "A leitura direta do barramento CAN é o que a SS faz desde sempre, em frota pesada de transporte de passageiros e de carga. Não é um módulo adicional nem um pacote premium — é o ponto de partida do produto.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "E vale dizer com todas as letras: não estamos pedindo que você acredite na nossa palavra. Estamos sugerindo que você faça as cinco perguntas acima para todos os fornecedores que estiver avaliando, inclusive para nós. Se a resposta de alguém for melhor que a nossa, é o fornecedor certo.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "O que não recomendamos é comparar apenas a mensalidade. Ela é a parte mais fácil de comparar e a menos importante da conta.",
+      },
+      {
+        tipo: "p",
+        texto:
+          "Quer testar na sua frota? Podemos rodar um diagnóstico nos modelos que você tem hoje e mostrar exatamente quais parâmetros conseguimos ler em cada um. Sem compromisso.",
+      },
+    ],
+  },
 ];
 
 /** Posts ordenados do mais recente para o mais antigo. */
@@ -222,7 +370,7 @@ export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
 export function leituraMinutos(post: Post) {
   if (post.leituraMin) return post.leituraMin;
   const palavras = post.body.reduce((n, b) => {
-    if (b.tipo === "ul") return n + b.itens.join(" ").split(/\s+/).length;
+    if (b.tipo === "ul" || b.tipo === "ol") return n + b.itens.join(" ").split(/\s+/).length;
     if (b.tipo === "img") return n;
     return n + b.texto.split(/\s+/).length;
   }, 0);

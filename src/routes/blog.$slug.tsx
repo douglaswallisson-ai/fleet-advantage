@@ -176,6 +176,20 @@ function PostBody({ post }: { post: Post }) {
             </ul>
           );
         }
+        if (b.tipo === "ol") {
+          return (
+            <ol key={i} className="space-y-3">
+              {b.itens.map((item, idx) => (
+                <li key={item} className="flex items-start gap-3 text-base text-muted-foreground">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-sm font-bold text-[oklch(0.3_0.12_138)]">
+                    {idx + 1}
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          );
+        }
         if (b.tipo === "img") {
           return (
             <div key={i} className="overflow-hidden rounded-2xl shadow-card">
