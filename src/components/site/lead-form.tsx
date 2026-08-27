@@ -2,6 +2,8 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 
+import { track } from "@/lib/analytics";
+
 type Status = "idle" | "sending" | "ok" | "error";
 
 /**
@@ -37,6 +39,13 @@ export function useLeadForm(tipo: "contato" | "indicacao" | "evento") {
       };
 
       if (!res.ok || !body.ok) {
+        // Formulário que dá erro é lead perdido. Medir isso mostra se o
+        // problema é de validação (campo chato) ou de servidor.
+        track("form_erro", {
+          form_tipo: tipo,
+          motivo: body.fieldErrors ? "validacao" : "servidor",
+          campos: body.fieldErrors ? Object.keys(body.fieldErrors).join(",") : undefined,
+        });
         setFieldErrors(body.fieldErrors ?? {});
         setStatus("error");
         setMessage(
@@ -47,9 +56,23 @@ export function useLeadForm(tipo: "contato" | "indicacao" | "evento") {
         return;
       }
 
+      /**
+       * `generate_lead` é evento recomendado do GA4 — cai direto nos relatórios
+       * de conversão. Só metadado: nome, e-mail e telefone NÃO vão para o
+       * Google (é proibido pelos termos de uso e desnecessário aqui — o lead
+       * já chegou por /api/leads).
+       */
+      track("generate_lead", {
+        form_tipo: tipo,
+        frota: typeof data.frota === "string" ? data.frota : undefined,
+        segmento: typeof data.segmento === "string" ? data.segmento : undefined,
+        page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      });
+
       form.reset();
       setStatus("ok");
     } catch {
+      track("form_erro", { form_tipo: tipo, motivo: "rede" });
       setStatus("error");
       setMessage("Sem conexão com o servidor. Tente de novo em instantes.");
     }

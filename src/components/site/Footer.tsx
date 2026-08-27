@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/ss-logo.png.asset.json";
 import { CONTACT, SITE } from "@/lib/site-config";
+import { OPEN_CONSENT_EVENT } from "@/lib/analytics";
 
 const PRODUTOS = [
   { label: "AI Fleet Manager", href: "/#solucoes" },
@@ -73,6 +74,17 @@ export function Footer() {
                 <Link to="/politica-de-privacidade" className="transition-colors hover:text-white">
                   Política de Privacidade
                 </Link>
+              </li>
+              <li>
+                {/* Reabre o painel de consentimento. A LGPD exige que revogar
+                    seja tão fácil quanto consentir — por isso fica no rodapé,
+                    visível em todas as páginas. */}
+                <button
+                  onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+                  className="text-left transition-colors hover:text-white"
+                >
+                  Preferências de cookies
+                </button>
               </li>
             </ul>
           </div>

@@ -205,6 +205,30 @@ export const IMAGENS = {
     "https://forbes.com.br/wp-content/uploads/2022/02/Agro_Estados-Unidos-terao-US-1-bilhao-para-promover-agricultura-mais-sustentavel.jpg",
 };
 
+/**
+ * Medição do site. Cada ID vazio significa "não carrega" — o site funciona
+ * normalmente sem nenhum deles.
+ *
+ *  - `gtmId`     Google Tag Manager (GTM-XXXXXXX). Recomendado: com ele, toda
+ *                ferramenta futura entra pelo painel, sem mexer no código.
+ *  - `ga4Id`     GA4 (G-XXXXXXXXXX). Só é carregado direto quando NÃO há GTM.
+ *                Com os dois preenchidos, o GA4 deve ser configurado dentro do
+ *                GTM — senão cada pageview conta duas vezes.
+ *  - `apolloAppId`  Apollo. Identifica a EMPRESA do visitante por IP reverso.
+ *                Identificação de pessoa (nome/e-mail) só funciona nos EUA, e o
+ *                acerto depende de o visitante estar em rede corporativa com IP
+ *                mapeado — quem acessa por celular ou 4G não aparece.
+ *
+ * Dá para sobrescrever por variável de ambiente (VITE_GTM_ID, VITE_GA4_ID,
+ * VITE_APOLLO_APP_ID) sem tocar neste arquivo. Ver docs/ANALYTICS.md.
+ */
+export const ANALYTICS = {
+  gtmId: (import.meta.env?.VITE_GTM_ID as string | undefined) ?? "",
+  ga4Id: (import.meta.env?.VITE_GA4_ID as string | undefined) ?? "",
+  apolloAppId:
+    (import.meta.env?.VITE_APOLLO_APP_ID as string | undefined) ?? "699eff9dee7a1c00119c7cc8",
+};
+
 export const CONTACT = {
   email: "sales@sstelematica.com.br",
   phone: "+55 31 98403-3906",

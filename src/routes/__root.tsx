@@ -12,6 +12,9 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatWidget } from "../components/site/ChatWidget";
+import { Analytics } from "../components/site/Analytics";
+import { CookieConsent } from "../components/site/CookieConsent";
+import { consentBootstrapScript } from "../lib/analytics";
 import { CONTACT, SITE, SITE_URL, absoluteUrl, socialUrls } from "../lib/site-config";
 
 const organizationJsonLd = {
@@ -123,6 +126,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [
+      // Precisa ser o primeiro script da página: declara todo consentimento como
+      // negado antes de qualquer tag do Google subir. Não faz requisição nenhuma.
+      { children: consentBootstrapScript },
       { type: "application/ld+json", children: JSON.stringify(organizationJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
     ],
@@ -165,6 +171,8 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <ChatWidget />
+      <Analytics />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }

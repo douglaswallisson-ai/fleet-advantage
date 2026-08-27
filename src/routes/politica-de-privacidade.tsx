@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { CONTACT, SITE, pageHead } from "@/lib/site-config";
+import { OPEN_CONSENT_EVENT } from "@/lib/analytics";
 
 export const Route = createFileRoute("/politica-de-privacidade")({
   component: Privacidade,
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/politica-de-privacidade")({
     }),
 });
 
-const UPDATED_AT = "23 de julho de 2026";
+const UPDATED_AT = "27 de agosto de 2026";
 
 function Privacidade() {
   return (
@@ -65,13 +66,47 @@ function Privacidade() {
               </li>
             </ul>
             <p>
-              Este site não usa cookies de publicidade nem rastreamento de terceiros. Não coletamos
+              Também usamos cookies e ferramentas de medição, detalhados na seção 3. Não coletamos
               dados sensíveis nem dados bancários por meio deste site — a chave PIX do Programa de
               Indicação é solicitada em canal próprio, após a ativação do contrato.
             </p>
           </Block>
 
-          <Block title="3. Para que usamos">
+          <Block title="3. Cookies e ferramentas de medição">
+            <p>
+              Além dos cookies essenciais — que só fazem o site funcionar e guardar a sua escolha
+              aqui —, usamos duas ferramentas de terceiros. Nenhuma delas carrega antes de você
+              decidir no banner de cookies.
+            </p>
+            <ul>
+              <li>
+                <strong>Google Analytics (GA4):</strong> mede audiência de forma agregada — número
+                de visitas, origem do tráfego, páginas acessadas e tempo de permanência. Não
+                identifica você individualmente e não recebe seu nome, e-mail ou telefone.
+              </li>
+              <li>
+                <strong>Apollo:</strong> tenta identificar a <em>empresa</em> do visitante a partir
+                do endereço IP de rede corporativa, para que nosso time comercial saiba quais
+                organizações demonstraram interesse. Não identifica pessoas físicas.
+              </li>
+            </ul>
+            <p>
+              Base legal: consentimento (art. 7º, I) para as duas ferramentas, e legítimo interesse
+              (art. 7º, IX) para os cookies essenciais. Os dados podem ser tratados em servidores
+              fora do Brasil, conforme os contratos e cláusulas-padrão de cada fornecedor.
+            </p>
+            <p>Você pode mudar de ideia quando quiser, sem prejuízo nenhum ao uso do site:</p>
+            <p>
+              <button
+                onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+                className="rounded-full border border-input px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
+              >
+                Revisar minhas preferências de cookies
+              </button>
+            </p>
+          </Block>
+
+          <Block title="4. Para que usamos">
             <ul>
               <li>Responder à sua solicitação e conduzir a negociação comercial.</li>
               <li>Entrar em contato com a empresa indicada e apurar a recompensa do programa.</li>
@@ -83,7 +118,7 @@ function Privacidade() {
             </p>
           </Block>
 
-          <Block title="4. Se você indicou alguém">
+          <Block title="5. Se você indicou alguém">
             <p>
               Ao indicar um contato, você declara ter autorização dessa pessoa para compartilhar os
               dados dela conosco. Ao primeiro contato, informamos ao indicado quem fez a indicação e
@@ -91,15 +126,16 @@ function Privacidade() {
             </p>
           </Block>
 
-          <Block title="5. Com quem compartilhamos">
+          <Block title="6. Com quem compartilhamos">
             <p>
               Com fornecedores de infraestrutura, e-mail e CRM estritamente necessários para operar
-              o atendimento, sempre sob obrigação contratual de confidencialidade. Não vendemos
-              dados pessoais.
+              o atendimento, sempre sob obrigação contratual de confidencialidade — e, mediante seu
+              consentimento, com os provedores de medição citados na seção 3 (Google e Apollo). Não
+              vendemos dados pessoais.
             </p>
           </Block>
 
-          <Block title="6. Por quanto tempo guardamos">
+          <Block title="7. Por quanto tempo guardamos">
             <p>
               Dados de contato comercial: até 24 meses após a última interação, ou até que você peça
               a exclusão. Registros de acesso: 6 meses, conforme o Marco Civil da Internet. Dados
@@ -107,7 +143,7 @@ function Privacidade() {
             </p>
           </Block>
 
-          <Block title="7. Seus direitos">
+          <Block title="8. Seus direitos">
             <p>
               Você pode solicitar confirmação de tratamento, acesso, correção, anonimização,
               portabilidade, exclusão e revogação do consentimento a qualquer momento, escrevendo
@@ -119,7 +155,7 @@ function Privacidade() {
             </p>
           </Block>
 
-          <Block title="8. Segurança">
+          <Block title="9. Segurança">
             <p>
               Adotamos medidas técnicas e administrativas para proteger os dados contra acessos não
               autorizados, perda ou alteração indevida. Em caso de incidente com risco relevante,
@@ -127,7 +163,7 @@ function Privacidade() {
             </p>
           </Block>
 
-          <Block title="9. Alterações desta política">
+          <Block title="10. Alterações desta política">
             <p>
               Podemos atualizar este documento. A data de última atualização no topo da página
               indica a versão vigente.
