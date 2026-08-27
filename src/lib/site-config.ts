@@ -224,7 +224,7 @@ export const IMAGENS = {
  */
 export const ANALYTICS = {
   gtmId: (import.meta.env?.VITE_GTM_ID as string | undefined) ?? "GTM-MD5RMDC4",
-  ga4Id: (import.meta.env?.VITE_GA4_ID as string | undefined) ?? "G-SZ70YFB237",
+  ga4Id: (import.meta.env?.VITE_GA4_ID as string | undefined) ?? "G-RSDMNS5KE5",
   apolloAppId:
     (import.meta.env?.VITE_APOLLO_APP_ID as string | undefined) ?? "699eff9dee7a1c00119c7cc8",
 

@@ -33,7 +33,7 @@ Tudo já está ligado com os IDs reais:
 | | ID | Situação |
 |---|---|---|
 | GTM | `GTM-MD5RMDC4` | Carregando, sem tags configuradas ainda |
-| GA4 | `G-SZ70YFB237` | Carregando direto pelo site |
+| GA4 | `G-RSDMNS5KE5` | Carregando direto pelo site |
 | Apollo | `699eff9dee7a1c00119c7cc8` | Carrega após aceite de marketing |
 
 O GA4 é disparado **pelo site**, não pelo GTM (`ANALYTICS.ga4ViaGtm: false`).
@@ -45,7 +45,7 @@ O GTM carrega junto e fica pronto para receber outras tags.
 Faz sentido quando o GTM já for o lugar onde as tags são gerenciadas — aí tudo
 fica num painel só. A ordem importa:
 
-1. No GTM, criar tag **Google Tag** com o ID `G-SZ70YFB237`, acionador "Todas as
+1. No GTM, criar tag **Google Tag** com o ID `G-RSDMNS5KE5`, acionador "Todas as
    páginas". Publicar.
 2. Só então virar `ANALYTICS.ga4ViaGtm` para `true` em `src/lib/site-config.ts`.
 
@@ -60,21 +60,15 @@ Para desligar o Apollo, por exemplo, basta esvaziar `apolloAppId`.
 Se preferir não versionar os IDs, as variáveis `VITE_GTM_ID`, `VITE_GA4_ID` e
 `VITE_APOLLO_APP_ID` têm prioridade sobre o arquivo.
 
-### Atenção: o fluxo do GA4 aponta para outro domínio
+### Nunca colar o snippet do GA4 no site
 
-O fluxo `G-SZ70YFB237` foi criado para `https://sistema.sstelematica.com.br/` —
-o sistema, área logada de cliente. Este repositório é o site institucional,
-`sstelematica.com.br`.
+O Google entrega um bloco `<script>` pronto ao criar o fluxo. **Ele não deve ser
+colado em lugar nenhum deste projeto.** O código já carrega o GA4 com esse mesmo
+ID, e sob consentimento — colar o snippet duplicaria a contagem e furaria o
+banner de cookies, porque o snippet do Google não respeita o Consent Mode
+declarado aqui.
 
-Tecnicamente funciona: o ID coleta de qualquer domínio que carregue a tag. O
-problema é analítico. Cliente logado usando o sistema e prospect lendo página de
-produto entram no mesmo relatório, e as métricas ficam sem sentido — a sessão
-média do sistema é muito mais longa, e a taxa de conversão do site fica diluída
-num denominador que não é dele.
-
-O certo é criar um fluxo de dados separado para `sstelematica.com.br` (GA4 →
-Administrador → Fluxos de dados → Adicionar fluxo → Web) e trocar o ID aqui.
-Leva dois minutos e evita ter que separar os dados depois.
+Do snippet, o que importa é só o ID.
 
 ## Consentimento (LGPD)
 
