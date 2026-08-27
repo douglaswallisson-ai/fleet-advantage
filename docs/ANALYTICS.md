@@ -26,41 +26,55 @@ As duas fazem coisas diferentes. Não é escolher uma.
 Quem realmente entrega nome e e-mail é o formulário. O papel do Apollo é
 enriquecer o que o formulário captura.
 
-## Como ligar
+## Estado atual
 
-### 1. Google Tag Manager (recomendado fazer primeiro)
+Tudo já está ligado com os IDs reais:
 
-1. Criar conta em [tagmanager.google.com](https://tagmanager.google.com), tipo de
-   container "Web".
-2. Copiar o ID no formato `GTM-XXXXXXX`.
-3. Colar em `src/lib/site-config.ts` → `ANALYTICS.gtmId`.
+| | ID | Situação |
+|---|---|---|
+| GTM | `GTM-MD5RMDC4` | Carregando, sem tags configuradas ainda |
+| GA4 | `G-SZ70YFB237` | Carregando direto pelo site |
+| Apollo | `699eff9dee7a1c00119c7cc8` | Carrega após aceite de marketing |
 
-Com o GTM no ar, qualquer ferramenta futura (pixel do LinkedIn, Meta, Hotjar)
-entra pelo painel, sem tocar no código de novo.
+O GA4 é disparado **pelo site**, não pelo GTM (`ANALYTICS.ga4ViaGtm: false`).
+Foi a escolha para não ficar sem medição enquanto o painel do GTM não é montado.
+O GTM carrega junto e fica pronto para receber outras tags.
 
-### 2. Google Analytics 4
+### Quando migrar o GA4 para dentro do GTM
 
-1. Criar propriedade em [analytics.google.com](https://analytics.google.com).
-2. Copiar o ID de medição, formato `G-XXXXXXXXXX`.
-3. **Com GTM:** criar no GTM uma tag "Google Tag" com esse ID, disparando em
-   "Todas as páginas". Deixar `ANALYTICS.ga4Id` vazio no código.
-4. **Sem GTM:** colar o ID em `ANALYTICS.ga4Id`. O site carrega o GA4 direto.
+Faz sentido quando o GTM já for o lugar onde as tags são gerenciadas — aí tudo
+fica num painel só. A ordem importa:
 
-> Preencher os dois campos e também configurar o GA4 dentro do GTM faz cada
-> pageview contar duas vezes. O código evita isso ignorando `ga4Id` quando há
-> `gtmId` — mas a duplicação volta se a tag existir nos dois lugares.
+1. No GTM, criar tag **Google Tag** com o ID `G-SZ70YFB237`, acionador "Todas as
+   páginas". Publicar.
+2. Só então virar `ANALYTICS.ga4ViaGtm` para `true` em `src/lib/site-config.ts`.
 
-### 3. Apollo
+Inverter a ordem faz cada pageview contar duas vezes durante a janela em que os
+dois estiverem ativos.
 
-O `appId` já está preenchido (`699eff9dee7a1c00119c7cc8`, extraído do painel do
-Apollo). Para trocar de conta, editar `ANALYTICS.apolloAppId`.
+### Trocar de conta ou desligar
 
-Para desligar o Apollo, basta esvaziar esse campo.
+Editar `ANALYTICS` em `src/lib/site-config.ts`. Campo vazio = script não carrega.
+Para desligar o Apollo, por exemplo, basta esvaziar `apolloAppId`.
 
-### Alternativa: variáveis de ambiente
+Se preferir não versionar os IDs, as variáveis `VITE_GTM_ID`, `VITE_GA4_ID` e
+`VITE_APOLLO_APP_ID` têm prioridade sobre o arquivo.
 
-Se preferir não versionar os IDs, use `VITE_GTM_ID`, `VITE_GA4_ID` e
-`VITE_APOLLO_APP_ID`. Elas têm prioridade sobre o que está no arquivo.
+### Atenção: o fluxo do GA4 aponta para outro domínio
+
+O fluxo `G-SZ70YFB237` foi criado para `https://sistema.sstelematica.com.br/` —
+o sistema, área logada de cliente. Este repositório é o site institucional,
+`sstelematica.com.br`.
+
+Tecnicamente funciona: o ID coleta de qualquer domínio que carregue a tag. O
+problema é analítico. Cliente logado usando o sistema e prospect lendo página de
+produto entram no mesmo relatório, e as métricas ficam sem sentido — a sessão
+média do sistema é muito mais longa, e a taxa de conversão do site fica diluída
+num denominador que não é dele.
+
+O certo é criar um fluxo de dados separado para `sstelematica.com.br` (GA4 →
+Administrador → Fluxos de dados → Adicionar fluxo → Web) e trocar o ID aqui.
+Leva dois minutos e evita ter que separar os dados depois.
 
 ## Consentimento (LGPD)
 
@@ -114,15 +128,17 @@ relatórios, colocar `data-secao="rodape"` em qualquer elemento acima do link.
 
 ### Fazer os eventos aparecerem no GA4
 
-Com GTM, um evento no `dataLayer` não chega sozinho ao GA4. Para cada um:
+Na configuração atual (`ga4ViaGtm: false`), os eventos vão **direto** para o
+GA4. Só falta marcá-los como conversão em GA4 → Administrador → Eventos →
+"Marcar como evento principal". Vale marcar `generate_lead`.
+
+Depois de migrar o GA4 para dentro do GTM, um evento no `dataLayer` deixa de
+chegar sozinho e passa a exigir, para cada um:
 
 1. GTM → Acionadores → Novo → **Evento personalizado**, nome exatamente igual ao
    da tabela acima (ex.: `generate_lead`).
 2. GTM → Tags → Novo → **Google Analytics: evento do GA4**, usando esse
    acionador.
-3. Marcar como conversão em GA4 → Administrador → Eventos.
-
-Sem GTM, os eventos vão direto para o GA4 e só falta marcá-los como conversão.
 
 Nenhum evento envia nome, e-mail ou telefone. Além de proibido pelos termos do
 Google, é desnecessário: o lead já chega pela rota `/api/leads`.

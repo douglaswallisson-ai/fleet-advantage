@@ -218,12 +218,14 @@ export function loadGtm() {
 }
 
 /**
- * GA4 direto, sem GTM. Só entra em cena quando `gtmId` está vazio — com os dois
- * configurados o GA4 deve viver dentro do GTM, senão cada pageview conta duas
- * vezes.
+ * GA4 carregado pelo site.
+ *
+ * Fica de fora quando `ga4ViaGtm` é `true` — nesse caso quem dispara o GA4 é a
+ * tag configurada no painel do GTM, e carregar aqui também faria cada pageview
+ * contar duas vezes.
  */
 export function loadGa4() {
-  if (!ANALYTICS.ga4Id || ANALYTICS.gtmId || jaCarregado("ga4")) return;
+  if (!ANALYTICS.ga4Id || ANALYTICS.ga4ViaGtm || jaCarregado("ga4")) return;
   injetarScript(`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga4Id}`, () => {
     window.gtag?.("js", new Date());
     window.gtag?.("config", ANALYTICS.ga4Id, { send_page_view: true });
@@ -268,7 +270,7 @@ export function track(evento: string, params: Record<string, unknown> = {}) {
   if (!isBrowser()) return;
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ event: evento, ...params });
-  if (!ANALYTICS.gtmId && ANALYTICS.ga4Id) {
+  if (ANALYTICS.ga4Id && !ANALYTICS.ga4ViaGtm) {
     window.gtag?.("event", evento, params);
   }
 }
@@ -283,7 +285,7 @@ export function trackPageView(url: string, title?: string) {
   if (!isBrowser()) return;
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ event: "page_view", page_location: url, page_title: title });
-  if (!ANALYTICS.gtmId && ANALYTICS.ga4Id) {
+  if (ANALYTICS.ga4Id && !ANALYTICS.ga4ViaGtm) {
     window.gtag?.("config", ANALYTICS.ga4Id, { page_path: url, page_title: title });
   }
 }
