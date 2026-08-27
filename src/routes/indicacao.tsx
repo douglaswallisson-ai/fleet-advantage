@@ -12,8 +12,7 @@ import {
   useLeadForm,
 } from "@/components/site/lead-form";
 import { Backdrop } from "@/components/site/Backdrop";
-// Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
-// import { ReferralCalculator } from "@/components/site/ReferralCalculator";
+import { ReferralCalculator } from "@/components/site/ReferralCalculator";
 import { CONTACT, FOTOS, MEDIA, pageHead } from "@/lib/site-config";
 
 export const Route = createFileRoute("/indicacao")({
@@ -23,9 +22,9 @@ export const Route = createFileRoute("/indicacao")({
       path: "/indicacao",
       title: "Programa de Indicação — SS Telemática",
       description:
-        "Indique a SS e ganhe 3% sobre o valor de 12 meses do contrato fechado pelo indicado. Simule sua recompensa.",
+        "Indique a SS e ganhe R$ 30 por veículo ativado da frota indicada. Sem teto. Simule sua recompensa.",
       ogTitle: "Programa de Indicação SS",
-      ogDescription: "3% sobre 12 meses de contrato para quem indica — sem teto.",
+      ogDescription: "R$ 30 por veículo ativado para quem indica — sem teto.",
     }),
 });
 
@@ -46,12 +45,12 @@ function Indicacao() {
               <Gift className="h-3.5 w-3.5 text-brand-green" /> PROGRAMA DE INDICAÇÃO SS
             </span>
             <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1.05] md:text-6xl">
-              Indique a SS e ganhe <span className="text-brand-green">3%</span> sobre 12 meses de
-              contrato.
+              Indique a SS e ganhe <span className="text-brand-green">R$ 30</span> por veículo da
+              frota.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-white/80">
-              Sem teto de frota, sem teto de valor. Fechou contrato de R$ 5.000/mês? Você recebe 3%
-              dos R$ 60.000 de 12 meses — R$ 1.800 direto no PIX.
+              Sem teto de frota, sem teto de valor. Indicou uma frota de 100 veículos e o contrato
+              foi ativado? São R$ 3.000 direto no PIX. A conta é essa — você faz de cabeça.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
@@ -90,7 +89,7 @@ function Indicacao() {
                 icon: Wallet,
                 s: "03",
                 t: "Você recebe",
-                d: "Contrato assinado e ativado? 3% sobre o valor de 12 meses do contrato — direto no PIX.",
+                d: "Contrato assinado e veículos ativados? R$ 30 por veículo — direto no PIX.",
               },
             ].map(({ icon: Icon, s, t, d }) => (
               <div
@@ -112,10 +111,12 @@ function Indicacao() {
           <div className="mx-auto max-w-3xl px-6">
             <h2 className="text-center text-4xl font-bold">Quanto você ganha</h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-              3% sobre o valor de 12 meses do contrato fechado pelo indicado. Sem teto — indique
+              R$ 30 por veículo ativado da frota indicada, pagos de uma vez. Sem teto — indique
               quantas empresas quiser.
             </p>
-            <div className="mt-12">{/* <ReferralCalculator /> */}</div>
+            <div className="mt-12">
+              <ReferralCalculator />
+            </div>
             <p className="mt-6 text-center text-xs text-muted-foreground">
               Valores válidos para contratos assinados e veículos efetivamente ativados.{" "}
               <a href="#regulamento" className="underline hover:text-primary">
@@ -196,7 +197,7 @@ function Indicacao() {
             <li>
               <strong className="text-foreground">3. Quando a recompensa é devida.</strong> Após a
               assinatura do contrato pela empresa indicada e a ativação efetiva dos veículos, no
-              valor de 3% sobre o total de 12 meses do contrato assinado.
+              valor de R$ 30 por veículo ativado, em pagamento único.
             </li>
             <li>
               <strong className="text-foreground">4. Pagamento.</strong> Via PIX, em até 30 dias
@@ -206,7 +207,7 @@ function Indicacao() {
             <li>
               <strong className="text-foreground">5. Cancelamento.</strong> Contratos cancelados ou
               veículos desativados dentro de 90 dias da ativação podem gerar estorno proporcional da
-              recompensa.
+              recompensa, na proporção dos veículos desativados.
             </li>
             <li>
               <strong className="text-foreground">6. Tributos.</strong> Os valores recebidos podem

@@ -15,8 +15,8 @@ export function ReferralTeaser() {
             <span className="text-gradient">Indique e ganhe.</span>
           </h2>
           <p className="mt-4 text-muted-foreground">
-            3% sobre o valor de 12 meses do contrato fechado pelo indicado, sem teto. Simule ao lado
-            quanto você recebe.
+            R$ 30 por veículo ativado da frota que você indicar, sem teto. Uma frota de 100 veículos
+            são R$ 3.000. Simule ao lado.
           </p>
           <Link
             to="/indicacao"

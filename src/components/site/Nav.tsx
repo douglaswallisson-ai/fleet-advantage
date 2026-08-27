@@ -30,8 +30,7 @@ const NAV: NavEntry[] = [
     items: [
       { label: "Quem Somos", to: "/quem-somos", desc: "História, propósito e valores" },
       { label: "Blog", to: "/blog", desc: "Ideias sobre frota, IA e decisão" },
-      // Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
-      // { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
+      { label: "Programa de Indicação", to: "/indicacao", desc: "Ganhe indicando a SS" },
     ],
   },
 ];

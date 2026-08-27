@@ -58,13 +58,11 @@ export function Footer() {
                   Blog
                 </Link>
               </li>
-              {/* Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
               <li>
                 <Link to="/indicacao" className="transition-colors hover:text-white">
                   Programa de Indicação
                 </Link>
               </li>
-              */}
               <li>
                 <Link to="/contato" className="transition-colors hover:text-white">
                   Contato
