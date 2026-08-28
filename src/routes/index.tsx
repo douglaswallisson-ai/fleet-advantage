@@ -323,9 +323,7 @@ function Features() {
     <section id="solucoes" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
       <div className="mb-14 max-w-2xl">
         <span className="text-xs font-bold tracking-widest text-brand-sky">A PLATAFORMA SS</span>
-        <h2 className="mt-3 text-4xl font-bold md:text-5xl">
-          Tecnologia que decide junto — e paga a própria conta.
-        </h2>
+        <h2 className="mt-3 text-4xl font-bold md:text-5xl">Tecnologia que decide junto.</h2>
       </div>
 
       <article className="group grid items-stretch overflow-hidden rounded-3xl bg-gradient-hero text-white shadow-elegant lg:grid-cols-[5fr_7fr]">
