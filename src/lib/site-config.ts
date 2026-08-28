@@ -223,10 +223,23 @@ export const IMAGENS = {
  * VITE_APOLLO_APP_ID) sem tocar neste arquivo. Ver docs/ANALYTICS.md.
  */
 export const ANALYTICS = {
-  gtmId: (import.meta.env?.VITE_GTM_ID as string | undefined) ?? "",
-  ga4Id: (import.meta.env?.VITE_GA4_ID as string | undefined) ?? "",
+  gtmId: (import.meta.env?.VITE_GTM_ID as string | undefined) ?? "GTM-PTNCCVB9",
+  ga4Id: (import.meta.env?.VITE_GA4_ID as string | undefined) ?? "G-RSDMNS5KE5",
   apolloAppId:
     (import.meta.env?.VITE_APOLLO_APP_ID as string | undefined) ?? "699eff9dee7a1c00119c7cc8",
+
+  /**
+   * O GA4 é disparado por uma tag DENTRO do GTM?
+   *
+   * `false` (atual): o site carrega o GA4 direto. Funciona sem configurar nada
+   * no painel — é o estado inicial, para não ficar sem medição enquanto o GTM
+   * não é montado. O GTM carrega junto, pronto para receber outras tags.
+   *
+   * `true`: o site não carrega o GA4; quem dispara é o GTM. Vire para `true`
+   * DEPOIS de criar a tag "Google Tag" no painel — se os dois estiverem ativos
+   * ao mesmo tempo, cada pageview conta duas vezes.
+   */
+  ga4ViaGtm: false,
 };
 
 export const CONTACT = {

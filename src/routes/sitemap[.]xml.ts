@@ -17,8 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/blog", priority: "0.9", changefreq: "weekly", lastmod },
           { path: "/contato", priority: "0.9", changefreq: "monthly", lastmod },
           { path: "/selo-verde", priority: "0.8", changefreq: "monthly", lastmod },
-          // Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
-          // { path: "/indicacao", priority: "0.8", changefreq: "monthly", lastmod },
+          { path: "/indicacao", priority: "0.8", changefreq: "monthly", lastmod },
           { path: "/quem-somos", priority: "0.7", changefreq: "monthly", lastmod },
           { path: "/politica-de-privacidade", priority: "0.3", changefreq: "yearly", lastmod },
           ...POSTS.map((p) => ({

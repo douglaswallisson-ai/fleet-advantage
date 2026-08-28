@@ -649,14 +649,12 @@ function CTA() {
           >
             Agendar demo <ArrowRight className="h-4 w-4" />
           </Link>
-          {/* Desativado temporariamente a pedido do Douglas (retirar menções a indicação).
           <Link
             to="/indicacao"
             className="inline-flex items-center rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold hover:bg-secondary"
           >
             Ganhar indicando →
           </Link>
-          */}
         </div>
       </div>
     </section>
