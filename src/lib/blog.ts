@@ -40,7 +40,7 @@ export const POSTS: Post[] = [
       "Frotas nunca tiveram tantos dados — e ainda assim decidem no escuro. Veja como a IA transforma telemetria em ação priorizada.",
     data: "2026-08-01",
     categoria: "Gestão de frotas",
-    cover: "",
+    cover: "/imagens-ss/banners/central-monitoramento.webp",
     body: [
       {
         tipo: "p",
@@ -81,7 +81,7 @@ export const POSTS: Post[] = [
       "Trocar a manutenção corretiva pela preditiva é o caminho mais direto para cortar paradas não programadas. Como começar.",
     data: "2026-07-20",
     categoria: "Manutenção",
-    cover: "",
+    cover: "/imagens-ss/icp/manutencao-frota.webp",
     body: [
       {
         tipo: "p",
@@ -219,7 +219,7 @@ export const POSTS: Post[] = [
       "Duas propostas de telemetria podem parecer iguais na apresentação e entregar coisas completamente diferentes na operação. A diferença está em quantos dados o equipamento consegue ler de dentro do veículo.",
     data: "2026-08-27",
     categoria: "Tecnologia",
-    cover: "",
+    cover: "/imagens-ss/banners/integraveis-rede-can.webp",
     body: [
       {
         tipo: "p",
